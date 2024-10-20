@@ -1,0 +1,198 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\npmjs\\src\\twurple-auth-interop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\npmjs\\src\\twurple-auth-interop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\interop\\twurpleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\interop\\twurpleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{f5cd1b51-c771-5648-966f-646d419b1e7c}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "twurple-auth-interop.js",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "RelativeToolTip": "RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-20T05:34:12.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TwurpleAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
+              "RelativeToolTip": "RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAA4wBEAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T03:36:21.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Home.razor.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.cs",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.cs",
+              "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwBAAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T03:09:14.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Home.razor.css",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.css",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor.css",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.css",
+              "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-20T03:07:36.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor",
+              "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-20T02:59:40.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "RavensTeam.Blazor\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-20T02:26:03.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\index.html",
+              "RelativeToolTip": "RavensTeam.Blazor\\wwwroot\\index.html",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-10-20T02:25:17.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\App.razor",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\App.razor",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\App.razor",
+              "RelativeToolTip": "RavensTeam.Blazor\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-20T02:23:32.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\_Imports.razor",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\_Imports.razor",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\_Imports.razor",
+              "RelativeToolTip": "RavensTeam.Blazor\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-20T02:23:04.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Program.cs",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Program.cs",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Program.cs",
+              "RelativeToolTip": "RavensTeam.Blazor\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAswCUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-20T02:16:59.896Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

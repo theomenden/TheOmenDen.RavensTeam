@@ -1,0 +1,47 @@
+﻿@page "/"
+@using RavensTeam.Blazor.Interop
+
+<PageTitle>Home</PageTitle>
+<FluentMainLayout NavMenuTitle="Navigation menu">
+    <Header><h3>Stream Team Name</h3></Header>
+    <SubHeader><p>First Team</p></SubHeader>
+    <Body>
+        <div>
+            <FluentButton OnClick="@AddStreamer">
+                <FluentIcon Value="@(new Icons.Regular.Size16.Add())" />
+                Add Streamer
+            </FluentButton>
+            @if (_streamerNames.Count == 0)
+            {
+                <div>
+                    <FluentCard Class="card-padding">
+                        <FluentSkeleton Shape="SkeletonShape.Circle" Shimmer="true"></FluentSkeleton>
+                        <FluentSkeleton Height="10px" Shimmer="true"></FluentSkeleton>
+                        <FluentSkeleton Height="10px" Shimmer="true"></FluentSkeleton>
+                        <FluentSkeleton Height="10px" Shimmer="true"></FluentSkeleton>
+                        <FluentSkeleton Width="75px" Height="30px" Shimmer="true"></FluentSkeleton>
+                    </FluentCard>
+                </div>
+            }
+            else
+            {
+                <FluentStack Orientation="Orientation.Vertical"
+                             VerticalGap="20"
+                             HorizontalAlignment="@HorizontalAlignment.End"
+                             VerticalAlignment="@VerticalAlignment.Center"
+                             Style="height: 48px; background: var(--neutral-layer-4); padding-inline-end: 10px;">
+                    @foreach (var streamer in _streamerNames)
+                    {
+                        <FluentProfileMenu Image="icon-192.png"
+                                           Status="@PresenceStatus.Available"
+                                           HeaderLabel="Stream Team"
+                                           Initials="SM"
+                                           FullName="@streamer"
+                                           EMail="@($"{streamer}@microsoft.com")"
+                                           PopoverStyle="min-width: 330px;" />
+                    }
+                </FluentStack>
+            }
+        </div>
+    </Body>
+</FluentMainLayout>

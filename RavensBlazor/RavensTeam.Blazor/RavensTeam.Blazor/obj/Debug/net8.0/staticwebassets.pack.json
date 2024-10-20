@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\obj\\Debug\\net8.0\\compressed\\52l5xbeeyl.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\obj\\Debug\\net8.0\\scopedcss\\bundle\\RavensTeam.Blazor.styles.css",
+      "PackagePath": "staticwebassets\\RavensTeam.Blazor.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\js\\jslib.js",
+      "PackagePath": "staticwebassets\\js\\jslib.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RavensTeam.Blazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.RavensTeam.Blazor.props",
+      "PackagePath": "build\\RavensTeam.Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.RavensTeam.Blazor.props",
+      "PackagePath": "buildMultiTargeting\\RavensTeam.Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.RavensTeam.Blazor.props",
+      "PackagePath": "buildTransitive\\RavensTeam.Blazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
