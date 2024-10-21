@@ -1,11 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
+	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <RunAOTCompilation>True</RunAOTCompilation>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="compilerconfig.json" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
@@ -41,6 +61,10 @@
 	<ItemGroup>
 		<Folder Include="NpmJs\" />
 		<Folder Include="wwwroot\js\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="compilerconfig.json" />
 	</ItemGroup>
 
 </Project>

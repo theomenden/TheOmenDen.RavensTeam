@@ -490,6 +490,8 @@ C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\Ravens
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\wwwroot\_framework\System.IO.MemoryMappedFiles.wasm.gz
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\wwwroot\_framework\System.Threading.Channels.wasm.gz
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\wwwroot\_framework\System.Globalization.Calendars.wasm.gz
+C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\NpmJs\package-lock.json
+C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\NpmJs\package.json
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\RavensTeam.Blazor.staticwebassets.runtime.json
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\RavensTeam.Blazor.dll
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\RavensTeam.Blazor.pdb
@@ -985,7 +987,9 @@ C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\Ravens
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.RavensTeam.Blazor.props
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.RavensTeam.Blazor.props
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\scopedcss\Pages\Home.razor.rz.scp.css
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\scopedcss\bundle\RavensTeam.Blazor.styles.css
+C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\scopedcss\projectbundle\RavensTeam.Blazor.bundle.scp.css
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\compressed\52l5xbeeyl.gz
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\compressed\1o0328kd0d.gz
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\compressed\3jdd6b2lry.gz
@@ -1238,7 +1242,3 @@ C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\Ravens
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\refint\RavensTeam.Blazor.dll
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\RavensTeam.Blazor.pdb
 C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\ref\RavensTeam.Blazor.dll
-C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\scopedcss\Pages\Home.razor.rz.scp.css
-C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\obj\Debug\net8.0\scopedcss\projectbundle\RavensTeam.Blazor.bundle.scp.css
-C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\NpmJs\package-lock.json
-C:\Users\andre\source\repos\theomenden\TheOmenDen.RavensTeam\RavensBlazor\RavensTeam.Blazor\RavensTeam.Blazor\bin\Debug\net8.0\NpmJs\package.json

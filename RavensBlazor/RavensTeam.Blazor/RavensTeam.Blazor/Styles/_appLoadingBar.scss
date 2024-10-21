@@ -1,0 +1,63 @@
+﻿@function particles($number: 1, $randomX: 10, $randomY: 10, $blur: 0, $color: #fff) {
+    $shadow: ();
+
+    @for $i from 1 through $number {
+        $shadow: append($shadow, random($randomX)+px random($randomY)+px $blur+px $color, comma);
+    }
+
+    @return $shadow;
+}
+
+.loading-bar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 302px;
+    height: 32px;
+    background: #2f4565;
+    margin-top: -15px;
+    margin-left: -150px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-left: 2px;
+
+    .loading-progress {
+        height: 28px;
+        position: relative;
+        border-radius: 4px;
+        background: linear-gradient(to top,#21a7e0 0%, #1b7ccf 20%, #21a7e0 100%);
+        overflow: hidden;
+        box-sizing: border-box;
+        box-shadow: inset 0 0 3px rgba(#fff, .5);
+
+        &:before {
+            content: ' ';
+            width: 4px;
+            height: 4px;
+            border-radius: 100%;
+            box-shadow: particles(60, 300, 100, 0, rgba(#fff, .2));
+            position: absolute;
+            animation: particle-up 7s infinite linear;
+            transform: translateY(28px);
+        }
+
+        &:after {
+            content: ' ';
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            box-shadow: particles(50, 300, 100, 2, rgba(#fff, .2));
+            position: absolute;
+            transform: translateY(28px);
+            animation: particle-up 10s infinite linear;
+        }
+    }
+}
+
+@keyframes particle-up {
+    to {
+        transform: translateY(-130px);
+    }
+}

@@ -3,32 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\interop\\twurpleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\interop\\twurpleauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\npmjs\\src\\twurple-auth-interop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\npmjs\\src\\twurple-auth-interop.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\wwwroot\\js\\jslib.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\wwwroot\\js\\jslib.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\styles\\_apploadingbar.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\styles\\_apploadingbar.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\styles\\main.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\styles\\main.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\compilerconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\compilerconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\pages\\home.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|solutionrelative:ravensteam.blazor\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{15ADC390-2633-462A-9DAB-3728E76E68C1}|RavensTeam.Blazor\\RavensTeam.Blazor.csproj|c:\\users\\andre\\source\\repos\\theomenden\\theomenden.ravensteam\\ravensblazor\\ravensteam.blazor\\ravensteam.blazor\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -46,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,57 +74,124 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "TwurpleAuthService.cs",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
               "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
               "RelativeToolTip": "RavensTeam.Blazor\\Interop\\TwurpleAuthService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAcwA4AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA/wBIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T03:36:21.172Z",
+              "WhenOpened": "2024-10-21T17:22:56.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "twurple-auth-interop.js",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "RelativeToolTip": "RavensTeam.Blazor\\NpmJs\\src\\twurple-auth-interop.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-21T17:22:17.239Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Home.razor.cs",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.cs",
-              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor.cs",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.cs",
-              "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAIwA8AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T03:09:14.655Z",
+              "Title": "jslib.js",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\js\\jslib.js",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\wwwroot\\js\\jslib.js",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\js\\jslib.js",
+              "RelativeToolTip": "RavensTeam.Blazor\\wwwroot\\js\\jslib.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-21T17:17:02.115Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Home.razor.css",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.css",
-              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor.css",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor.css",
-              "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "compilerconfig.json",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\compilerconfig.json",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\compilerconfig.json",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\compilerconfig.json",
+              "RelativeToolTip": "RavensTeam.Blazor\\compilerconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-21T16:58:02.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\css\\app.css",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\wwwroot\\css\\app.css",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\css\\app.css",
+              "RelativeToolTip": "RavensTeam.Blazor\\wwwroot\\css\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-20T03:07:36.413Z"
+              "WhenOpened": "2024-10-21T16:56:17.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_appLoadingBar.scss",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Styles\\_appLoadingBar.scss",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Styles\\_appLoadingBar.scss",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Styles\\_appLoadingBar.scss",
+              "RelativeToolTip": "RavensTeam.Blazor\\Styles\\_appLoadingBar.scss",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2024-10-21T16:54:20.049Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "main.scss",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Styles\\main.scss",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Styles\\main.scss",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Styles\\main.scss",
+              "RelativeToolTip": "RavensTeam.Blazor\\Styles\\main.scss",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2024-10-21T16:54:00.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "RavensTeam.Blazor\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Properties\\launchSettings.json",
+              "RelativeToolTip": "RavensTeam.Blazor\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-21T16:48:22.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Pages\\Home.razor",
               "RelativeToolTip": "RavensTeam.Blazor\\Pages\\Home.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAqwDAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T02:59:40.612Z"
+              "WhenOpened": "2024-10-20T02:59:40.612Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\Layout\\MainLayout.razor",
@@ -116,37 +199,24 @@
               "RelativeToolTip": "RavensTeam.Blazor\\Layout\\MainLayout.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T02:26:03.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-20T02:26:03.505Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "index.html",
-              "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\index.html",
-              "RelativeDocumentMoniker": "RavensTeam.Blazor\\wwwroot\\index.html",
-              "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\index.html",
-              "RelativeToolTip": "RavensTeam.Blazor\\wwwroot\\index.html",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAsAAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-10-20T02:25:17.234Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\App.razor",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\App.razor",
               "ToolTip": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\App.razor",
               "RelativeToolTip": "RavensTeam.Blazor\\App.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-20T02:23:32.564Z"
+              "WhenOpened": "2024-10-20T02:23:32.564Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\_Imports.razor",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\_Imports.razor",
@@ -158,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\Program.cs",
               "RelativeDocumentMoniker": "RavensTeam.Blazor\\Program.cs",

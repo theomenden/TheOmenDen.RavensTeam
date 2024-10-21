@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
+      "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\css\\app.min.css",
+      "PackagePath": "staticwebassets\\css\\app.min.css"
+    },
+    {
       "Id": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\icon-192.png",
       "PackagePath": "staticwebassets\\icon-192.png"
     },

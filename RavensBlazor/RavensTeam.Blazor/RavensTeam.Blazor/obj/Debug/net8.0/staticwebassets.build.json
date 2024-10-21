@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hHBYSppyMGpZoD1YMrNIxxeo7zslcjYBBlWDh7c+smo=",
+  "Hash": "NMqWeHCRdB2E99zx5A7WpZ7FvdBcT/m/KaS1w5wvOdU=",
   "Source": "RavensTeam.Blazor",
   "BasePath": "/",
   "Mode": "Root",
@@ -10104,6 +10104,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\app.css"
+    },
+    {
+      "Identity": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\css\\app.min.css",
+      "SourceId": "RavensTeam.Blazor",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/app.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\app.min.css"
     },
     {
       "Identity": "C:\\Users\\andre\\source\\repos\\theomenden\\TheOmenDen.RavensTeam\\RavensBlazor\\RavensTeam.Blazor\\RavensTeam.Blazor\\wwwroot\\icon-192.png",

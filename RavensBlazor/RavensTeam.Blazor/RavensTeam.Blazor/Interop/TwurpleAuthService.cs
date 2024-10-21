@@ -1,4 +1,6 @@
 ﻿using Microsoft.JSInterop;
+using System.Runtime.InteropServices.JavaScript;
+using System.Runtime.Versioning;
 
 namespace RavensTeam.Blazor.Interop;
 public interface ITwurpleAuthService
@@ -6,6 +8,16 @@ public interface ITwurpleAuthService
     ValueTask CallAuthFunctionAsync();
     ValueTask<string> GetMyUserNameAsync();
 }
+
+[SupportedOSPlatform("browser")]
+public partial class TwurpleInteropAuthService
+{
+    [JSImport("callTwitchAuthHelper", "jslib")]
+    public static partial void CallAuthFunction();
+    [JSImport("getMyUserName", "jslib")]
+    public static partial string GetMyUserName();
+}
+
 internal sealed class TwurpleAuthService(IJSRuntime jsRuntime, ILogger<TwurpleAuthService> logger)
 : ITwurpleAuthService
 {
