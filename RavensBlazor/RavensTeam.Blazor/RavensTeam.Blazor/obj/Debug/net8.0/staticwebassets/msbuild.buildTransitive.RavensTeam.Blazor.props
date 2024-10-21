@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\RavensTeam.Blazor.props" />
-</Project>
