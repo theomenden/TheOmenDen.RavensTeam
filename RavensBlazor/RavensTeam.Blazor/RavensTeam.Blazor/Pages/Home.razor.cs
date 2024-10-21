@@ -11,11 +11,12 @@ public partial class Home : ComponentBase
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        //if (firstRender)
-        //{
-        //    var myName = await TwurpleAuthService.GetMyUserNameAsync();
-        //    _streamerNames.Add(myName);
-        //}
+        if (firstRender)
+        {
+            await TwurpleAuthService.CallAuthFunctionAsync();
+            var myName = await TwurpleAuthService.GetMyUserNameAsync();
+            _streamerNames.Add(myName);
+        }
     }
 
     private void AddStreamer()
