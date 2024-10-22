@@ -1,37 +1,44 @@
-﻿using Microsoft.JSInterop;
+﻿using System.Text.Json;
+using Microsoft.JSInterop;
+using RavensTeam.Blazor.Models;
 
 namespace RavensTeam.Blazor.Interop;
 public interface ITwurpleAuthService
 {
-    void CallAuthFunction();
-    ValueTask<string> GetMyUserNameAsync();
+    TwitchAuthResponse? GetAuthResponse();
+    string GetTwitchConfiguration();
 }
 
 internal sealed class TwurpleAuthService(IJSRuntime jsRuntime, ILogger<TwurpleAuthService> logger)
 : ITwurpleAuthService
 {
     private readonly IJSInProcessRuntime _jsInProcessRuntime = (IJSInProcessRuntime)jsRuntime;
-    public void CallAuthFunction()
+
+    public TwitchAuthResponse? GetAuthResponse()
     {
         try
         {
-            _jsInProcessRuntime.InvokeVoid("jslib.callTwitchAuthHelper");
+            var response = _jsInProcessRuntime.Invoke<string>("jslib.getAuthResponse");
+            return JsonSerializer.Deserialize<TwitchAuthResponse>(response);
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error while calling auth function");
+            logger.LogError(ex, "Error while getting auth response");
+            return null;
         }
     }
-    public ValueTask<string> GetMyUserNameAsync()
+
+    public string GetTwitchConfiguration()
     {
         try
         {
-            return jsRuntime.InvokeAsync<string>("jslib.getMyUserName");
+            var response = _jsInProcessRuntime.Invoke<string>("jslib.getTwitchConfiguration");
+            return response;
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "Error while getting username");
-            return ValueTask.FromResult(String.Empty);
+            logger.LogError(ex, "Error while getting auth response");
+            return String.Empty;
         }
     }
 }

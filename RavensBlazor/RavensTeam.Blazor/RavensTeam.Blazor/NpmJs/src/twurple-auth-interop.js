@@ -1,19 +1,21 @@
 import { ExtensionAuthProvider } from "@twurple/auth-ext";
 import { ApiClient } from '@twurple/api';
 
-export async function getMyUserName() {
-  try {
-    const clientId = 'lalrvvljueuwdj1l778y6jcsuktevq';
-    const authProvider = new ExtensionAuthProvider(clientId);
-    console.info('Fetching user name...');
-    const apiClient = new ApiClient({ authProvider });
-    const user = await apiClient.users.getUserByName('aluthecrow');
-    console.log('User name fetched:', user.displayName);
-    return user.displayName;
-
-  } catch (error) {
-    console.error('Error fetching user name:', error);
-    return null;
+export function getAuthResponse() {
+  let authResponse = '';
+  if (window.Twitch && window.Twitch.ext) {
+    window.Twitch.ext.onAuthorized(function (auth) {
+      authResponse = JSON.stringify(auth);
+    });
   }
+  return authResponse;
+}
 
+export function getTwitchConfiguration() {
+  let config = '';
+
+  if (window.Twitch && window.Twitch.ext) {
+    config = JSON.stringify(window.Twitch.ext);
+  }
+  return config;
 }

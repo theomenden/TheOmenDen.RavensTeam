@@ -47,6 +47,7 @@
 </FluentMainLayout>
 @code {
 
+    [Inject] private ILogger<Home> Logger { get; init; } = default!;
     [Inject] private ITwurpleAuthService TwurpleAuthService { get; init; } = default!;
     private readonly List<string> _streamerNames = [];
 
@@ -54,9 +55,8 @@
     {
         if (firstRender)
         {
-            TwurpleAuthService.CallAuthFunction();
-            var myName = await TwurpleAuthService.GetMyUserNameAsync();
-            _streamerNames.Add(myName);
+            var authResponse = TwurpleAuthService.GetAuthResponse();
+            Logger.LogInformation("Auth response: {authResponse}", authResponse);
         }
     }
 

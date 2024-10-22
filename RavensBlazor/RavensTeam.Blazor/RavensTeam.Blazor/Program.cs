@@ -37,7 +37,12 @@ try
     builder.Services.AddBlazoredLocalStorage();
     builder.Services.AddScoped<ITwurpleAuthService, TwurpleAuthService>();
     builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new(builder.HostEnvironment.BaseAddress) });
-
+    builder.Services.AddHttpClient("HelixApi", client =>
+        {
+            client.BaseAddress = new Uri("https://api.twitch.tv/helix/");
+            client.DefaultRequestHeaders.Add("client-Id", "lalrvvljueuwdj1l778y6jcsuktevq");
+        })
+        .AddStandardResilienceHandler();
     await builder.Build().RunAsync();
 }
 catch (Exception ex)
