@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+		<TypeScriptTarget>ES2020</TypeScriptTarget>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <TypeScriptTarget>ES2020</TypeScriptTarget>
+		<TypeScriptTarget>ES2020</TypeScriptTarget>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -15,16 +15,8 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	  <RunAOTCompilation>True</RunAOTCompilation>
-	</PropertyGroup>
-
 	<ItemGroup>
-	  <Content Remove="compilerconfig.json" />
+		<Content Remove="compilerconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -59,12 +51,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="NpmJs\" />
 		<Folder Include="wwwroot\js\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="compilerconfig.json" />
+		<None Include="compilerconfig.json" />
 	</ItemGroup>
 
 </Project>

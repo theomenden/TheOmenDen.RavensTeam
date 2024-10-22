@@ -1,12 +1,6 @@
 import { ExtensionAuthProvider } from "@twurple/auth-ext";
 import { ApiClient } from '@twurple/api';
 
-export function callTwitchAuthHelper() {
-  window.Twitch.ext.onAuthorized(auth => {
-    console.log("Auth object:", `${JSON.stringify(auth)}\n`);
-  });
-}
-
 export async function getMyUserName() {
   try {
     const clientId = 'lalrvvljueuwdj1l778y6jcsuktevq';

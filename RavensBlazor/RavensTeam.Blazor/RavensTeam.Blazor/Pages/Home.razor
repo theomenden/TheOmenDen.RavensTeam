@@ -54,7 +54,7 @@
     {
         if (firstRender)
         {
-            TwurpleInteropAuthService.CallAuthFunction();
+            TwurpleAuthService.CallAuthFunction();
             var myName = await TwurpleAuthService.GetMyUserNameAsync();
             _streamerNames.Add(myName);
         }
@@ -91,5 +91,4 @@
 
         StateHasChanged();
     }
-
 }

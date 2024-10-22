@@ -8,7 +8,18 @@
     <NotFound>
         <PageTitle>Not found</PageTitle>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
+            <FluentLayout>
+                <FluentStack Orientation="Orientation.Horizontal"
+                             HorizontalGap="4">
+                    <FluentBodyContent>
+                        <div>
+                            <h1>Page Not Found</h1>
+                            <p>We can't seem to find the page you're looking for. Please check the URL for any typos.</p>
+                        </div>
+                        <div><img style="display: flex;width: 200px;align-self: center;justify-content: center;margin: auto;" src="https://omjsblog.files.wordpress.com/2023/07/errorimg.png" alt="Sad robot, page not found"></div>
+                    </FluentBodyContent>
+                </FluentStack>
+            </FluentLayout>
         </LayoutView>
     </NotFound>
 </Router>

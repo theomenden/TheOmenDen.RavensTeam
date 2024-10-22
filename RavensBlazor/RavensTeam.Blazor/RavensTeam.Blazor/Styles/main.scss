@@ -1,4 +1,5 @@
 ﻿@use '_appLoadingBar.scss';
+@use '_footer.scss';
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
