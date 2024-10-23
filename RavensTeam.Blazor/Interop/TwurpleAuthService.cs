@@ -6,7 +6,6 @@ namespace RavensTeam.Blazor.Interop;
 public interface ITwurpleAuthService
 {
     TwitchAuthResponse? GetAuthResponse();
-    string GetTwitchConfiguration();
 }
 
 internal sealed class TwurpleAuthService(IJSRuntime jsRuntime, ILogger<TwurpleAuthService> logger)
@@ -25,20 +24,6 @@ internal sealed class TwurpleAuthService(IJSRuntime jsRuntime, ILogger<TwurpleAu
         {
             logger.LogError(ex, "Error while getting auth response");
             return null;
-        }
-    }
-
-    public string GetTwitchConfiguration()
-    {
-        try
-        {
-            var response = _jsInProcessRuntime.Invoke<string>("jslib.getTwitchConfiguration");
-            return response;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error while getting auth response");
-            return String.Empty;
         }
     }
 }

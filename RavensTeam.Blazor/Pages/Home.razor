@@ -1,16 +1,15 @@
 ﻿@page "/"
+@page "/home"
+@using System.Net.Http.Headers
+@using Blazored.LocalStorage
 @using RavensTeam.Blazor.Interop
 
 <PageTitle>Home</PageTitle>
 <FluentMainLayout NavMenuTitle="Navigation menu">
-    <Header><h3>Stream Team Name</h3></Header>
-    <SubHeader><p>First Team</p></SubHeader>
+    <Header><h3>Stream Team Members</h3></Header>
+    <SubHeader><FluentIcon Value="@(new Icons.Color.Size32.PeopleTeam())"></FluentIcon></SubHeader>
     <Body>
         <div>
-            <FluentButton OnClick="@AddStreamer">
-                <FluentIcon Value="@(new Icons.Regular.Size16.Add())" />
-                Add Streamer
-            </FluentButton>
             @if (_streamerNames.Count == 0)
             {
                 <div>
@@ -49,16 +48,11 @@
 
     [Inject] private ILogger<Home> Logger { get; init; } = default!;
     [Inject] private ITwurpleAuthService TwurpleAuthService { get; init; } = default!;
+    [Inject] private IHelixService HelixService { get; init; } = default!;
+    [Inject] private ISyncLocalStorageService LocalStorage { get; init; } = default!;
+    [Inject] private IHttpClientFactory HttpClientFactory { get; init; } = default!;
     private readonly List<string> _streamerNames = [];
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            var authResponse = TwurpleAuthService.GetAuthResponse();
-            Logger.LogInformation("Auth response: {authResponse}", authResponse);
-        }
-    }
 
     private void AddStreamer()
     {

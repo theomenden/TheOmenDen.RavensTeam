@@ -36,6 +36,7 @@ try
     builder.Services.AddLogging(lb => lb.AddSerilog(dispose: true));
     builder.Services.AddBlazoredLocalStorage();
     builder.Services.AddScoped<ITwurpleAuthService, TwurpleAuthService>();
+    builder.Services.AddScoped<IHelixService, HelixService>();
     builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new(builder.HostEnvironment.BaseAddress) });
     builder.Services.AddHttpClient("HelixApi", client =>
         {
