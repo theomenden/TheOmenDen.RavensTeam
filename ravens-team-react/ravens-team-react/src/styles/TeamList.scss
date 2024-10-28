@@ -1,0 +1,17 @@
+/* src/components/TeamList.scss */
+
+// Grid settings for team members
+$persona-min-width: 100px;
+$grid-gap: 10px;
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($persona-min-width, 1fr));
+    gap: $grid-gap;
+    padding: 10px 0;
+
+    // Individual Persona item styling
+    .persona-item {
+        margin-bottom: $grid-gap;
+    }
+}

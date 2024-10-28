@@ -1,0 +1,22 @@
+// src/styles/SkeletonPersona.scss
+
+.skeleton-persona {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+
+    &__image {
+        margin-bottom: 8px;
+    }
+
+    &__display-name {
+        margin-top: 4px;
+        width: 80%;
+    }
+
+    &__badge {
+        margin-top: 2px;
+        width: 20%;
+    }
+}
