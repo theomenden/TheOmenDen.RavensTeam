@@ -1,42 +1,30 @@
 import './styles/App.scss';
-import { TeamList } from './components/teams/teams-list/team-list';
-import { ContentLayout } from './components/layouts/content-layout';
-import {Text} from '@fluentui/react-components';
+import MainLayout from './components/layouts/main-layout';
+import { Text } from '@fluentui/react-components';
 import React, { useEffect, useState } from 'react';
-export default function App() {
-  const [broadcasterId, setBroadcasterId] = useState<string | null>(null);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+import { useTeamData } from './hooks/team-hooks/use-team-data';
+import { useBroadcasterInfo } from './hooks/broadcaster-hooks/use-broadcaster-data';
+import { useTwitchAuth } from './hooks/ext-auth-hooks/use-ext-auth';
+const App: React.FC = () => {
+    // Get broadcasterId and authToken from Twitch extension helper
+    const { broadcasterId, authToken, loading: authLoading, error: authError } = useTwitchAuth();
+   
+    // // Fetch broadcaster information using the custom hook
+    // const { broadcasterInfo, loading: infoLoading, error: infoError } = useBroadcasterInfo({ broadcasterId: broadcasterId, accessToken: authToken });
+    // // Fetch team members and teams using the custom hook
+    // // Fetch broadcaster name and teams using the custom hook
+    // const { teamMembersByTeam, teamDetails, loading: dataLoading, error: dataError } = useTeamData({ broadcasterId, accessToken: authToken });
 
-  useEffect(() => {
-      // Initialize Twitch extension authentication
-      if (window.Twitch && window.Twitch.ext) {
-          window.Twitch.ext.onAuthorized((auth) => {
-              setAccessToken(auth.token);
-              setBroadcasterId(auth.channelId); // Set broadcaster ID for team fetch
-          });
-      } else {
-          setError("Twitch extension helper is not available.");
-      }
-  }, []);
+    // If auth data is still loading, show loading state
+    if (authLoading) return <div>Loading Twitch authentication...</div>;
+    if (authError || !broadcasterId || !authToken) return <div>Error: {authError || "Unable to get Twitch auth data."}</div>;
 
-  if (error) {
-      return <Text as="h3">{error}</Text>;
-  }
 
-  if (!accessToken || !broadcasterId) {
-      return <Text as="h3">Loading Twitch authentication...</Text>;
-  }
-
-  return (
-    <>
-    <div>
-    <ContentLayout title="Raven's Team">
-      <div>
-      <TeamList broadcasterId={broadcasterId} accessToken={accessToken} />
-      </div>
-    </ContentLayout>
-        </div>
-    </>
-  )
+    return (
+        <>
+            <MainLayout broadcasterId={broadcasterId || ''} helixAuthToken={authToken || ''} />
+        </>
+    );
 };
+
+export default App;

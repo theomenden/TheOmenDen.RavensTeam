@@ -1,7 +1,7 @@
 // src/hooks/useTeamData.ts
 import { useEffect, useState } from 'react';
 import { getTeamMembers, getTeams, getUsers } from '../../utils/twitchApi';
-import { TeamMember, TeamResponse } from '../../utils/twitch-api-types/team-types';
+import { TeamDetails, TeamImages, TeamMember, TeamMembersByTeam, TeamResponse } from '../../utils/twitch-api-types/team-types';
 import { TwitchUser } from '../../utils/twitch-api-types/user-types';
 
 interface UseTeamDataProps {
@@ -9,15 +9,12 @@ interface UseTeamDataProps {
     accessToken: string;
 }
 
-type TeamMembersByTeam = {
-    [teamDisplayName: string]: TwitchUser[];
-};
 
 const BATCH_SIZE = 100; // Twitch allows up to 100 logins in a single getUsers call
 
 export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) => {
     const [teamMembersByTeam, setTeamMembersByTeam] = useState<TeamMembersByTeam>({});
-    const [teams, setTeams] = useState<TeamResponse[]>([]);
+    const [teamDetails, setTeamDetails] = useState<TeamDetails>({});
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -30,6 +27,7 @@ export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) =>
                 const teamData = await getTeams(broadcasterId, accessToken);
                 if (teamData && teamData.length > 0) {
                     const teamMembersDict: TeamMembersByTeam = {};
+                    const teamImagesDict: TeamDetails = {};
 
                     for (const team of teamData) {
                         const allUsernames: string[] = [];
@@ -37,6 +35,10 @@ export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) =>
                         const memberUsers = members && members.flatMap((member) => member.users);
                         if (memberUsers) {
                             allUsernames.push(...memberUsers.map((user) => user.user_login));
+                            teamImagesDict[team.team_display_name] = {
+                                logoUrl: team.thumbnail_url,
+                                info: team.info
+                            };
                         }
 
                         // Fetch user details in batches of 100
@@ -52,7 +54,7 @@ export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) =>
                         // Store users under their team display name in the dictionary
                         teamMembersDict[team.team_display_name] = userDetails;
                     }
-
+                    setTeamDetails(teamDetails);
                     setTeamMembersByTeam(teamMembersDict);
                 } else {
                     setError("No teams found for this broadcaster.");
@@ -67,5 +69,5 @@ export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) =>
         fetchTeamData();
     }, [broadcasterId, accessToken]);
 
-    return { teamMembersByTeam, teams, loading, error };
+    return { teamMembersByTeam, teamDetails, loading, error };
 };

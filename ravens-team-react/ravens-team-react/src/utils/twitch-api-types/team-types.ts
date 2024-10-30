@@ -1,7 +1,9 @@
+import { TwitchUser } from "./user-types";
+
 // Team member data structure based on Twitch API response
 export interface TeamMember {
     id: string;
-    users: TwitchUser[];
+    users: BasicTwitchUser[];
     background_image_url: string | null;
     banner: string | null;
     created_at: string;
@@ -12,7 +14,7 @@ export interface TeamMember {
     team_display_name: string;
 }
 
-export interface TwitchUser {
+export interface BasicTwitchUser {
     user_id: string;
     user_name: string;
     user_login: string;
@@ -42,5 +44,12 @@ export interface TeamInfoResponse {
     data: TeamResponse[];
 }
 
+export interface TeamImages {
+    logoUrl: string;
+    info: string;
+}
+
 // Map of team members grouped by team ID
- export type TeamMembersByTeam = { [teamId: string]: TwitchUser[] };
+ export type TeamMembersByTeam = { [teamDisplayName: string]: TwitchUser[] };
+
+ export type TeamDetails = { [teamDisplayName: string]: TeamImages };

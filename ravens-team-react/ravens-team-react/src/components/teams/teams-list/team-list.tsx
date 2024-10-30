@@ -1,55 +1,29 @@
 // src/components/TeamList.tsx
 import React from 'react';
-import { Divider, Persona, SelectionItemId, TabList, Tab, Text, makeStyles } from '@fluentui/react-components';
-import type { PersonaProps } from '@fluentui/react-components';
-import { useTeamData } from '../../../hooks/team-hooks/use-team-data';
-import '../../../styles/TeamList.scss';
-import { SkeletonPersona } from '../../skeletons/skeleton-persona';
+import { FixedSizeList as VirtualizedList, ListChildComponentProps } from 'react-window';
+import TeamListItem from './team-list-item';
+import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 
 interface TeamListProps {
-    broadcasterId: string;
-    accessToken: string;
+    members: TwitchUser[];
 }
 
-const useStyles = makeStyles({
-    root: {
-      alignItems: "flex-start",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      padding: "50px 20px",
-      rowGap: "20px",
-    },
-  });
-
-export const TeamList: React.FC<TeamListProps> = ({ broadcasterId, accessToken }) => {
-    const { teamMembersByTeam, loading, error } = useTeamData({ broadcasterId, accessToken });
-    const tabClasses = useStyles();
-    if (loading) {
-        return (
-            <div className="team-grid">
-                <SkeletonPersona />
-                <SkeletonPersona />
-                <SkeletonPersona />
-            </div>
-        );
-    }
-
-    if (error) return <Text>{error}</Text>;
+const TeamList: React.FC<TeamListProps> = ({ members }) => {
+    const renderPersona = ({ index, style }: ListChildComponentProps) => {
+        const member = members[index];
+        return <TeamListItem member={member} style={style} />;
+    };
 
     return (
-        <div className="team-list">
-            {Object.entries(teamMembersByTeam).length > 0 ? (
-                Object.entries(teamMembersByTeam).map(([teamName, members], teamIndex) => (
-                    <div key={teamIndex} className="team-section">
-                        <TabList {...tabClasses} size='small' vertical>                        
-                            <Tab value={teamName} >{teamName} - Members: {members.length}</Tab>
-                        </TabList>
-                    </div>
-                ))
-            ) : (
-                <Text>No team members found.</Text>
-            )}
-        </div>
+            <VirtualizedList
+                height={400}
+                itemCount={members.length}
+                itemSize={60}
+                width="100%"
+            >
+                {renderPersona}
+            </VirtualizedList>
     );
 };
+
+export default React.memo(TeamList);

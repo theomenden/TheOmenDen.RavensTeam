@@ -1,0 +1,41 @@
+// src/components/HeaderNavigation.scss
+
+.header-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-navigation__tab-list {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.team-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.team-tab__icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.team-tab__text {
+    flex: 1;
+}

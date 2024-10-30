@@ -1,7 +1,7 @@
 // src/services/twitchApi.ts
 import axiosInstance from './axios-instance';
 import { TeamInfoResponse, TeamMembersResponse, TeamMember, TeamResponse } from './twitch-api-types/team-types';
-import { TwitchUser, TwitchUserResponse } from './twitch-api-types/user-types';
+import { TwitchBroadcasterInfo, TwitchBroadcasterResponse, TwitchUser, TwitchUserResponse } from './twitch-api-types/user-types';
 
 const authHeaders = (accessToken: string) => ({
     headers: {
@@ -48,6 +48,16 @@ export const getUsers = async (userNames: string[], accessToken: string): Promis
         return response.data.data;
     } catch (error) {
         console.error("Failed to fetch users:", error);
+        return null; // Graceful fallback
+    }
+}
+
+export const getBroadcasterInfo = async (broadcasterId: string, accessToken: string): Promise<TwitchBroadcasterInfo | null> => {
+    try{
+        const response = await axiosInstance.get<TwitchBroadcasterResponse>(`/channels?broadcaster_id=${broadcasterId}`, authHeaders(accessToken));
+        return response.data.data[0]; // Assuming there's only one broadcaster in the response
+    } catch (error) {
+        console.error("Failed to fetch broadcaster info:", error);
         return null; // Graceful fallback
     }
 }

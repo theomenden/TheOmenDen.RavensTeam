@@ -15,3 +15,25 @@ $grid-gap: 10px;
         margin-bottom: $grid-gap;
     }
 }
+
+// src/components/TeamList.scss
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.team-tabs {
+    margin-bottom: 10px;
+}
+
+.team-list__scrollable {
+    height: 400px; // Set a fixed height for the scrollable area
+    overflow-y: auto;
+}
+
+.team-member {
+    padding: 10px 0;
+    border-bottom: 1px solid #e1e1e1;
+}
