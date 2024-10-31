@@ -1,7 +1,7 @@
 // src/services/twitchApi.ts
 import { AxiosRequestConfig } from 'axios';
 import axios from './axios-instance';
-import { TeamInfoResponse, TeamMembersResponse, TeamMember, TeamResponse } from './twitch-api-types/team-types';
+import { TeamInfoResponse, TeamMembersResponse, TeamMember, TeamResponse, BasicTwitchUser } from './twitch-api-types/team-types';
 import { TwitchBroadcasterInfo, TwitchBroadcasterResponse, TwitchUser, TwitchUserResponse } from './twitch-api-types/user-types';
 import { CacheAxiosResponse } from 'axios-cache-interceptor';
 
@@ -10,6 +10,21 @@ const authHeaders = (accessToken: string) => ({
         Authorization: `Extension ${accessToken}`,
     },
 });
+
+const createUserQueryString = (usernames : string[]) => {
+    return usernames.map(username => `login=${username}`).join('&');
+};
+
+const subsetUsers = (users: BasicTwitchUser[]): Array<Array<string>> => {
+    const BATCH_SIZE: number = 100;
+
+    const subsets: Array<Array<string>> = [];
+    for (let i = 0; i < users.length; i += BATCH_SIZE) {
+        subsets.push(users.slice(i, i + BATCH_SIZE).map(user => user.user_login));
+    }
+
+    return subsets;
+};
 
 /**
  * Fetch team members from the Twitch API.
@@ -65,6 +80,11 @@ export const getTeamsForBroadcaster = async (broadcasterId: string, config?: Axi
 export const getChunkedUsersDetails = async (userNames: string[], config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwitchUserResponse>> => {
     console.log('Fetching user details for:', userNames);
     const userList = userNames.map((name) => `login=${name}`).join('&');
+    return await axios.get<TwitchUserResponse>(`/users?${userList}`, config);
+}
+
+export const getChunkedTeamMembersDetails = async (usernames: string[], config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwithcUserResponse>> =>{
+    const userList = usernames.map((name) => `login=${name}`).join('&');
     return await axios.get<TwitchUserResponse>(`/users?${userList}`, config);
 }
 

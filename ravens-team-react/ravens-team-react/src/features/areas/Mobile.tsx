@@ -1,5 +1,5 @@
-import App from '../../App';
 import React from 'react';
+import { App } from '../../App';
 
 export function Mobile() {
     return (

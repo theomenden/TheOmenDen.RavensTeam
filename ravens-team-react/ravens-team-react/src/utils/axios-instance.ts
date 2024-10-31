@@ -2,6 +2,7 @@
 import Axios from 'axios';
 import { buildWebStorage, CacheOptions, setupCache } from 'axios-cache-interceptor';
 import { createAxiosCacheHooks } from 'axios-cache-hooks';
+import { buildIndexedDbCache } from './indexed-db-cache/build-db-cache';
 const axiosInstance = Axios.create({
     baseURL: 'https://api.twitch.tv/helix',
     headers: {
@@ -10,9 +11,14 @@ const axiosInstance = Axios.create({
     timeout: 5000, // 5-second timeout for requests
 });
 
+// const axiosCacheOptions: CacheOptions = {
+//     storage: buildWebStorage(window.localStorage, 'axios-cache:'),
+//     cacheTakeover: false // Cache will not takeover when a new request is made
+// };
+
 const axiosCacheOptions: CacheOptions = {
-    storage: buildWebStorage(window.localStorage, 'axios-cache:'),
-    cacheTakeover: false // Cache will not takeover when a new request is made
+    storage: buildIndexedDbCache,
+    cacheTakeover: false, // Cache will not takeover when a new request is made
 };
 
 const axios = setupCache(axiosInstance, axiosCacheOptions);

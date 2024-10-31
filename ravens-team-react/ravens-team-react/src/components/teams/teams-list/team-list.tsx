@@ -23,14 +23,14 @@ export const TeamList: React.FC<TeamListProps> = ({ members }) => {
     const teamMemberDetails: TwitchUser[] = [];
     let infoLoading = true;
     let errorLoading = {};
-    for(let i = 0; i < members.length; i+= BATCH_SIZE){
-        // Fetch user details in batches of 100
+    // for(let i = 0; i < members.length; i+= BATCH_SIZE){
+    //     // Fetch user details in batches of 100
 
         
-    const batch = members.slice(i, i + BATCH_SIZE).map(member => member.user_login);
-    const [membersDetails, {loading: infoLoading, error: errorLoading}] = useQuery(getChunkedUsersDetails, batch);
-    teamMemberDetails.push(...membersDetails!.data);
-    }
+    // const batch = members.slice(i, i + BATCH_SIZE).map(member => member.user_login);
+    // const [membersDetails, {loading: infoLoading, error: errorLoading}] = useQuery(getChunkedUsersDetails, batch);
+    // teamMemberDetails.push(...membersDetails!.data);
+    // }
 
     if(infoLoading) return <div><Spinner appearance='primary' label={'Loading member data...'} labelPosition='before' /></div>;
     if(errorLoading) return <div>Error: {JSON.stringify(errorLoading)}</div>;
