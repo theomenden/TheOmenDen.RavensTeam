@@ -6,12 +6,10 @@ import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 
 interface TeamListItemProps {
     member: TwitchUser;
-    style: React.CSSProperties;
     personaProps?: Partial<PersonaProps>;
 }
 
-const TeamListItem: React.FC<TeamListItemProps> = ({ member, style, personaProps }) => (
-    <div style={style} className="team-member float-in">
+export const TeamListItem: React.FC<TeamListItemProps> = ({ member, personaProps }) => (
         <Persona
             primaryText={member.display_name || member.login || 'Unknown User'  }
             secondaryText={member.type || 'Team Member'}
@@ -23,7 +21,4 @@ const TeamListItem: React.FC<TeamListItemProps> = ({ member, style, personaProps
             className="persona-item"
             {...personaProps}
         />
-    </div>
 );
-
-export default React.memo(TeamListItem);

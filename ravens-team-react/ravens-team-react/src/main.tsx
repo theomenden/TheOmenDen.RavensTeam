@@ -1,10 +1,13 @@
-import { StrictMode } from 'react';
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 import { FluentProvider, teamsDarkTheme } from '@fluentui/react-components';
 import './index.css';
-import App from './App';
+import { App } from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root')!)
+const root = createRoot(document.getElementById('root')!)
 
-root.render(<App />)
+root.render(
+    <FluentProvider theme={teamsDarkTheme}>
+        <App />
+    </FluentProvider>
+);

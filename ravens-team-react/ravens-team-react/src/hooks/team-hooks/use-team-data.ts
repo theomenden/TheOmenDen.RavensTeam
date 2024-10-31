@@ -36,6 +36,7 @@ export const useTeamData = ({ broadcasterId, accessToken }: UseTeamDataProps) =>
                         if (memberUsers) {
                             allUsernames.push(...memberUsers.map((user) => user.user_login));
                             teamImagesDict[team.team_display_name] = {
+                                id: team.id,
                                 logoUrl: team.thumbnail_url,
                                 info: team.info
                             };

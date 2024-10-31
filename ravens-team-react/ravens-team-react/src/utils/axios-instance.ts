@@ -1,7 +1,8 @@
 // src/services/axiosInstance.ts
-import axios from 'axios';
-
-const axiosInstance = axios.create({
+import Axios from 'axios';
+import { buildWebStorage, CacheOptions, setupCache } from 'axios-cache-interceptor';
+import { createAxiosCacheHooks } from 'axios-cache-hooks';
+const axiosInstance = Axios.create({
     baseURL: 'https://api.twitch.tv/helix',
     headers: {
         'client-id': 'lalrvvljueuwdj1l778y6jcsuktevq',
@@ -9,7 +10,14 @@ const axiosInstance = axios.create({
     timeout: 5000, // 5-second timeout for requests
 });
 
-axiosInstance.interceptors.response.use(
+const axiosCacheOptions: CacheOptions = {
+    storage: buildWebStorage(window.localStorage, 'axios-cache:'),
+    cacheTakeover: false // Cache will not takeover when a new request is made
+};
+
+const axios = setupCache(axiosInstance, axiosCacheOptions);
+
+axios.interceptors.response.use(
     (response) => {
         if (response.status === 200) {
             return response;
@@ -25,7 +33,7 @@ axiosInstance.interceptors.response.use(
 );
 
 // Request interceptor to add the authorization header with the latest token
-axiosInstance.interceptors.request.use(
+axios.interceptors.request.use(
     async (config) => {
         // Retrieve the token from the Twitch extension-helper script
         const token = await getTwitchAuthToken();
@@ -52,4 +60,7 @@ const getTwitchAuthToken = async (): Promise<string | null> => {
     });
 };
 
-export default axiosInstance;
+export default axios;
+export const { useQuery, useMutation } = createAxiosCacheHooks();
+// export default axiosInstance;
+// Uncomment this line to expose the axios instance for testing purposes

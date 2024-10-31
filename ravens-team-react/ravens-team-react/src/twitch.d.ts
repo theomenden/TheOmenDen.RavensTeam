@@ -1,7 +1,9 @@
 // src/twitch.d.ts
 
 interface TwitchAuth {
+    channelId: string;
     token: string;
+    helixToken: string;
     clientId: string;
     userId?: string;
 }

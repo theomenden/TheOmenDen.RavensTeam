@@ -45,6 +45,7 @@ export interface TeamInfoResponse {
 }
 
 export interface TeamImages {
+    id: string;
     logoUrl: string;
     info: string;
 }
