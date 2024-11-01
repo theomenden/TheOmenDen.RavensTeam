@@ -12,11 +12,9 @@ export const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
     return (
         <header className="header-navigation">
             <Head title="Raven's Team" />
-            <div className="header-content">
                 <Title1 as="h1" align='center'>
                     {props.broadcasterName}'s Teams
                 </Title1>
-            </div>
         </header>
     );
 };

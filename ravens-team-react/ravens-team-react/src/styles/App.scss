@@ -1,6 +1,6 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
@@ -35,53 +35,22 @@
     }
 }
 
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
-}
-
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 1rem;
+    display: flex;
+    width: 100%;
 }
 
 .row {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .col {
     flex: 1;
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
+    margin: 4rem;
+    padding: 4rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0 1rem #ccc;
-}
-
-.panel-container {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    height: 300px;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    .panel-header,
-    .panel-footer {
-        text-align: center;
-        font-weight: bold;
-        font-size: 1rem;
-    }
-
-    // Scrollable content area for team members
-    .team-list-container {
-        overflow-y: auto;
-        padding-right: 10px;
-    }
+    height: 100%;
 }

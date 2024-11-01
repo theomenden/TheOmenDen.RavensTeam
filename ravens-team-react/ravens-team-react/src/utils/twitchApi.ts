@@ -77,15 +77,9 @@ export const getTeamsForBroadcaster = async (broadcasterId: string, config?: Axi
     return await axios.get<TeamInfoResponse>(`/teams/channel?broadcaster_id=${broadcasterId}`, config);
 }
 
-export const getChunkedUsersDetails = async (userNames: string[], config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwitchUserResponse>> => {
+export const getChunkedUsersDetails = async (userNames: string, config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwitchUserResponse>> => {
     console.log('Fetching user details for:', userNames);
-    const userList = userNames.map((name) => `login=${name}`).join('&');
-    return await axios.get<TwitchUserResponse>(`/users?${userList}`, config);
-}
-
-export const getChunkedTeamMembersDetails = async (usernames: string[], config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwithcUserResponse>> =>{
-    const userList = usernames.map((name) => `login=${name}`).join('&');
-    return await axios.get<TwitchUserResponse>(`/users?${userList}`, config);
+    return await axios.get<TwitchUserResponse>(`/users?${userNames}`, config);
 }
 
 export const getUserDetails = async (userName: string, config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwitchUserResponse>> => {

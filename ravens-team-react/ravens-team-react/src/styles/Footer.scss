@@ -2,9 +2,15 @@
 
 .footer {
     position: sticky;
+    top:100;
     bottom: 0;
     z-index: 10;
-    padding: 10px;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-top: 3.75rem;
+    padding-bottom: 0.75rem;
+    width: 100%;
     text-align: center;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }

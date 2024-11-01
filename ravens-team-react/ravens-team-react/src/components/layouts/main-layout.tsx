@@ -39,12 +39,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId, helixAuthToken }
             {/* Header with navigation and broadcaster name */}
             <HeaderComponent broadcasterName={broadcasterInfo?.data[0].broadcaster_name ?? ""} />
             <HeaderNav teams={teamInfo} selectedTab={selectedTab} onTabSelect={setSelectedTab} />
-
             {/* Main content area */}
             <main>
                 <TeamTabPanel teamDetailsMap={teamInfo} currentTab={selectedTab || ''}/>
             </main>
-
             {/* Footer */}
             <Footer />
         </div>

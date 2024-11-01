@@ -1,39 +1,5 @@
 /* src/components/TeamList.scss */
 
 // Grid settings for team members
-$persona-min-width: 100px;
-$grid-gap: 10px;
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax($persona-min-width, 1fr));
-    gap: $grid-gap;
-    padding: 10px 0;
-
-    // Individual Persona item styling
-    .persona-item {
-        margin-bottom: $grid-gap;
-    }
-}
 
 // src/components/TeamList.scss
-
-.team-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.team-tabs {
-    margin-bottom: 10px;
-}
-
-.team-list__scrollable {
-    height: 400px; // Set a fixed height for the scrollable area
-    overflow-y: auto;
-}
-
-.team-member {
-    padding: 10px 0;
-    border-bottom: 1px solid #e1e1e1;
-}

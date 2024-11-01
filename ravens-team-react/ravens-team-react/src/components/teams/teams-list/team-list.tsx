@@ -1,52 +1,42 @@
 // src/components/TeamList.tsx
 import React from 'react';
-import { FixedSizeList as VirtualizedList, ListChildComponentProps } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import { TeamListItem } from './team-list-item';
 import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { BasicTwitchUser } from '../../../utils/twitch-api-types/team-types';
-import { useQuery } from '../../../utils/axios-instance';
-import { getChunkedUsersDetails, getUserDetails } from '../../../utils/twitchApi';
 import { Spinner } from '@fluentui/react-components';
-import { CacheAxiosResponse } from 'axios-cache-interceptor';
+import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 interface TeamListProps {
     members: BasicTwitchUser[];
 }
-const renderPersona = ({ index, style }: ListChildComponentProps, member: TwitchUser) => {
-
-    console.log('Rendering persona', index, member);
+const renderPersona = (index: number, style: React.CSSProperties, member: TwitchUser) => {
     return <TeamListItem key={member.id} member={member} />;
 };
-
+function itemKey(index: number, data: TwitchUser[]): string {
+    // Find the item at the specified index.
+    // In this case "data" is an Array that was passed to List as "itemData".
+    const item = data[index];
+    console.log('itemKey:', item);
+    // Return a value that uniquely identifies this item.
+    // Typically this will be a UID of some sort.
+    return item.id;
+}
 export const TeamList: React.FC<TeamListProps> = ({ members }) => {
-    const BATCH_SIZE = 100;
-    const teamMemberDetails: TwitchUser[] = [];
-    let infoLoading = true;
-    let errorLoading = {};
-    // for(let i = 0; i < members.length; i+= BATCH_SIZE){
-    //     // Fetch user details in batches of 100
-
-        
-    // const batch = members.slice(i, i + BATCH_SIZE).map(member => member.user_login);
-    // const [membersDetails, {loading: infoLoading, error: errorLoading}] = useQuery(getChunkedUsersDetails, batch);
-    // teamMemberDetails.push(...membersDetails!.data);
-    // }
-
-    if(infoLoading) return <div><Spinner appearance='primary' label={'Loading member data...'} labelPosition='before' /></div>;
-    if(errorLoading) return <div>Error: {JSON.stringify(errorLoading)}</div>;
-
+    const { userDetails, loading, error } = useBatchRequests(members);
+    if (loading) return <div><Spinner appearance='primary' label={'Loading list data...'} labelPosition='before' /></div>;
+    if (error) return <div>Error: {JSON.stringify(error)}</div>;
     return (
-        <AutoSizer>
-            {({ height, width }) => (
-                <VirtualizedList
-                    height={height}
-                    itemCount={teamMemberDetails.length}
-                    itemSize={35}
-                    width={width}
-                    itemData={teamMemberDetails}>
-                    {renderPersona}
-                </VirtualizedList>
+        <FixedSizeList
+            height={750}
+            itemSize={150}
+            itemCount={userDetails.length}
+            itemKey={itemKey}
+            width='100%'
+            itemData={userDetails}>
+            {({ index, style }) => (
+                renderPersona(index, style, userDetails[index])
             )}
-        </AutoSizer>
+        </FixedSizeList>
     );
 };
