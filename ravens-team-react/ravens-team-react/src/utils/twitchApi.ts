@@ -2,29 +2,15 @@
 import { AxiosRequestConfig } from 'axios';
 import axios from './axios-instance';
 import { TeamInfoResponse, TeamMembersResponse, TeamMember, TeamResponse, BasicTwitchUser } from './twitch-api-types/team-types';
-import { TwitchBroadcasterInfo, TwitchBroadcasterResponse, TwitchUser, TwitchUserResponse } from './twitch-api-types/user-types';
+import { TwitchBroadcasterResponse, TwitchUser, TwitchUserResponse } from './twitch-api-types/user-types';
 import { CacheAxiosResponse } from 'axios-cache-interceptor';
+import { StreamDataResponse } from './twitch-api-types/stream-types';
 
 const authHeaders = (accessToken: string) => ({
     headers: {
         Authorization: `Extension ${accessToken}`,
     },
 });
-
-const createUserQueryString = (usernames : string[]) => {
-    return usernames.map(username => `login=${username}`).join('&');
-};
-
-const subsetUsers = (users: BasicTwitchUser[]): Array<Array<string>> => {
-    const BATCH_SIZE: number = 100;
-
-    const subsets: Array<Array<string>> = [];
-    for (let i = 0; i < users.length; i += BATCH_SIZE) {
-        subsets.push(users.slice(i, i + BATCH_SIZE).map(user => user.user_login));
-    }
-
-    return subsets;
-};
 
 /**
  * Fetch team members from the Twitch API.
@@ -78,7 +64,6 @@ export const getTeamsForBroadcaster = async (broadcasterId: string, config?: Axi
 }
 
 export const getChunkedUsersDetails = async (userNames: string, config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TwitchUserResponse>> => {
-    console.log('Fetching user details for:', userNames);
     return await axios.get<TwitchUserResponse>(`/users?${userNames}`, config);
 }
 
@@ -88,4 +73,8 @@ export const getUserDetails = async (userName: string, config?: AxiosRequestConf
 
 export const getChunkedTeamMembers = async (teamId: string, config?: AxiosRequestConfig): Promise<CacheAxiosResponse<TeamMembersResponse>> => {
     return await axios.get<TeamMembersResponse>(`/teams?id=${teamId}`, config);
+}
+
+export const getStreamDetails = async (twitchUserId: string, config?: AxiosRequestConfig): Promise<CacheAxiosResponse<StreamDataResponse>> => {
+    return await axios.get<StreamDataResponse>(`/streams?user_id=${twitchUserId}`, config);
 }

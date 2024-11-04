@@ -1,21 +1,38 @@
 // src/components/TeamContainer.tsx
-import React, { Children } from 'react';
+import React from 'react';
 import '../../styles/TeamContainer.scss';
-import Footer from '../bars/footers/footer-nav';
+import { Footer } from '../bars/footers/footer-nav';
 import { HeaderComponent } from '../bars/headers/header-component';
-import { Body1Strong, Spinner, Text, Title1 } from '@fluentui/react-components';
+import { Body1Strong, Spinner, makeStyles, tokens } from '@fluentui/react-components';
 import { TeamTabPanel } from '../teams/teams-list/team-tab-panel';
 import { HeaderNav } from '../bars/headers/header-nav-component';
 import { useQuery } from '../../utils/axios-instance';
 import { getBroadcasterInfo, getTeamsForBroadcaster } from '../../utils/twitchApi';
-import { TeamDetails, TeamMembersByTeam } from '../../utils/twitch-api-types/team-types';
-import { useTeamData } from '../../hooks/team-hooks/use-team-data';
+import { TeamDetails } from '../../utils/twitch-api-types/team-types';
 interface MainLayoutProps {
     broadcasterId: string;
-    helixAuthToken: string;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId, helixAuthToken }, { children }: { children: React.ReactNode }) => {
+const useStyles = makeStyles({
+    headerProp: {
+        top: 0,
+        position: 'sticky',
+        zIndex: tokens.zIndexPriority,
+    },
+    mainLayout: {
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: tokens.spacingVerticalM,
+        paddingBottom: tokens.spacingVerticalL,
+        marginTop: tokens.spacingVerticalL,
+        marginRight: tokens.spacingHorizontalXL,
+        zIndex: tokens.zIndexBackground
+    }
+});
+
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
+    const styles = useStyles();
     const [broadcasterInfo, { loading, error }] = useQuery(getBroadcasterInfo, broadcasterId); // useBroadcasterInfo({ broadcasterId: broadcasterId, accessToken: helixAuthToken });
     const [teamDetails, { loading: dataLoading, error: dataError }] = useQuery(getTeamsForBroadcaster, broadcasterId);
     const [selectedTab, setSelectedTab] = React.useState<string | null>(teamDetails?.data[0].team_display_name ?? null);
@@ -24,8 +41,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId, helixAuthToken }
 
     if (dataLoading) return <div><Spinner appearance='primary' label={'Loading team data...'} labelPosition='before' /></div>;
     if (dataError) return <div><Body1Strong align='center'>Error loading team data: [dataError]</Body1Strong></div>;
-
-    const teamInfo: TeamDetails = teamDetails!.data.reduce((acc, team) => {
+    const teamInfo: TeamDetails = teamDetails!.data.reduce((acc: { [x: string]: { id: any; logoUrl: any; info: any; }; }, team: { team_display_name: string | number; id: any; thumbnail_url: any; info: any; }) => {
         acc[team.team_display_name] = {
             id: team.id,
             logoUrl: team.thumbnail_url,
@@ -37,16 +53,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId, helixAuthToken }
     return (
         <div>
             {/* Header with navigation and broadcaster name */}
-            <HeaderComponent broadcasterName={broadcasterInfo?.data[0].broadcaster_name ?? ""} />
-            <HeaderNav teams={teamInfo} selectedTab={selectedTab} onTabSelect={setSelectedTab} />
+            <header className={styles.headerProp}>
+                <HeaderComponent broadcasterName={broadcasterInfo?.data[0].broadcaster_name ?? ""} />
+                <HeaderNav teams={teamInfo} selectedTab={selectedTab} onTabSelect={setSelectedTab} />
+            </header>
             {/* Main content area */}
-            <main>
-                <TeamTabPanel teamDetailsMap={teamInfo} currentTab={selectedTab || ''}/>
+            <main className={styles.mainLayout}>
+                <TeamTabPanel teamDetailsMap={teamInfo} currentTab={selectedTab || ''} />
             </main>
             {/* Footer */}
             <Footer />
         </div>
     );
 };
-
-export default MainLayout;
