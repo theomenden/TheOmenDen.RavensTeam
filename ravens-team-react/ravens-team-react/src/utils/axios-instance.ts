@@ -68,5 +68,3 @@ const getTwitchAuthToken = async (): Promise<string | null> => {
 
 export default axios;
 export const { useQuery, useMutation } = createAxiosCacheHooks();
-// export default axiosInstance;
-// Uncomment this line to expose the axios instance for testing purposes

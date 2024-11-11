@@ -23,9 +23,11 @@
     "idb-keyval": "^6.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.1.2",
     "react-helmet-async": "^2.0.5",
     "react-virtualized-auto-sizer": "^1.0.24",
-    "react-window": "^1.8.10"
+    "react-window": "^1.8.10",
+    "react-window-infinite-loader": "^1.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

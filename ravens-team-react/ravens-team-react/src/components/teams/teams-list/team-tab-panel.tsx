@@ -46,8 +46,6 @@ export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, curr
 
     return (
         <ContentLayout>
-                <Subtitle2Stronger as="h5" align='center' className={styles.textSpacing} >{currentTab}</Subtitle2Stronger>
-                <Divider appearance='brand' className={styles.dividerSpacing} />
                 <TeamList members={members!} />
         </ContentLayout>
     )

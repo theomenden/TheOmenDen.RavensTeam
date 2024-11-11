@@ -10,8 +10,8 @@ interface TeamListProps {
     members: BasicTwitchUser[];
 }
 
-const renderPersona = (member: TwitchUser) => {
-    return <TeamListItem key={member.id} member={member} />;
+const renderPersona = (member: TwitchUser, style: React.CSSProperties) => {
+    return (<TeamListItem key={member.id} member={member} listStyles={style} />);
 };
 
 const useStyles = makeStyles({
@@ -36,17 +36,22 @@ export const TeamList: React.FC<TeamListProps> = ({ members }) => {
     const styles = useStyles();
     if (loading) return <div><Spinner appearance='primary' label={'Loading list data...'} labelPosition='before' /></div>;
     if (error) return <div>Error: {JSON.stringify(error)}</div>;
+
+    const itemCount = userDetails.length;
+
     return (
         <div className={styles.insetList}>
             <FixedSizeList
+                useIsScrolling={true}
                 height={750}
                 itemSize={150}
-                itemCount={userDetails.length}
+                itemCount={itemCount}
                 itemKey={itemKey}
                 width='100%'
+                overscanCount={5}
                 itemData={userDetails}>
                 {({ index, style }) => (
-                    renderPersona(userDetails[index])
+                    renderPersona(userDetails[index], style)
                 )}
             </FixedSizeList>
         </div>

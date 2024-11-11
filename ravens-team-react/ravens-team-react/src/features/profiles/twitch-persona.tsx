@@ -1,6 +1,4 @@
-import * as React from "react";
-import { Toolbar, ToolbarDivider, ToolbarButton, Tooltip, PresenceBadge, SkeletonItem, makeStyles, Caption2, Caption1, Divider, Spinner, tokens } from "@fluentui/react-components";
-import type { PresenceBadgeProps } from "@fluentui/react-components";
+import { Toolbar, ToolbarDivider, ToolbarButton, PresenceBadge, makeStyles, Caption2, Caption1, Divider, tokens } from "@fluentui/react-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@awesome.me/kit-1d3f5f4627/icons/classic/brands";
 import { faDiscord } from "@awesome.me/kit-1d3f5f4627/icons/classic/brands";
@@ -10,7 +8,7 @@ import { faExternalLinkAlt } from "@awesome.me/kit-1d3f5f4627/icons/classic/soli
 import { TwitchUser } from "../../utils/twitch-api-types/user-types";
 import { useQuery } from '../../utils/axios-instance';
 import { getStreamDetails } from '../../utils/twitchApi';
-import { CheckmarkStarburstRegular, MegaphoneCircleRegular } from "@fluentui/react-icons";
+import { PopOverSkeleton } from "../../components/skeletons/pop-over-skeleton";
 interface TwitchPersonaProps {
   twitchUser: TwitchUser;
   links: string[];
@@ -49,19 +47,7 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
   const twitchUserId = props.twitchUser.id;
   const [streamInfo, { loading, error }] = useQuery(getStreamDetails, twitchUserId);
   const styles = useStyles();
-  if (loading) return <div>
-    <div className={styles.firstRow}>
-      <SkeletonItem shape="circle" size={24} />
-      <SkeletonItem shape="rectangle" size={16} />
-    </div>
-    <div className={styles.secondThirdRow}>
-      <SkeletonItem size={16} />
-      <SkeletonItem size={16} />
-      <SkeletonItem size={16} />
-      <SkeletonItem size={16} />
-    </div>
-    <Spinner appearance='primary' label={'Loading list data...'} labelPosition='before' />
-  </div>;
+  if (loading) return  <PopOverSkeleton />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (

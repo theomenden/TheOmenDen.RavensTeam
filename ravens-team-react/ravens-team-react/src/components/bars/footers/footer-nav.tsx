@@ -11,8 +11,8 @@ const useStyles = makeStyles({
         textAlign: "center",
         position: "sticky",
         bottom: 0,
-        paddingTop: tokens.spacingVerticalM,
-        paddingBottom: tokens.spacingVerticalS,
+        paddingTop: tokens.spacingVerticalSNudge,
+        paddingBottom: tokens.spacingVerticalSNudge,
         zIndex: 100,
         boxShadow: tokens.shadow8Brand
     }
