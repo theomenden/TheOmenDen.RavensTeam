@@ -14,10 +14,18 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        marginLeft: tokens.spacingHorizontalM,
-        marginRight: tokens.spacingHorizontalM,
+        alignContent: "center",
         width: "100%",
-        backgroundColor: tokens.colorNeutralBackground1,
+        backgroundColor: tokens.colorNeutralBackground2,
+    },
+    headerTitleRow: {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignContent: "center",
+        width: "100%",
+        backgroundColor: tokens.colorNeutralBackground2,
     },
     dividerSpacing: {
         marginTop: tokens.spacingVerticalS,
@@ -51,10 +59,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, selectedTab, onTabS
                         ))
                     }
                 </TabList>
-            </nav>
+            </nav >
+            <div className={styles.headerTitleRow}>
             <Subtitle2Stronger as="h5" align='center' className={styles.textSpacing} >{selectedTab}</Subtitle2Stronger>
-            <Divider appearance='brand' className={styles.dividerSpacing} />    
-        </div>
+            <Divider appearance='brand' className={styles.dividerSpacing} />
+            </div>
+        </div >
 
     );
 };

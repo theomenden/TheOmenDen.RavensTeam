@@ -27,7 +27,10 @@ const useStyles = makeStyles({
         marginTop: tokens.spacingVerticalL,
         marginRight: tokens.spacingHorizontalXL,
         zIndex: tokens.zIndexBackground
-    }
+    },
+    removeOverflow: {
+        overflow: 'hidden',
+    },
 });
 
 
@@ -51,7 +54,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
     }, {} as TeamDetails);
 
     return (
-        <div>
+        <div className={styles.removeOverflow}>
             {/* Header with navigation and broadcaster name */}
             <header className={styles.headerProp}>
                 <HeaderComponent broadcasterName={broadcasterInfo?.data[0].broadcaster_name ?? ""} />
