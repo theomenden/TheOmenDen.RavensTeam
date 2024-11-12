@@ -1,36 +1,37 @@
 // src/components/TeamList.tsx
 import React from 'react';
 import { FixedSizeList } from 'react-window';
-import InfiniteLoader from 'react-window-infinite-loader';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { List, ListItem } from "@fluentui/react-list-preview";
 import { TeamListItem } from './team-list-item';
 import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 import { BasicTwitchUser } from '../../../utils/twitch-api-types/team-types';
-import { makeStyles } from '@fluentui/react-components';
+import { makeStyles, mergeClasses, tokens } from '@fluentui/react-components';
 import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 import { TableSkeleton } from '../../skeletons/initializer-skeleton';
 interface TeamListProps {
     members: BasicTwitchUser[][];
 }
 
-const renderPersona = (member: TwitchUser, style: React.CSSProperties) => {
-    return (<TeamListItem key={member.id} member={member} listStyles={style} />);
-};
+const TeamMembersList = React.forwardRef<HTMLUListElement>(
+    (props: React.ComponentProps<typeof List>, ref) => (
+        <List navigationMode="composite" aria-label="Team members" {...props} ref={ref} />
+    )
+);
 
 const useStyles = makeStyles({
-    insetList: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
+    list: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        maxWidth: "300px",
+    },
+    listItem: {
+        display: "grid",
+        width: "100%",
+        padding: "8px",
+    },
 });
-
-function itemKey(index: number, data: TwitchUser[]): string {
-    // Find the item at the specified index.
-    // In this case "data" is an Array that was passed to List as "itemData".
-    const item = data[index];
-    // Return a value that uniquely identifies this item.
-    // Typically this will be a UID of some sort.
-    return item.id;
-};
 
 // Inside the TeamList component, use the useQuery hook to fetch the user details
 export const TeamList: React.FC<TeamListProps> = ({ members }: TeamListProps) => {
@@ -39,28 +40,27 @@ export const TeamList: React.FC<TeamListProps> = ({ members }: TeamListProps) =>
     if (loading) return <TableSkeleton />;
     if (error) return <div>Error: {JSON.stringify(error)}</div>;
 
-    const itemCount = userDetails.length;
-
     return (
-        <InfiniteLoader itemCount={itemCount}>
-            {({ onItemsRendered, ref }) => (
-                <FixedSizeList
-                    useIsScrolling={true}
-                    height={750}
-                    itemSize={150}
-                    itemCount={itemCount}
-                    itemKey={itemKey}
-                    width='100%'
-                    overscanCount={5}
-                    onItemsRendered={onItemsRendered}
-                    ref={ref}
-                    itemData={userDetails}
-                    className={styles.insetList}>
-                    {({ index, style }) => (
-                        renderPersona(userDetails[index], style)
-                    )}
-                </FixedSizeList>
+        <FixedSizeList
+            height={350}
+            overscanCount={5}
+            itemSize={250}
+            itemCount={userDetails.length}
+            width={'100%'}
+            itemData={userDetails}
+            outerElementType={TeamMembersList}
+            className={styles.list}>
+            {({ index, style, data }) => (
+                <ListItem
+                    style={style}
+                    aria-setsize={userDetails.length}
+                    aria-posinset={index + 1}
+                    aria-label={data[index].display_name}
+                    data-value={data[index]}
+                    checkmark={null}>
+                    <TeamListItem member={data[index]} />
+                </ListItem>
             )}
-        </InfiniteLoader>
+        </FixedSizeList>
     );
 };

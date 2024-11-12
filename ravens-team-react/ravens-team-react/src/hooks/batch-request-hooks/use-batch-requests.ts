@@ -14,17 +14,23 @@ export const useBatchRequests = (basicTwitchUsers: BasicTwitchUser[][]) => {
     useEffect(() => {
     setLoading(true);
     setError(null);
+    const getRequestPromises: Promise<number | void>[] = [];
+    const userData: TwitchUser[] = [];
         for(const chunk of basicTwitchUsers) {
             const userNames = chunk.map(user => user.user_login);
             const response = getChunkedUsersDetails(createUserQueryString(userNames))
             .then(response => response.data)
-            .then(data => setUserDetails([...userDetails, ...data.data]))
+            .then(data => userData.push(...data.data))
             .catch(err => setError(err))
             .finally(() => setLoading(false));
-            Promise.resolve(response);
+            getRequestPromises.push(response);
         }
+        Promise.allSettled(getRequestPromises)
+        .then((values) => console.log('All requests have completed', values ))
+        .catch((err) => setError(err))
+        .finally(() => setLoading(false));
+        setUserDetails(userData);
         setLoading(false);
-    }, [basicTwitchUsers])
-
+    }, [basicTwitchUsers]);
     return {userDetails, loading, error};
 }

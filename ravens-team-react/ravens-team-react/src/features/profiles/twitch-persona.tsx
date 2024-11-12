@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     gridTemplateColumns: "min-content 20% 20% 15% 15%",
   },
   personaRow: {
-    display: "flex", 
+    display: "flex",
     alignItems: "center",
     "flex-direction": "row",
     gap: "10px",
@@ -47,7 +47,7 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
   const twitchUserId = props.twitchUser.id;
   const [streamInfo, { loading, error }] = useQuery(getStreamDetails, twitchUserId);
   const styles = useStyles();
-  if (loading) return  <PopOverSkeleton />;
+  if (loading) return <PopOverSkeleton />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -59,15 +59,25 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
         <PresenceBadge size="medium" status={streamInfo.type === 'live' ? "busy" : "offline"} />
       </div>
       <Toolbar aria-label={`${props.twitchUser}'s social media links`}>
-        <ToolbarButton aria-label={`${props.twitchUser.display_name}'s github`} icon={<FontAwesomeIcon icon={faGithub} />}></ToolbarButton>
+        <div role="gridcell">
+          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s github`} icon={<FontAwesomeIcon icon={faGithub} />}></ToolbarButton>
+        </div>
         <ToolbarDivider vertical />
-        <ToolbarButton aria-label={`${props.twitchUser.display_name}'s discord`} icon={<FontAwesomeIcon icon={faDiscord} />}></ToolbarButton>
+        <div role="gridcell">
+          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s discord`} icon={<FontAwesomeIcon icon={faDiscord} />}></ToolbarButton>
+        </div>
         <ToolbarDivider vertical />
-        <ToolbarButton aria-label={`${props.twitchUser.display_name}'s twitch`} icon={<FontAwesomeIcon icon={faTwitch} />}></ToolbarButton>
+        <div role="gridcell">
+          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s twitch`} icon={<FontAwesomeIcon icon={faTwitch} />}></ToolbarButton>
+        </div>
         <ToolbarDivider vertical />
-        <ToolbarButton aria-label={`${props.twitchUser.display_name}'s Twitter/X`} icon={<FontAwesomeIcon icon={faXTwitter} />}></ToolbarButton>
+        <div role="gridcell">
+          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s Twitter/X`} icon={<FontAwesomeIcon icon={faXTwitter} />}></ToolbarButton>
+        </div>
         <ToolbarDivider vertical />
-        <ToolbarButton aria-label={`${props.twitchUser.display_name}'s website`} icon={<FontAwesomeIcon icon={faExternalLinkAlt} />}></ToolbarButton>
+        <div role="gridcell">
+          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s website`} icon={<FontAwesomeIcon icon={faExternalLinkAlt} />}></ToolbarButton>
+        </div>
       </Toolbar>
     </div>
   );

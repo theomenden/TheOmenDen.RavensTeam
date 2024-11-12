@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     },
     mainLayout: {
         display: 'flex',
+        flex: '1 1 auto',
         flexDirection: 'column',
         paddingTop: tokens.spacingVerticalM,
         paddingBottom: tokens.spacingVerticalL,
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
         zIndex: tokens.zIndexBackground
     },
     removeOverflow: {
-        overflow: 'hidden',
+        overflow: 'hidden'
     },
 });
 

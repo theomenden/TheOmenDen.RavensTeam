@@ -1,4 +1,3 @@
-import react from 'react';
 import { makeStyles, tokens } from '@fluentui/react-components';
 import '../../App.css';
 
@@ -10,14 +9,19 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         zIndex: tokens.zIndexBackground,
-    }
+    },
+    article: {
+        padding: tokens.spacingHorizontalL,
+        paddingTop: tokens.spacingVerticalM,
+        paddingBottom: tokens.spacingVerticalM
+    },
 });
 
 export const ContentLayout: React.FC<{ children: React.ReactNode }> = ({ children }: { children: React.ReactNode }) => {
     const styles = useStyles();
     return (
         <section className={styles.container}>
-            <article>
+            <article className={styles.article}>
                 {children}
             </article>
         </section>

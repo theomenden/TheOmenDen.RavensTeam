@@ -20,7 +20,6 @@ function batchReduce<T>(arr: T[], batchSize: number): T[][] {
     }, [] as T[][]);
 }
 
-
 export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, currentTab }: TeamTabPanelProps) => {
     if (!currentTab) {
         currentTab = Object.keys(teamDetailsMap).map(team => team)[0];
@@ -32,12 +31,14 @@ export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, curr
     if (loading) return <div><Spinner appearance='primary' label={'Loading panel data...'} labelPosition='before' /></div>;
     if (error) return <div><Body1Strong align='center'>Error loading members information: {JSON.stringify(error)}</Body1Strong></div>;
 
-    return (
-        <ContentLayout>
-                <TeamList members={batchReduce(teamUsers?.data.reduce((acc: any[], user: { users: any; }) => {
+    const batchedResolvedTwitchUsers = batchReduce(teamUsers?.data.reduce((acc: any[], user: { users: any; }) => {
         acc.push(...user.users);
         return acc;
-    }, [] as BasicTwitchUser[]), 100) as BasicTwitchUser[][]} />
+    }, [] as BasicTwitchUser[]), 100) as BasicTwitchUser[][];
+
+    return (
+        <ContentLayout>
+                <TeamList members={batchedResolvedTwitchUsers} />
         </ContentLayout>
     )
 };
