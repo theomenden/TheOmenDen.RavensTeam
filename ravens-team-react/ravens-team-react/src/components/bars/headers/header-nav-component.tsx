@@ -42,6 +42,13 @@ const useStyles = makeStyles({
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, selectedTab, onTabSelect }: HeaderNavProps) => {
     const styles = useStyles();
+
+    // if teams is not empty and selectedTab is null or empty, default to first team
+    const defaultTeam = Object.keys(teams)[0];
+    if (!teams || Object.keys(teams).length === 0 || selectedTab === null || selectedTab === '') {
+        onTabSelect(defaultTeam);
+    }
+
     return (
         <div>
             <nav className={styles.headerNavRow}>

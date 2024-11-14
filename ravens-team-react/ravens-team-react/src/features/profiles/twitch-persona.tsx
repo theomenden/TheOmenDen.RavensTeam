@@ -60,23 +60,23 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
       </div>
       <Toolbar aria-label={`${props.twitchUser}'s social media links`}>
         <div role="gridcell">
-          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s github`} icon={<FontAwesomeIcon icon={faGithub} />}></ToolbarButton>
+          <ToolbarButton as="a" aria-label={`${props.twitchUser.display_name}'s github`} title={`${props.twitchUser.display_name}'s github`} icon={<FontAwesomeIcon icon={faGithub} />} appearance="primary" target="_blank" rel="noopener"></ToolbarButton>
         </div>
         <ToolbarDivider vertical />
         <div role="gridcell">
-          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s discord`} icon={<FontAwesomeIcon icon={faDiscord} />}></ToolbarButton>
+          <ToolbarButton as="a" aria-label={`${props.twitchUser.display_name}'s discord`} title={`${props.twitchUser.display_name}'s discord`} icon={<FontAwesomeIcon icon={faDiscord} />} appearance="primary" target="_blank" rel="noopener"></ToolbarButton>
         </div>
         <ToolbarDivider vertical />
         <div role="gridcell">
-          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s twitch`} icon={<FontAwesomeIcon icon={faTwitch} />}></ToolbarButton>
+          <ToolbarButton as="a" aria-label={`${props.twitchUser.display_name}'s twitch`} title={`${props.twitchUser.display_name}'s twitch`} icon={<FontAwesomeIcon icon={faTwitch} />} appearance="primary" target="_blank" rel="noopener" href={`https://twitch.tv/${props.twitchUser.login}`}></ToolbarButton>
         </div>
         <ToolbarDivider vertical />
         <div role="gridcell">
-          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s Twitter/X`} icon={<FontAwesomeIcon icon={faXTwitter} />}></ToolbarButton>
+          <ToolbarButton as="a" aria-label={`${props.twitchUser.display_name}'s Twitter/X`} title={`${props.twitchUser.display_name}'s Twitter/X`} icon={<FontAwesomeIcon icon={faXTwitter} />} appearance="primary" target="_blank" rel="noopener"></ToolbarButton>
         </div>
         <ToolbarDivider vertical />
         <div role="gridcell">
-          <ToolbarButton aria-label={`${props.twitchUser.display_name}'s website`} icon={<FontAwesomeIcon icon={faExternalLinkAlt} />}></ToolbarButton>
+          <ToolbarButton as="a" aria-label={`${props.twitchUser.display_name}'s website`} title={`${props.twitchUser.display_name}'s website`} icon={<FontAwesomeIcon icon={faExternalLinkAlt} />} appearance="primary" target="_blank" rel="noopener"></ToolbarButton>
         </div>
       </Toolbar>
     </div>

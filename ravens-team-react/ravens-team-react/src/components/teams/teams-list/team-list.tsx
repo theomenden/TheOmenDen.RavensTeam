@@ -1,12 +1,10 @@
 // src/components/TeamList.tsx
 import React from 'react';
 import { FixedSizeList } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import { List, ListItem } from "@fluentui/react-list-preview";
 import { TeamListItem } from './team-list-item';
-import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 import { BasicTwitchUser } from '../../../utils/twitch-api-types/team-types';
-import { makeStyles, mergeClasses, tokens } from '@fluentui/react-components';
+import { makeStyles } from '@fluentui/react-components';
 import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 import { TableSkeleton } from '../../skeletons/initializer-skeleton';
 interface TeamListProps {
@@ -21,15 +19,13 @@ const TeamMembersList = React.forwardRef<HTMLUListElement>(
 
 const useStyles = makeStyles({
     list: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        maxWidth: "300px",
+        width: "100%",
+        gap: "1em",
     },
     listItem: {
         display: "grid",
         width: "100%",
-        padding: "8px",
+        padding: "1.35em",
     },
 });
 

@@ -11,7 +11,7 @@ interface TeamListItemProps {
 
 const useStyles = makeStyles({
   card: {
-    maxWidth: "100%",
+    width: "100%",
   },
   listItemStyle: {
     listStyleImage: "none",
@@ -34,7 +34,7 @@ export const TeamListItem: React.FC<TeamListItemProps> = ({ member }) => {
             <strong>{member.display_name}</strong>
           </Body1>
         }
-        action={<div role="gridcell" ><InfoLabel info={<TwitchPersona twitchUser={member} links={[]} />} /></div>}
+        action={<div role="gridcell" ><InfoLabel id={`btn-${member.id}`} info={<TwitchPersona twitchUser={member} links={[]} />} weight='semibold' /></div>}
       />
       <Caption1>{member.description}</Caption1>
       <CardFooter>

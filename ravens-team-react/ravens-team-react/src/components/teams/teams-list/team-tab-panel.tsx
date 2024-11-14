@@ -3,9 +3,9 @@ import React from 'react';
 import { Body1Strong, Spinner } from '@fluentui/react-components';
 import { TeamList } from './team-list';
 import { ContentLayout } from '../../layouts/content-layout';
-import { useQuery } from '../../../utils/axios-instance';
+import { useMutation, useQuery } from '../../../utils/axios-instance';
 import { getChunkedTeamMembers } from '../../../utils/twitchApi';
-import { BasicTwitchUser, TeamDetails } from '../../../utils/twitch-api-types/team-types';
+import { BasicTwitchUser, TeamDetails, TeamMembersResponse } from '../../../utils/twitch-api-types/team-types';
 
 interface TeamTabPanelProps {
     teamDetailsMap: TeamDetails,
@@ -26,7 +26,7 @@ export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, curr
     }
     const teamId: string = teamDetailsMap[currentTab!].id;
 
-    const [teamUsers, { loading, error }] = useQuery(getChunkedTeamMembers, teamId);
+    const [teamUsers, { loading, error }] = useQuery<string,TeamMembersResponse>(getChunkedTeamMembers, teamId);
 
     if (loading) return <div><Spinner appearance='primary' label={'Loading panel data...'} labelPosition='before' /></div>;
     if (error) return <div><Body1Strong align='center'>Error loading members information: {JSON.stringify(error)}</Body1Strong></div>;

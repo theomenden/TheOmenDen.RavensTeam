@@ -1,7 +1,6 @@
 // src/components/HeaderNavigation.tsx
 import React from 'react';
 import { makeStyles, Title1, tokens, Image } from '@fluentui/react-components';
-import '../../../styles/HeaderNavigation.scss';
 import { Head } from '../../seo/head';
 
 interface HeaderProps {
