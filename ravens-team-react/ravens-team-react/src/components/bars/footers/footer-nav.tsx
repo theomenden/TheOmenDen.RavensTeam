@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 export const Footer: React.FC = () => {
     const styles = useStyles();
   return( 
-        <nav>
+        <nav className={styles.footerNavBar}>
         <Title2 as="h3" align='center'>The Omen Den</Title2>
         </nav>
   );

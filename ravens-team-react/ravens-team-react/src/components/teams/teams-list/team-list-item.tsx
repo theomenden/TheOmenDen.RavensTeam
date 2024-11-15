@@ -12,14 +12,11 @@ interface TeamListItemProps {
 const useStyles = makeStyles({
   card: {
     width: "100%",
-  },
-  listItemStyle: {
     listStyleImage: "none",
     listStyleType: "none",
-    padding: "1.5rem",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: "0.5rem",
+    padding: "1.5em",
+    justifyContent: "space-evenly",
+    gap: "1em",
   }
 });
 
@@ -34,7 +31,7 @@ export const TeamListItem: React.FC<TeamListItemProps> = ({ member }) => {
             <strong>{member.display_name}</strong>
           </Body1>
         }
-        action={<div role="gridcell" ><InfoLabel id={`btn-${member.id}`} info={<TwitchPersona twitchUser={member} links={[]} />} weight='semibold' /></div>}
+        action={<div role="gridcell" ><InfoLabel id={`btn-${member.id}`} onClick={e=> e.preventDefault()} info={<TwitchPersona twitchUser={member} links={[]} />} weight='semibold' /></div>}
       />
       <Caption1>{member.description}</Caption1>
       <CardFooter>

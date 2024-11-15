@@ -12,16 +12,14 @@ const useStyles = makeStyles({
     backgroundColor:  tokens.colorBrandBackground,
     color: tokens.colorNeutralForeground1,
     alignItems: "center",
-    justifyContent: "space-between",
-    textAlign: "center",
-    boxShadow: tokens.shadow8Brand,
+    justifyContent: "space-evenly",
+    textAlign: "center"
     },
     headerTextProp: {
         fontSize: tokens.fontSizeHero800,
         paddingRight: tokens.spacingHorizontalL,
         paddingLeft: tokens.spacingHorizontalSNudge,
         paddingTop: tokens.spacingVerticalL,
-        paddingBottom: tokens.spacingVerticalM,
         fontWeight: tokens.fontWeightSemibold,
     }
 });

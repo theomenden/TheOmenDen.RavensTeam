@@ -20,13 +20,7 @@ const TeamMembersList = React.forwardRef<HTMLUListElement>(
 const useStyles = makeStyles({
     list: {
         width: "100%",
-        gap: "1em",
-    },
-    listItem: {
-        display: "grid",
-        width: "100%",
-        padding: "1.35em",
-    },
+    }
 });
 
 // Inside the TeamList component, use the useQuery hook to fetch the user details
@@ -53,8 +47,11 @@ export const TeamList: React.FC<TeamListProps> = ({ members }: TeamListProps) =>
                     aria-posinset={index + 1}
                     aria-label={data[index].display_name}
                     data-value={data[index]}
-                    checkmark={null}>
-                    <TeamListItem member={data[index]} />
+                    checkmark={null}
+                    onAction={e => e.preventDefault()}>
+                    <div role="gridcell">
+                        <TeamListItem member={data[index]} />
+                    </div>
                 </ListItem>
             )}
         </FixedSizeList>

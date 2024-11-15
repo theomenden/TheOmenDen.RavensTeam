@@ -6,8 +6,7 @@ import { Body1Strong, Spinner, makeStyles, tokens } from '@fluentui/react-compon
 import { TeamTabPanel } from '../teams/teams-list/team-tab-panel';
 import { HeaderNav } from '../bars/headers/header-nav-component';
 import { useQuery } from '../../utils/axios-instance';
-import { getBroadcasterInfo, getTeamsForBroadcaster } from '../../utils/twitchApi';
-import { TeamDetails } from '../../utils/twitch-api-types/team-types';
+import { getBroadcasterInfo } from '../../utils/twitchApi';
 import { useTeamData } from '../../hooks/team-hooks/use-team-data';
 interface MainLayoutProps {
     broadcasterId: string;
@@ -17,28 +16,27 @@ const useStyles = makeStyles({
     headerProp: {
         top: 0,
         position: 'sticky',
-        zIndex: tokens.zIndexPriority,
+        width: '100%',
+        zIndex: tokens.zIndexPriority
     },
     mainLayout: {
         display: 'grid',
         gridAutoFlow: 'row dense',
-        paddingTop: tokens.spacingVerticalM,
+        gap: '1em',
         paddingBottom: tokens.spacingVerticalL,
         marginTop: tokens.spacingVerticalL,
         marginRight: tokens.spacingHorizontalXL,
-        zIndex: tokens.zIndexBackground
+        zIndex: tokens.zIndexContent
     },
     footerNavBar: {
-        backgroundColor: tokens.colorBrandBackground,
+        width: '100%',
+        bottom:0,
+        paddingTop: tokens.spacingVerticalL,
         color: tokens.colorNeutralForeground1,
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         textAlign: "center",
         position: "sticky",
-        bottom: 0,
-        paddingTop: tokens.spacingVerticalSNudge,
-        paddingBottom: tokens.spacingVerticalSNudge,
-        zIndex: 100,
-        boxShadow: tokens.shadow8Brand
+        zIndex: tokens.zIndexPriority,
     },
     removeOverflow: {
         overflowY: 'hidden'
@@ -48,18 +46,17 @@ const useStyles = makeStyles({
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
     const styles = useStyles();
-    const [broadcasterInfo, { loading, error }] = useQuery(getBroadcasterInfo, broadcasterId); // useBroadcasterInfo({ broadcasterId: broadcasterId, accessToken: helixAuthToken });
-    const {teams,  loading: dataLoading, error: dataError } = useTeamData(broadcasterId); // useTeamsForBroadcaster({ broadcasterId: broadcasterId, accessToken: helixAuthToken });
-    const [selectedTab, setSelectedTab] = React.useState<string | null>(teams?.data[0].team_display_name ?? null);
+    const [broadcasterInfo, { loading, error }] = useQuery(getBroadcasterInfo, broadcasterId); 
+    const {teams,  loading: dataLoading, error: dataError } = useTeamData(broadcasterId);
+    const [selectedTab, setSelectedTab] = React.useState<string | null>(null);
     if (loading) return <div><Spinner appearance='primary' label={'Loading broadcaster data...'} labelPosition='before' /></div>;
     if (error) return <div><Body1Strong align='center'>Error loading broadcaster information: [error]</Body1Strong></div>;
 
     if (dataLoading) return <div><Spinner appearance='primary' label={'Loading team data...'} labelPosition='before' /></div>;
     if (dataError) return <div><Body1Strong align='center'>Error loading team data: [dataError]</Body1Strong></div>;
    
-
     // if teamInfo is not empty and selectedTab is null or empty, default to first team
-    if (Object.keys(teams).length > 0 && selectedTab === null) {
+    if (teams && Object.keys(teams).length > 0 && selectedTab === null) {
         setSelectedTab(Object.keys(teams)[0]);
     }
 
