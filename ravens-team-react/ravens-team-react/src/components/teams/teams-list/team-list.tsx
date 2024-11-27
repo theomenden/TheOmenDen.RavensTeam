@@ -1,25 +1,22 @@
 // src/components/TeamList.tsx
 import React from 'react';
-import { FixedSizeList } from 'react-window';
 import { List, ListItem } from "@fluentui/react-list-preview";
 import { TeamListItem } from './team-list-item';
 import { BasicTwitchUser } from '../../../utils/twitch-api-types/team-types';
 import { makeStyles } from '@fluentui/react-components';
 import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 import { TableSkeleton } from '../../skeletons/initializer-skeleton';
+import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 interface TeamListProps {
     members: BasicTwitchUser[][];
 }
 
-const TeamMembersList = React.forwardRef<HTMLUListElement>(
-    (props: React.ComponentProps<typeof List>, ref) => (
-        <List navigationMode="composite" aria-label="Team members" {...props} ref={ref} />
-    )
-);
-
 const useStyles = makeStyles({
     list: {
-        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1em",
+        maxWidth: "300px",
     }
 });
 
@@ -28,32 +25,12 @@ export const TeamList: React.FC<TeamListProps> = ({ members }: TeamListProps) =>
     const { userDetails, loading, error } = useBatchRequests(members);
     const styles = useStyles();
     if (loading) return <TableSkeleton />;
-    if (error) return <div>Error: {JSON.stringify(error)}</div>;
-
+    if (error) return <div>Error: {error}</div>;
     return (
-        <FixedSizeList
-            height={350}
-            overscanCount={5}
-            itemSize={250}
-            itemCount={userDetails.length}
-            width={'100%'}
-            itemData={userDetails}
-            outerElementType={TeamMembersList}
-            className={styles.list}>
-            {({ index, style, data }) => (
-                <ListItem
-                    style={style}
-                    aria-setsize={userDetails.length}
-                    aria-posinset={index + 1}
-                    aria-label={data[index].display_name}
-                    data-value={data[index]}
-                    checkmark={null}
-                    onAction={e => e.preventDefault()}>
-                    <div role="gridcell">
-                        <TeamListItem member={data[index]} />
-                    </div>
-                </ListItem>
-            )}
-        </FixedSizeList>
+        <List className={styles.list}>
+            {userDetails.map((user: TwitchUser) => (
+                <TeamListItem member={user} />
+            ))}
+        </List>
     );
 };

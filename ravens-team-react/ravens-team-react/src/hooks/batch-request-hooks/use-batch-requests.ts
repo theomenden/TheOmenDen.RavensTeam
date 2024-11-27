@@ -20,7 +20,7 @@ export const useBatchRequests = (basicTwitchUsers: BasicTwitchUser[][]) => {
             const userNames = chunk.map(user => user.user_login);
             const response = getChunkedUsersDetails(createUserQueryString(userNames))
             .then(response => response.data)
-            .then(data => userData.push(...data.data))
+            .then(data => userData.push(...data))
             .catch(err => setError(err))
             .finally(() => setLoading(false));
             getRequestPromises.push(response);

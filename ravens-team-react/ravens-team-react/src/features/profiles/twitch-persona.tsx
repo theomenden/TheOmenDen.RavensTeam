@@ -9,6 +9,7 @@ import { TwitchUser } from "../../utils/twitch-api-types/user-types";
 import { useQuery } from '../../utils/axios-instance';
 import { getStreamDetails } from '../../utils/twitchApi';
 import { PopOverSkeleton } from "../../components/skeletons/pop-over-skeleton";
+import { StreamDataResponse } from "../../utils/twitch-api-types/stream-types";
 interface TwitchPersonaProps {
   twitchUser: TwitchUser;
   links: string[];
@@ -45,7 +46,7 @@ const useStyles = makeStyles({
 
 export const TwitchPersona = (props: TwitchPersonaProps) => {
   const twitchUserId = props.twitchUser.id;
-  const [streamInfo, { loading, error }] = useQuery(getStreamDetails, twitchUserId);
+  const [streamInfo, { loading, error }] = useQuery<StreamDataResponse, string>(getStreamDetails, twitchUserId);
   const styles = useStyles();
   if (loading) return <PopOverSkeleton />;
   if (error) return <div>Error: {error.message}</div>;
@@ -53,9 +54,9 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
   return (
     <div className={styles.wrapperContent}>
       <div className={styles.personaRow}>
-        <Caption1><em>{props.twitchUser.broadcaster_type}</em></Caption1>
+        <Caption1 as="em">{props.twitchUser.broadcaster_type}</Caption1>
         <Divider vertical />
-        <Caption2><em>{streamInfo.type === 'live' ? "online" : "offline"}</em></Caption2>
+        <Caption2 as="em">{streamInfo.type === 'live' ? "online" : "offline"}</Caption2>
         <PresenceBadge size="medium" status={streamInfo.type === 'live' ? "busy" : "offline"} />
       </div>
       <Toolbar aria-label={`${props.twitchUser}'s social media links`}>

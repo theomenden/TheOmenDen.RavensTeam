@@ -1,7 +1,6 @@
 // src/hooks/useTeamData.ts
 import { getTeamsForBroadcaster } from '../../utils/twitchApi';
-import { TeamDetails, TeamInfoResponse, TeamResponse } from '../../utils/twitch-api-types/team-types';
-import { useQuery } from '../../utils/axios-instance';
+import { TeamDetails, TeamResponse } from '../../utils/twitch-api-types/team-types';
 import { useEffect, useState } from 'react';
 
 export const useTeamData = (broadcasterId: string) => {

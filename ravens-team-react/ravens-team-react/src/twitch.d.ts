@@ -13,6 +13,10 @@ interface TwitchExt {
     viewer: {
         sessionToken: string;
     };
+    actions: {
+        followChannel: (channelName: string) => void;
+        onFollowed: (callback: (didFollow: boolean, channelName: string) => Function) => void;
+    };
 }
 
 interface Window {

@@ -23,9 +23,9 @@ const useStyles = makeStyles({
         display: 'grid',
         gridAutoFlow: 'row dense',
         gap: '1em',
-        paddingBottom: tokens.spacingVerticalL,
+        justifyContent: 'center',
+        width: '100%',
         marginTop: tokens.spacingVerticalL,
-        marginRight: tokens.spacingHorizontalXL,
         zIndex: tokens.zIndexContent
     },
     footerNavBar: {
@@ -49,11 +49,11 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
     const [broadcasterInfo, { loading, error }] = useQuery(getBroadcasterInfo, broadcasterId); 
     const {teams,  loading: dataLoading, error: dataError } = useTeamData(broadcasterId);
     const [selectedTab, setSelectedTab] = React.useState<string | null>(null);
-    if (loading) return <div><Spinner appearance='primary' label={'Loading broadcaster data...'} labelPosition='before' /></div>;
-    if (error) return <div><Body1Strong align='center'>Error loading broadcaster information: [error]</Body1Strong></div>;
+    if (loading) return <Spinner appearance='primary' label={'Loading broadcaster data...'} labelPosition='before' />;
+    if (error) return <Body1Strong as="strong" align='center'>Error loading broadcaster information: [error]</Body1Strong>;
 
-    if (dataLoading) return <div><Spinner appearance='primary' label={'Loading team data...'} labelPosition='before' /></div>;
-    if (dataError) return <div><Body1Strong align='center'>Error loading team data: [dataError]</Body1Strong></div>;
+    if (dataLoading) return <Spinner appearance='primary' label={'Loading team data...'} labelPosition='before' />;
+    if (dataError) return <Body1Strong align='center' as="strong">Error loading team data: [dataError]</Body1Strong>;
    
     // if teamInfo is not empty and selectedTab is null or empty, default to first team
     if (teams && Object.keys(teams).length > 0 && selectedTab === null) {
@@ -65,7 +65,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
         <div className={styles.removeOverflow}>
             {/* Header with navigation and broadcaster name */}
             <header className={styles.headerProp}>
-                <HeaderComponent broadcasterName={broadcasterInfo?.data[0].broadcaster_name ?? ""} />
+                <HeaderComponent broadcasterName={broadcasterInfo[0].broadcaster_name ?? ""} />
                 <HeaderNav teams={teams} selectedTab={selectedTab} onTabSelect={setSelectedTab} />
             </header>
             {/* Main content area */}

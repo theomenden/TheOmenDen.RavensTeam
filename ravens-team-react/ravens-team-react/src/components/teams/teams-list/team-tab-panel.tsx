@@ -20,25 +20,25 @@ function batchReduce<T>(arr: T[], batchSize: number): T[][] {
     }, [] as T[][]);
 }
 
-export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, currentTab }: TeamTabPanelProps) => {
-    if (!currentTab) {
-        currentTab = Object.keys(teamDetailsMap).map(team => team)[0];
+function getCurrentTeamIdToDisplay(teamDetailsMap: TeamDetails, currentTab: string | undefined): string {
+    if(currentTab && teamDetailsMap[currentTab]) {
+        return teamDetailsMap[currentTab].id;
     }
-    const teamId: string = teamDetailsMap[currentTab!].id;
+    return teamDetailsMap[Object.keys(teamDetailsMap).map(team => team)[0]].id;
+}
 
-    const [teamUsers, { loading, error }] = useQuery<string,TeamMembersResponse>(getChunkedTeamMembers, teamId);
+export const TeamTabPanel: React.FC<TeamTabPanelProps> = ({ teamDetailsMap, currentTab }: TeamTabPanelProps) => {
+    const [teamId] = React.useState(getCurrentTeamIdToDisplay(teamDetailsMap, currentTab));
+    const [teamUsers, { loading, error }] = useQuery<TeamMembersResponse, string>(getChunkedTeamMembers, teamId);
 
-    if (loading) return <div><Spinner appearance='primary' label={'Loading panel data...'} labelPosition='before' /></div>;
-    if (error) return <div><Body1Strong align='center'>Error loading members information: {JSON.stringify(error)}</Body1Strong></div>;
 
-    const batchedResolvedTwitchUsers = batchReduce(teamUsers?.data.reduce((acc: any[], user: { users: any; }) => {
-        acc.push(...user.users);
-        return acc;
-    }, [] as BasicTwitchUser[]), 100) as BasicTwitchUser[][];
-
+    if (loading) return <Spinner appearance='primary' label={'Loading panel data...'} labelPosition='before' />;
+    if (error) return <Body1Strong as="strong" align='center'>Error loading members information: {JSON.stringify(error)}</Body1Strong>;
+    const batchedResolvedTwitchUsers = batchReduce<BasicTwitchUser>(
+        teamUsers[0].users as BasicTwitchUser[], 100);
     return (
         <ContentLayout>
                 <TeamList members={batchedResolvedTwitchUsers} />
         </ContentLayout>
-    )
+    );
 };
