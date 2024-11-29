@@ -1,12 +1,11 @@
 import React from 'react';
-import { TeamDetails } from '../../../utils/twitch-api-types/team-types';
-import '../../../styles/HeaderNavigation.scss';
-import { TabList, Tab, Image, Subtitle1, makeStyles, tokens, Subtitle2Stronger, Divider } from '@fluentui/react-components';
+import { TeamResponse } from '../../../utils/twitch-api-types/team-types';
+import { TabList, Tab, Image, makeStyles, tokens, SelectTabEvent, SelectTabData } from '@fluentui/react-components';
 
 interface HeaderNavProps {
-    teams: TeamDetails;
-    selectedTab: string | null;
-    onTabSelect: (tabName: string) => void;
+    teams: TeamResponse[];
+    defaultTab: string | null;
+    onTabChange: (event: SelectTabEvent, data: SelectTabData) => void;
 }
 const useStyles = makeStyles({
     headerNavRow: {
@@ -21,11 +20,11 @@ const useStyles = makeStyles({
     headerTitleRow: {
         alignItems: "center",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
+        flexDirection: "row",
+        justifyContent: "flex-start",
         alignContent: "center",
         width: "100%",
-        backgroundColor: tokens.colorNeutralBackground2,
+        backgroundColor: tokens.colorNeutralBackground3,
     },
     dividerSpacing: {
         marginTop: tokens.spacingVerticalS,
@@ -37,41 +36,47 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         marginTop: '0',
         marginBottom: '0'
+    },
+    tabImage: {
+        width: '56px',
+        height: '56px',
+        backgroundColor: tokens.colorNeutralBackground1,
+        boxShadow: tokens.shadow8Brand
     }
 });
 
-export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, selectedTab, onTabSelect }: HeaderNavProps) => {
-    const styles = useStyles();
 
-    // if teams is not empty and selectedTab is null or empty, default to first team
-    const defaultTeam = Object.keys(teams)[0];
-    if (!teams || Object.keys(teams).length === 0 || selectedTab === null || selectedTab === '') {
-        onTabSelect(defaultTeam);
-    }
+
+export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, defaultTab, onTabChange }: HeaderNavProps) => {
+    const styles = useStyles();
+    const renderTabs = () => {
+        return (
+            <>
+                {
+                    teams.map((team) => (
+                        <Tab key={team.team_name} value={team.id} aria-label={team.team_display_name}>
+                            <Image src={team.thumbnail_url}
+                                fit='contain'
+                                shape="circular"
+                                alt={`${team.team_display_name} logo`}
+                                className={styles.tabImage} />
+                        </Tab>
+                    ))}
+            </>
+        );
+    };
 
     return (
-        <div>
-            <nav className={styles.headerNavRow}>
-                <TabList
-                    selectedValue={selectedTab}
-                    onTabSelect={(_event, data) => onTabSelect(data.value as string)}>
-                    {
-                        Object.keys(teams).map((teamName) => (
-                            <Tab key={teamName} value={teamName}>
-                                <Image src={teams[teamName].logoUrl}
-                                    alt={`${teamName} logo`}
-                                    width='56'
-                                    height='56' />
-                            </Tab>
-                        ))
-                    }
-                </TabList>
-            </nav >
-            <div className={styles.headerTitleRow}>
-            <Subtitle2Stronger as="h5" align='center' className={styles.textSpacing} >{selectedTab}</Subtitle2Stronger>
-            <Divider appearance='brand' className={styles.dividerSpacing} />
-            </div>
-        </div >
-
+        <nav className={styles.headerNavRow}>
+            <TabList
+                defaultSelectedValue={defaultTab}
+                onTabSelect={onTabChange}
+                selectTabOnFocus={true}
+                className={styles.headerTitleRow}>
+                {
+                    renderTabs()
+                }
+            </TabList>
+        </nav >
     );
 };

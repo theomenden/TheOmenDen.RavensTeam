@@ -18,11 +18,11 @@ export const useBroadcasterInfo = ({ broadcasterId, accessToken }: UseBroadcaste
             setError(null);
 
             try {
-                const info = await getBroadcasterInfo(broadcasterId, accessToken);
+                const info = await getBroadcasterInfo(broadcasterId);
                 if (info) {
-                    setBroadcasterInfo(info);
+                    setBroadcasterInfo(info.data[0]);
                 }
-            } catch (error) {
+            } catch (error: any) {
                 setError(error.message);
             } finally {
                 setLoading(false);
