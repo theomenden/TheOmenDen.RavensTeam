@@ -51,6 +51,6 @@ export interface TeamImages {
 }
 
 // Map of team members grouped by team ID
- export type TeamMembersByTeam = { [teamDisplayName: string]: TwitchUser[] };
-
- export type TeamDetails = { [teamDisplayName: string]: TeamImages };
+export type TeamMembersByTeam = { [teamDisplayName: string]: TwitchUser[] };
+export type TeamDetailsByTeam = { [teamDisplayName: string]: BasicTwitchUser[][] };
+export type TeamDetails = { [teamDisplayName: string]: TeamImages };

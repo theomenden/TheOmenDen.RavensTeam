@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { TeamResponse } from '../../../utils/twitch-api-types/team-types';
 import { TabList, Tab, Image, makeStyles, tokens, SelectTabEvent, SelectTabData } from '@fluentui/react-components';
 
@@ -45,27 +45,8 @@ const useStyles = makeStyles({
     }
 });
 
-
-
 export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, defaultTab, onTabChange }: HeaderNavProps) => {
     const styles = useStyles();
-    const renderTabs = () => {
-        return (
-            <>
-                {
-                    teams.map((team) => (
-                        <Tab key={team.team_name} value={team.id} aria-label={team.team_display_name}>
-                            <Image src={team.thumbnail_url}
-                                fit='contain'
-                                shape="circular"
-                                alt={`${team.team_display_name} logo`}
-                                className={styles.tabImage} />
-                        </Tab>
-                    ))}
-            </>
-        );
-    };
-
     return (
         <nav className={styles.headerNavRow}>
             <TabList
@@ -74,7 +55,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, defaultTab, onTabCh
                 selectTabOnFocus={true}
                 className={styles.headerTitleRow}>
                 {
-                    renderTabs()
+                    teams.map((team) => (
+                        <Tab id={team.team_name} value={team.id} aria-label={team.team_display_name}>
+                            <Image src={team.thumbnail_url}
+                                fit='contain'
+                                shape="circular"
+                                alt={`${team.team_display_name} logo`}
+                                className={styles.tabImage} />
+                        </Tab>
+                    ))
                 }
             </TabList>
         </nav >

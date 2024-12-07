@@ -1,4 +1,4 @@
-import { Toolbar, ToolbarDivider, ToolbarButton, PresenceBadge, makeStyles, Caption2, Caption1, Divider, tokens } from "@fluentui/react-components";
+import { Toolbar, ToolbarDivider, ToolbarButton, PresenceBadge, makeStyles, Caption2, Caption1, Divider, tokens, Body1 } from "@fluentui/react-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@awesome.me/kit-1d3f5f4627/icons/classic/brands";
 import { faDiscord } from "@awesome.me/kit-1d3f5f4627/icons/classic/brands";
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
   personaRow: {
     display: "flex",
     alignItems: "center",
-    "flex-direction": "row",
+    flexDirection: "row",
     gap: "10px",
     justifyContent: "space-between",
   }
@@ -49,7 +49,7 @@ export const TwitchPersona = (props: TwitchPersonaProps) => {
   const [streamInfo, { loading, error }] = useQuery<StreamDataResponse, string>(getStreamDetails, twitchUserId);
   const styles = useStyles();
   if (loading) return <PopOverSkeleton />;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div><Body1 as="h2">Error:</Body1><Caption1 as="p">{error.message}</Caption1> </div>;
 
   return (
     <div className={styles.wrapperContent}>

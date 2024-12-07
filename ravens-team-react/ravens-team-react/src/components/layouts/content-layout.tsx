@@ -2,6 +2,7 @@ import { makeStyles, tokens } from "@fluentui/react-components";
 
 const useStyles = makeStyles({
     sectionLayout: {
+        width: "100%",
         justifyContent: "stretch",
         alignContent: "center"
     }

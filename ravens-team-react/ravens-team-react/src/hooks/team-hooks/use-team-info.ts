@@ -22,7 +22,11 @@ export const useTeamInfo = (broadcasterId: string) => {
             setLoading(false);
         }
 
+        try{
         getTeamDataAsync();
+        } catch(error){
+            setError(error as Error);
+        }
     }, [broadcasterId]);
     return { teams, loading, error };
 };
