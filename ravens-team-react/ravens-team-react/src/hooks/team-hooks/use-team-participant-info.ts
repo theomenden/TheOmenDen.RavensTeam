@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BasicTwitchUser, TeamDetailsByTeam } from "../../utils/twitch-api-types/team-types";
+import { BasicTwitchUser, TeamDetailsByTeam, TeamResponse } from "../../utils/twitch-api-types/team-types";
 import { getChunkedTeamMembers } from "../../utils/twitchApi";
 
 const batchReduceTeamUsers = ({ arr, batchSize }: { arr: BasicTwitchUser[]; batchSize: number; }): BasicTwitchUser[][] => {
@@ -10,28 +10,30 @@ const batchReduceTeamUsers = ({ arr, batchSize }: { arr: BasicTwitchUser[]; batc
     }, [] as BasicTwitchUser[][]);
 };
 
-export const useTeamParticipants = (teamIds: string[]) => {
+export const useTeamParticipants = (teams: TeamResponse[]) => {
     const [resolvedTeamMembersbyTeam, setTeamMembersByTeam] = useState<TeamDetailsByTeam>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
     useEffect(() => {
         const teamMembersByTeam: TeamDetailsByTeam = {};
+        const teamIds = teams.map(team => team.id);
         const getTeamDataAsync = () => {
             teamIds.forEach(async (teamId) => {
                 const teamResponse = await getChunkedTeamMembers(teamId);
                 const basicTwitchUserData: BasicTwitchUser[] = teamResponse.data.flatMap(member => member.users);
                 const reducedTeamMembers: BasicTwitchUser[][] = batchReduceTeamUsers({ arr: basicTwitchUserData, batchSize: 100 });
-                teamMembersByTeam[teamId] = reducedTeamMembers;
-            })};
-            
+                teamMembersByTeam[teamId] = [];
+                teamMembersByTeam[teamId].push(...reducedTeamMembers);
+            })};   
         try {          
-        getTeamDataAsync();
+            getTeamDataAsync();
+            setTeamMembersByTeam(teamMembersByTeam);
         }
         catch (error) {
             setError(error as Error);
         } finally {
             setLoading(false);
         }
-    }, [teamIds]);
+    }, [teams]);
     return {resolvedTeamMembersbyTeam, loading, error};
 }

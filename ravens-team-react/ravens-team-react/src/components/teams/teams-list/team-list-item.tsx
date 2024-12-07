@@ -18,7 +18,8 @@ const useStyles = makeStyles({
     width: "100%",
     boxShadow: tokens.shadow8Brand,
     paddingTop: tokens.spacingVerticalSNudge,
-    paddingBottom: tokens.spacingVerticalMNudge
+    paddingBottom: tokens.spacingVerticalMNudge,
+    paddingLeft: tokens.spacingHorizontalL,
   },
   image: {
     height: '64px',

@@ -5,6 +5,13 @@ const useStyles = makeStyles({
         width: "100%",
         justifyContent: "stretch",
         alignContent: "center"
+    },
+    articleLayout: {
+        display: "grid",
+        gridAutoFlow: "row",
+        gap: "1em",
+        justifyContent: "around",
+        width: "100%",
     }
 });
 
@@ -12,7 +19,7 @@ export const ContentLayout: React.FC<{ children: React.ReactNode }> = ({ childre
     const styles = useStyles();
     return (
         <section className={styles.sectionLayout}>
-            <article>
+            <article className={styles.articleLayout}>
                 {children}
             </article>
         </section>

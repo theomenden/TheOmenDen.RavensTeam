@@ -74,9 +74,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
             </header>
             {/* Main content */}
             <main className={styles.mainLayout}>
-                <ContentLayout>
-                   <div></div>
-                </ContentLayout>
+                <TeamPanels currentTeamId={selectedValue as string} teams={teams} />
             </main>
             {/* Footer content */}
             <footer className={styles.footerNavBar}>
