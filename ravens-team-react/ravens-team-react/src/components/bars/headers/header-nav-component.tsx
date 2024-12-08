@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { TeamResponse } from '../../../utils/twitch-api-types/team-types';
-import { TabList, Tab, Image, makeStyles, tokens, SelectTabEvent, SelectTabData } from '@fluentui/react-components';
+import { TabList, Tab, Image, makeStyles, tokens, SelectTabEvent, SelectTabData, Tooltip } from '@fluentui/react-components';
 
 interface HeaderNavProps {
     teams: TeamResponse[];
@@ -9,11 +9,10 @@ interface HeaderNavProps {
 }
 const useStyles = makeStyles({
     headerNavRow: {
-        alignItems: "center",
+        alignItems: "flex-start",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
-        alignContent: "center",
+        justifyContent: "flex-start",
         width: "100%",
         backgroundColor: tokens.colorNeutralBackground2,
     },
@@ -57,11 +56,14 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, defaultTab, onTabCh
                 {
                     teams.map((team) => (
                         <Tab id={team.team_name} value={team.id} aria-label={team.team_display_name}>
-                            <Image src={team.thumbnail_url}
+                             <Tooltip withArrow content={team.team_display_name} relationship="label">
+                             <Image src={team.thumbnail_url}
                                 fit='contain'
                                 shape="circular"
+                                bordered
                                 alt={`${team.team_display_name} logo`}
                                 className={styles.tabImage} />
+                             </Tooltip>
                         </Tab>
                     ))
                 }

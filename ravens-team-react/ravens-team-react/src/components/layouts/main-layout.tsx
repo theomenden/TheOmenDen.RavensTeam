@@ -22,7 +22,7 @@ const useStyles = makeStyles({
         top: 0,
         position: 'sticky',
         width: '100%',
-        zIndex: tokens.zIndexPriority
+        zIndex: tokens.zIndexFloating
     },
     mainLayout: {
         display: 'grid',
@@ -30,19 +30,18 @@ const useStyles = makeStyles({
         gap: '1em',
         justifyContent: 'center',
         width: '100%',
-        marginTop: tokens.spacingVerticalL,
-        marginBottom: tokens.spacingVerticalL,
-        zIndex: tokens.zIndexContent
+        paddingTop: tokens.spacingVerticalL,
+        paddingX: `${tokens.spacingHorizontalM} ${tokens.spacingHorizontalL}`,
+        zIndex: tokens.zIndexBackground
     },
     footerNavBar: {
         width: '100%',
         bottom: 0,
-        paddingTop: tokens.spacingVerticalL,
         color: tokens.colorNeutralForeground1,
         justifyContent: "space-evenly",
         textAlign: "center",
         position: "sticky",
-        zIndex: tokens.zIndexPriority,
+        zIndex: tokens.zIndexFloating,
     },
     removeOverflow: {
         overflowY: 'hidden'

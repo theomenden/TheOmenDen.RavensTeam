@@ -4,14 +4,12 @@ import { Text, Title2, makeStyles, tokens } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
     footerNavBar: {
-        backgroundColor: tokens.colorBrandBackground,
+        backgroundColor: tokens.colorBrandBackground2,
         color: tokens.colorNeutralForeground1,
         justifyContent: "space-between",
         textAlign: "center",
         position: "sticky",
         bottom: 0,
-        paddingTop: tokens.spacingVerticalSNudge,
-        paddingBottom: tokens.spacingVerticalSNudge,
         zIndex: 100,
         boxShadow: tokens.shadow8Brand
     }

@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         flexDirection: "column",
         gap: "1em",
         width: "100%",
-        height: "500px",
+        maxHeight: "500px",
         overflowX: "hidden",
         overflowY: "scroll"
     },
@@ -35,7 +35,6 @@ const useStyles = makeStyles({
         display: "grid",
         width: "100%",
         height: "100%",
-        marginLeft: tokens.spacingHorizontalXL,
         marginRight: tokens.spacingHorizontalXL,
 
     },
