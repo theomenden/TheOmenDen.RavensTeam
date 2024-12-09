@@ -12,11 +12,7 @@ import type { ComboboxProps } from "@fluentui/react-components";
 import { Dismiss12Regular, DismissRegular } from "@fluentui/react-icons";
 
 interface UserByTypesSearch {
-    onFilterChange: (filter: string) => void;
-    teamUsers: string[];
-    selectedTeamUsers: string[];
-    teamUsersFilter: string;
-    teamUsersPlaceholder: string;
+    onFilterChange: (filters: string[]) => void;
 }
 
 const useStyles = makeStyles({
@@ -38,7 +34,7 @@ const useStyles = makeStyles({
       },
 });
 
-const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange, teamUsers, selectedTeamUsers, teamUsersFilter, teamUsersPlaceholder }: UserByTypesSearch) => {
+export const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange }: UserByTypesSearch) => {
     const styles = useStyles();
     const comboId = useId("team-user-search");
     const selectedListId = `${comboId}-selection`;
@@ -48,10 +44,8 @@ const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange, teamUs
 
     const onSelect: ComboboxProps["onOptionSelect"] = (event, data) => {
       setSelectedOptions(data.selectedOptions);
-    };
-    
-    const handleFilterChange = (filter: string) => {
-        onFilterChange(filter);
+      console.info(`Selected options: ${data.selectedOptions}`);
+      onFilterChange(data.selectedOptions);
     };
 
     const onTagClick = (option: string, index: number) => {
@@ -89,7 +83,7 @@ const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange, teamUs
                 size="small"
                 shape="circular"
                 appearance="primary"
-                icon={<DismissRegular fontSize={'12px'} />}
+                icon={<Dismiss12Regular />}
                 iconPosition="after"
                 onClick={() => onTagClick(option, i)}
                 id={`${comboId}-remove-${i}`}
@@ -102,13 +96,22 @@ const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange, teamUs
         </ul>
       ) : null }
             <Combobox
+                multiselect={true}
+                ref={comboboxInputRef}
+                selectedOptions={selectedOptions}
+                onOptionSelect={onSelect}
                 aria-labelledby={labelledBy}
                 id={comboId}
-                placeholder={teamUsersPlaceholder}>
+                placeholder='filter by...'>
                     <OptionGroup label="Are they a(n):">
                         <Option key="partner">Partner</Option>
                         <Option key="affiliate">Affiliate</Option>
                         <Option key="regular">Regular</Option>
+                    </OptionGroup>
+                    <OptionGroup label="Are they a(n):">
+                        <Option key="staff">Staff</Option>
+                        <Option key="admin">Admin</Option>
+                        <Option key="subscriber">Subscriber</Option>
                     </OptionGroup>
                     <OptionGroup label="Are they live">
                         <Option key="live">Live</Option>

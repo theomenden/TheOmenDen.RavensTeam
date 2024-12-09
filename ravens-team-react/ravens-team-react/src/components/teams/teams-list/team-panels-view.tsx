@@ -4,15 +4,18 @@ import { useTeamParticipants } from "../../../hooks/team-hooks/use-team-particip
 import { Body1, Caption1, Spinner, Title2 } from "@fluentui/react-components";
 import { TeamList } from "./team-list";
 import { ContentLayout } from "../../layouts/content-layout";
+import { UserFilters } from "../../../utils/search-types/broadcaster-types";
 
 interface TeamPanelsProps {
     currentTeamId: string | null,
-    teams: TeamResponse[];
+    teams: TeamResponse[],
+    usernameToFilter?: string,
+    teamLevelFilters?: UserFilters
 }
 
 
 
-export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams }: TeamPanelsProps) => {
+export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams, usernameToFilter, teamLevelFilters }: TeamPanelsProps) => {
     const { resolvedTeamMembersbyTeam, loading, error } = useTeamParticipants(teams);
     
     if (loading) return <Spinner appearance="inverted" labelPosition="before" label="Loading team information" />;
@@ -30,11 +33,9 @@ export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams }: 
     // Create a memoized array of TeamList components for each team
     const teamListComponents = teams.map(team => (
         <div key={team.id} role="tabpanel" aria-labelledby={team.id}>
-            <TeamListMemo key={team.id} members={resolvedTeamMembersbyTeam[team.id]} />
+            <TeamListMemo key={team.id} members={teamMembers} usernameToFilter={usernameToFilter} teamLevelFilters={teamLevelFilters} />
         </div>
     ));
-
-
 
 return (
     <ContentLayout>

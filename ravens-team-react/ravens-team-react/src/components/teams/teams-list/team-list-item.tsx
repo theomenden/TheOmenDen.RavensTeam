@@ -1,11 +1,9 @@
 // src/components/TeamListItem.tsx
-import React, { memo, useMemo } from 'react';
+import React, {  useMemo } from 'react';
 import { Body1Strong, Button, buttonClassNames, Caption1, Card, CardFooter, CardHeader, CardPreview, Image, InfoLabel, makeResetStyles, makeStyles, mergeClasses, Spinner, tokens } from '@fluentui/react-components';
 import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
 import { ArrowReplyRegular } from '@fluentui/react-icons';
 import { TwitchPersona } from '../../../features/profiles/twitch-persona';
-import { ListItem } from '@fluentui/react-list-preview';
-import { areEqual } from 'react-window';
 
 interface TeamListItemProps {
   member: TwitchUser;
@@ -71,6 +69,7 @@ export const TeamListItem: React.FC<TeamListItemProps> = ({ member }: TeamListIt
     window.Twitch.ext.actions.followChannel(member.login);
   };
   
+
   const buttonClassName = !loading || followedChannel ? undefined : styles.buttonNonInteractive;
 
   return (

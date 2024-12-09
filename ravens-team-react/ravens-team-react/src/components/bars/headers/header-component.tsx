@@ -1,11 +1,12 @@
 // src/components/HeaderNavigation.tsx
 import React from 'react';
-import { makeStyles, Title1, tokens, Image } from '@fluentui/react-components';
+import { makeStyles, Title1, tokens, Switch } from '@fluentui/react-components';
 import { Head } from '../../seo/head';
-import { EnableSearchSwitch } from '../../../features/searches/enable-searching';
+import { Filter16Filled, FilterDismiss16Filled } from '@fluentui/react-icons';
 
 interface HeaderProps {
     broadcasterName: string;
+    isSearchEnabled: (checked: boolean) => void;
 }
 
 const useStyles = makeStyles({
@@ -30,23 +31,41 @@ const useStyles = makeStyles({
         alignItems: 'center',
         fontSize: tokens.fontSizeBase400,
         fontWeight: tokens.fontWeightBold,
+    },
+    wrapper: {
+        display: "flex",
+        justifyContent: "flex-start",
+        marginLeft: tokens.spacingHorizontalS,
+        marginBottom: tokens.spacingVerticalS,
     }
 });
 
-export const HeaderComponent: React.FC<HeaderProps> = (props: HeaderProps) => {
+export const HeaderComponent: React.FC<HeaderProps> = ({ broadcasterName, isSearchEnabled }: HeaderProps) => {
     const styles = useStyles();
-
-    const onSwitchChange = (checked: boolean) => {
-        console.log(checked);
-    }
+    const [isChecked, setChecked] = React.useState<boolean>(false);
+    const onChange = React.useCallback(
+        (ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
+            setChecked(ev.currentTarget.checked);
+        },
+        [setChecked]
+    );
+    isSearchEnabled(isChecked);
+    const checkedIcon = isChecked ? <Filter16Filled /> : <FilterDismiss16Filled />;
     return (
         <div className={styles.headerNavProp}>
             <Head title="Raven's Team" />
             <Title1 as="h1" align='center' className={styles.headerTextProp}>
-                {props.broadcasterName}'s Teams
+                {broadcasterName}'s Teams
             </Title1>
             <div className={styles.searchProp} >
-                <EnableSearchSwitch onSwitchChange={onSwitchChange} />
+                <div className={styles.wrapper}>
+                    <Switch
+                        checked={isChecked}
+                        onChange={onChange}
+                        label={checkedIcon}
+                        labelPosition="after"
+                    />
+                </div>
             </div>
         </div>
     );

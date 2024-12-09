@@ -43,7 +43,7 @@ const fallbackComponent = ({ error, resetErrorBoundary }: FallbackProps) => {
             <Caption1 as="p">
                 Details: {error.message}
             </Caption1>
-            <Caption2>
+            <Caption2 as="p">
                 Stacktrace: {<code>{error.stack}</code>}
             </Caption2>
             <Caption1 as="p">Please copy the above details and provide them to the developers for further assistance.</Caption1>

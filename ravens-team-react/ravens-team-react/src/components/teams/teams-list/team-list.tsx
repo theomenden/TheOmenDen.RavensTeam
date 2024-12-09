@@ -8,7 +8,10 @@ import { Body1, Caption1, makeResetStyles, makeStyles, mergeClasses, tokens } fr
 import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 import { TableSkeleton } from '../../skeletons/initializer-skeleton';
 import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
+import { UserFilters } from '../../../utils/search-types/broadcaster-types';
 interface TeamListProps {
+    usernameToFilter?: string;
+    teamLevelFilters?: UserFilters;
     members: BasicTwitchUser[][];
 }
 const useListItemRootStyles = makeResetStyles({
@@ -54,17 +57,39 @@ const useStyles = makeStyles({
 });
 
 // Inside the TeamList component, use the useQuery hook to fetch the user details
-export const TeamList: React.FC<TeamListProps> = ({ members }: TeamListProps) => {
+export const TeamList: React.FC<TeamListProps> = ({ members, usernameToFilter, teamLevelFilters }: TeamListProps) => {
     const { userDetails, loading, error } = useBatchRequests(members);
     const rootStyles = useListItemRootStyles();
     const styles = useStyles();
+    
+    const filteredUserDetails = useMemo(() => {
+        if (!usernameToFilter && !teamLevelFilters) {
+            return userDetails;
+        }
+
+        let filteredUserDetails = [...userDetails];
+
+        if(teamLevelFilters) {
+            filteredUserDetails = filteredUserDetails.filter(user => {
+                user.broadcaster_type == teamLevelFilters.broadcasterType
+                || user.type == teamLevelFilters.userType
+            });
+        }
+
+        if(usernameToFilter && usernameToFilter.trim()!== '') //Ignore empty string filter
+        {
+          filteredUserDetails =filteredUserDetails.filter(user => user.display_name.toLowerCase().includes(usernameToFilter.toLowerCase()));
+        }
+        return filteredUserDetails;
+    }, [userDetails, usernameToFilter, teamLevelFilters]);
+
     if (loading) return <TableSkeleton />;
     if (error) return <div><Body1 as="h2">Error: </Body1><Caption1 as="p"><code>{error}</code></Caption1></div>;
 
     return (
         <List navigationMode="composite"
             className={mergeClasses(rootStyles, styles.list)}>
-            {userDetails.map((member) => (
+            {filteredUserDetails.map((member) => (
                 <ListItem key={member.id}
                     value={member.display_name}
                     data-value={member.display_name}
