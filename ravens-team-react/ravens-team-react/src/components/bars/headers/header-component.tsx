@@ -41,15 +41,15 @@ const useStyles = makeStyles({
 });
 
 export const HeaderComponent: React.FC<HeaderProps> = ({ broadcasterName, isSearchEnabled }: HeaderProps) => {
-    const styles = useStyles();
     const [isChecked, setChecked] = React.useState<boolean>(false);
+    const styles = useStyles();
     const onChange = React.useCallback(
         (ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
             setChecked(ev.currentTarget.checked);
+            isSearchEnabled(!isChecked);
         },
-        [setChecked]
+        [isChecked]
     );
-    isSearchEnabled(isChecked);
     const checkedIcon = isChecked ? <Filter16Filled /> : <FilterDismiss16Filled />;
     return (
         <div className={styles.headerNavProp}>
@@ -63,8 +63,7 @@ export const HeaderComponent: React.FC<HeaderProps> = ({ broadcasterName, isSear
                         checked={isChecked}
                         onChange={onChange}
                         label={checkedIcon}
-                        labelPosition="after"
-                    />
+                        labelPosition="after" />
                 </div>
             </div>
         </div>

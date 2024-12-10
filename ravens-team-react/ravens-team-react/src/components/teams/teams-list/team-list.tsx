@@ -8,7 +8,7 @@ import { Body1, Caption1, makeResetStyles, makeStyles, mergeClasses, tokens } fr
 import { useBatchRequests } from '../../../hooks/batch-request-hooks/use-batch-requests';
 import { TableSkeleton } from '../../skeletons/initializer-skeleton';
 import { TwitchUser } from '../../../utils/twitch-api-types/user-types';
-import { UserFilters } from '../../../utils/search-types/broadcaster-types';
+import { BroadcasterType, UserFilters } from '../../../utils/search-types/broadcaster-types';
 interface TeamListProps {
     usernameToFilter?: string;
     teamLevelFilters?: UserFilters;
@@ -59,29 +59,43 @@ const useStyles = makeStyles({
 // Inside the TeamList component, use the useQuery hook to fetch the user details
 export const TeamList: React.FC<TeamListProps> = ({ members, usernameToFilter, teamLevelFilters }: TeamListProps) => {
     const { userDetails, loading, error } = useBatchRequests(members);
-    const rootStyles = useListItemRootStyles();
-    const styles = useStyles();
-    
-    const filteredUserDetails = useMemo(() => {
+    const filteredUserDetails = React.useMemo(() =>{
         if (!usernameToFilter && !teamLevelFilters) {
             return userDetails;
         }
-
-        let filteredUserDetails = [...userDetails];
+        let filteredUserDetails: TwitchUser[] = [];
 
         if(teamLevelFilters) {
-            filteredUserDetails = filteredUserDetails.filter(user => {
-                user.broadcaster_type == teamLevelFilters.broadcasterType
-                || user.type == teamLevelFilters.userType
-            });
+            const broadcasterTypeFilter = teamLevelFilters.broadcasterTypes.length > 0? teamLevelFilters.broadcasterTypes : [];
+            const userTypeFilter = teamLevelFilters.userTypes.length > 0? teamLevelFilters.userTypes : [];
+            if(broadcasterTypeFilter.length > 0) {
+                // if the broadcaster type is ONLY regular, filter out the affiliates and partners
+                if(broadcasterTypeFilter.includes('affiliate')) {
+                    filteredUserDetails.push(...userDetails.filter(user => user.broadcaster_type === 'affiliate'));
+                }
+
+                if(broadcasterTypeFilter.includes('partner')) {
+                    filteredUserDetails.push(...userDetails.filter(user => user.broadcaster_type === 'partner'));
+                }
+
+                if(broadcasterTypeFilter.includes('regular')) {
+                    filteredUserDetails.push(...userDetails.filter(user => user.broadcaster_type == ''));
+                }
+            }
+
+            if(userTypeFilter.length > 0) {
+                filteredUserDetails = filteredUserDetails.filter(user => teamLevelFilters.userTypes.includes(user.type));
+            }
         }
 
-        if(usernameToFilter && usernameToFilter.trim()!== '') //Ignore empty string filter
+        if(usernameToFilter && usernameToFilter.trim() !== '') //Ignore empty string filter
         {
           filteredUserDetails =filteredUserDetails.filter(user => user.display_name.toLowerCase().includes(usernameToFilter.toLowerCase()));
         }
         return filteredUserDetails;
     }, [userDetails, usernameToFilter, teamLevelFilters]);
+    const rootStyles = useListItemRootStyles();
+    const styles = useStyles();
 
     if (loading) return <TableSkeleton />;
     if (error) return <div><Body1 as="h2">Error: </Body1><Caption1 as="p"><code>{error}</code></Caption1></div>;

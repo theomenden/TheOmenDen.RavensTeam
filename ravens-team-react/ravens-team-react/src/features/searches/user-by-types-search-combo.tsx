@@ -10,9 +10,10 @@ import {
 } from "@fluentui/react-components";
 import type { ComboboxProps } from "@fluentui/react-components";
 import { Dismiss12Regular, DismissRegular } from "@fluentui/react-icons";
+import { UserFilters } from "../../utils/search-types/broadcaster-types";
 
 interface UserByTypesSearch {
-    onFilterChange: (filters: string[]) => void;
+    onFilterChange: (filters: UserFilters) => void;
 }
 
 const useStyles = makeStyles({
@@ -44,8 +45,10 @@ export const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange 
 
     const onSelect: ComboboxProps["onOptionSelect"] = (event, data) => {
       setSelectedOptions(data.selectedOptions);
-      console.info(`Selected options: ${data.selectedOptions}`);
-      onFilterChange(data.selectedOptions);
+      const broadcasterType = data.selectedOptions.filter((o) => ["partner", "affiliate", "regular"].includes(o as string)) as string[];
+      const userType = data.selectedOptions.filter((o) => ["staff", "admin", "subscriber"].includes(o as string)) as string[];
+      const isBroadcasterLive = data.selectedOptions.includes("live");
+      onFilterChange({ broadcasterTypes: [...broadcasterType], userTypes: [...userType], isBroadcasterLive });
     };
 
     const onTagClick = (option: string, index: number) => {
@@ -104,18 +107,18 @@ export const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange 
                 id={comboId}
                 placeholder='filter by...'>
                     <OptionGroup label="Are they a(n):">
-                        <Option key="partner">Partner</Option>
-                        <Option key="affiliate">Affiliate</Option>
-                        <Option key="regular">Regular</Option>
+                        <Option key="partner" value="partner">Partner</Option>
+                        <Option key="affiliate" value="affiliate">Affiliate</Option>
+                        <Option key="regular" value="regular">Regular</Option>
                     </OptionGroup>
                     <OptionGroup label="Are they a(n):">
-                        <Option key="staff">Staff</Option>
-                        <Option key="admin">Admin</Option>
-                        <Option key="subscriber">Subscriber</Option>
+                        <Option key="staff" value="staff">Staff</Option>
+                        <Option key="admin" value="admin">Admin</Option>
+                        <Option key="subscriber" value="subscriber">Subscriber</Option>
                     </OptionGroup>
                     <OptionGroup label="Are they live">
-                        <Option key="live">Live</Option>
-                        <Option key="offline">Offline</Option>
+                        <Option key="live" value="live">Live</Option>
+                        <Option key="offline" value="offline">Offline</Option>
                     </OptionGroup>
             </Combobox>
         </div>

@@ -5,20 +5,20 @@ import { Person16Regular } from "@fluentui/react-icons";
 
 interface UsernameSearchBoxProps {
   onUsernameSearch: (value: string) => void;
-}
+};
 
 export const UsernameSearchBox = ({ onUsernameSearch }: UsernameSearchBoxProps) => {
-  const [value, setValue] = React.useState('');
-  const [valid, setValid] = React.useState(true);
+  const [value, setValue] = React.useState<string>('');
+  const [valid, setValid] = React.useState<boolean>(true);
 
-  const onChange: (ev: SearchBoxChangeEvent, data: InputOnChangeData) => void = (_, data) => {
+  const onChange: (ev: SearchBoxChangeEvent, data: InputOnChangeData) => void = React.useCallback((ev, data) => {
     setValue(data.value);
     if (data.value.length <= 20 && data.value.length > 2) {
       setValid(true);
       return;
     }
     setValid(false);
-  };
+  },[value, valid]);
   if (valid) { onUsernameSearch(value); }
   return (
     <Field

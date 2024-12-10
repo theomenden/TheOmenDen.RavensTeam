@@ -55,7 +55,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ teams, defaultTab, onTabCh
                 className={styles.headerTitleRow}>
                 {
                     teams.map((team) => (
-                        <Tab id={team.team_name} value={team.id} aria-label={team.team_display_name}>
+                        <Tab key={team.team_name} id={team.team_name} value={team.id} aria-label={team.team_display_name}>
                              <Tooltip withArrow content={team.team_display_name} relationship="label">
                              <Image src={team.thumbnail_url}
                                 fit='contain'

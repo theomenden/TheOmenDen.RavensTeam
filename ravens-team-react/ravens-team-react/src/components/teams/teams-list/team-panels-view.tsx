@@ -13,8 +13,6 @@ interface TeamPanelsProps {
     teamLevelFilters?: UserFilters
 }
 
-
-
 export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams, usernameToFilter, teamLevelFilters }: TeamPanelsProps) => {
     const { resolvedTeamMembersbyTeam, loading, error } = useTeamParticipants(teams);
     
@@ -27,13 +25,11 @@ export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams, us
     // Check if the currentTeamId is in the resolvedTeamMembersbyTeam object
     const teamMembers = resolvedTeamMembersbyTeam[currentTeamId];
 
-    // Memoize the TeamList component to prevent unnecessary re-renders
-    const TeamListMemo = React.memo(TeamList);
 
     // Create a memoized array of TeamList components for each team
     const teamListComponents = teams.map(team => (
         <div key={team.id} role="tabpanel" aria-labelledby={team.id}>
-            <TeamListMemo key={team.id} members={teamMembers} usernameToFilter={usernameToFilter} teamLevelFilters={teamLevelFilters} />
+            <TeamList key={team.id} members={teamMembers} usernameToFilter={usernameToFilter} teamLevelFilters={teamLevelFilters} />
         </div>
     ));
 

@@ -1,21 +1,19 @@
 // src/components/TeamContainer.tsx
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Footer } from '../bars/footers/footer-nav';
 import { HeaderComponent } from '../bars/headers/header-component';
 import { Body1Strong, Spinner, makeStyles, tokens } from '@fluentui/react-components';
 import type { SelectTabData, SelectTabEvent, TabValue } from "@fluentui/react-components";
-import { TeamTabPanel } from '../teams/teams-list/team-tab-panel';
 import { HeaderNav } from '../bars/headers/header-nav-component';
 import { useQuery } from '../../utils/axios-instance';
 import { getBroadcasterInfo } from '../../utils/twitchApi';
 import { TwitchBroadcasterResponse } from '../../utils/twitch-api-types/user-types';
 import { useTeamInfo } from '../../hooks/team-hooks/use-team-info';
 import { TeamResponse } from '../../utils/twitch-api-types/team-types';
-import { ContentLayout } from './content-layout';
 import { TeamPanels } from '../teams/teams-list/team-panels-view';
 import { UsernameSearchBox } from '../../features/searches/user-name-search';
 import { UserByTypesSearch } from '../../features/searches/user-by-types-search-combo';
-import { BroadcasterType, UserFilters } from '../../utils/search-types/broadcaster-types';
+import { UserFilters } from '../../utils/search-types/broadcaster-types';
 interface MainLayoutProps {
     broadcasterId: string;
 }
@@ -29,8 +27,8 @@ const useStyles = makeStyles({
     },
     searchLayout: {
         display: 'flex',
-        justifyContent: 'flex-start',
-        alignContent: 'start',
+        justifyContent: 'space-evenly',
+        alignContent: 'flex-start',
         gap: '1em',
         width: '100%',
         backgroundColor: tokens.colorNeutralBackground2,
@@ -68,7 +66,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
     const [selectedValue, setSelectedValue] = useState<TabValue>(teams[0]?.id);
     const [enableSearch, setEnableSearch] = useState<boolean>(false);
     const [usernameSearchInput, setUsernameSearchInput] = useState<string>('');
-    const [teamLevelFilters, setTeamLevelFilters] = useState<UserFilters>();
+    const [teamLevelFilters, setTeamLevelFilters] = useState<UserFilters>({ broadcasterTypes: [], userTypes: [] });
     const styles = useStyles();
 
     if (loading || broadcasterLoading) return <Spinner appearance='primary' label={'Loading broadcaster data...'} labelPosition='before' />;
@@ -79,21 +77,16 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
         setSelectedValue(data.value);
     };
 
-    const onSearchToggle = (isChecked: boolean) => setEnableSearch(isChecked);
-    const onUsernameSearch = (username: string) => setUsernameSearchInput(username);
-    const onFilterChange = (filters: string[]) => {
+    const onSearchToggle = (isChecked: boolean): void => setEnableSearch(isChecked);
+    const onUsernameSearch = (username: string): void => setUsernameSearchInput(username);
+    const onFilterChange = (filters: UserFilters): void => {
         // Filter team members based on user type and broadcaster type
-        if(filters && filters.length > 0){
-        const filtersToUse = {
-            broadcasterType: filters[0], // convert filter to lowercase for consistency
-            userType: filters[1], // convert filter to lowercase for consistency
-            isBroadcasterLive: filters[2] 
-        } as UserFilters;
-        console.info(`Filters:`, filtersToUse);
-        setTeamLevelFilters(filtersToUse);
+        console.log('Filter change', filters);
+        if (filters) {
+            setTeamLevelFilters({ ...filters });
+        }
     }
-    }
-    const team = teams?.find((team) => team?.id === selectedValue) ?? teams[0];
+    const team: TeamResponse = teams?.find((team) => team?.id === selectedValue) ?? teams[0];
     return (
         <div className={styles.removeOverflow}>
             {/* Header content */}
@@ -104,13 +97,12 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ broadcasterId }) => {
             {/* Search Content */}
             {
                 enableSearch ?
-                <section>
-                    <aside className={styles.searchLayout}>
-                        <UserByTypesSearch onFilterChange={onFilterChange} />
-                        <UsernameSearchBox onUsernameSearch={onUsernameSearch} />
-                    </aside>
-                </section>
-                : null
+                    <section>
+                        <aside className={styles.searchLayout}>
+                            <UserByTypesSearch onFilterChange={onFilterChange} />
+                        </aside>
+                    </section>
+                    : null
             }
             {/* Main content */}
             <main className={styles.mainLayout}>
