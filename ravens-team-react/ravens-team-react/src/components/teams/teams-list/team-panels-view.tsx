@@ -17,7 +17,7 @@ export const TeamPanels: React.FC<TeamPanelsProps> = ({ currentTeamId ,teams, us
     const { resolvedTeamMembersbyTeam, loading, error } = useTeamParticipants(teams);
     
     if (loading) return <Spinner appearance="inverted" labelPosition="before" label="Loading team information" />;
-    if (error) return <div><Body1 as="h2">An error occured:</Body1><Caption1 as="p">{JSON.stringify(error)}</Caption1></div>
+    if (error) return <div><Body1 as="h2">An error occured:</Body1><Caption1 as="p">{error.message}</Caption1></div>
 
     // If the currentTeamId is null, return an empty div
     if (!currentTeamId) return <div></div>;

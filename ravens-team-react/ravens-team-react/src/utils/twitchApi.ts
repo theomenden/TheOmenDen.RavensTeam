@@ -15,8 +15,8 @@ export const getTeamsForBroadcaster = async (broadcasterId: string, config?: Axi
     return response.data;
 }
 
-export const getChunkedUsersDetails = async (userNames: string, config?: AxiosRequestConfig): Promise<TwitchUserResponse> => {
-    const response = await axios.get<TwitchUserResponse>(`/users?${userNames}`, {...config});
+export const getChunkedUsersDetails = async (userNames: string[], config?: AxiosRequestConfig): Promise<TwitchUserResponse> => {
+    const response = await axios.get<TwitchUserResponse>(`/users`, {params:{login: userNames}, paramsSerializer: {indexes: null},...config});
     return response.data;
 }
 
@@ -32,5 +32,15 @@ export const getChunkedTeamMembers = async (teamId: string, config?: AxiosReques
 
 export const getStreamDetails = async (twitchUserId: string, config?: AxiosRequestConfig): Promise<StreamDataResponse> => {
     const response = await axios.get<StreamDataResponse>("/streams",{params:{'user_id': twitchUserId} ,...config});
+    return response.data;
+}
+
+export const getLiveChannelsWithThisExtension = async (extensionId: string, config?: AxiosRequestConfig): Promise<TwitchUserResponse> => {
+    const response = await axios.get<TwitchUserResponse>("/users/extensions/list", {params:{'extension_id': extensionId}, ...config});
+    return response.data;
+}
+
+export const getCurrentlyLiveStreams = async(userIds: string[], config?: AxiosRequestConfig): Promise<StreamDataResponse> => {
+    const response = await axios.get<StreamDataResponse>(`/streams`, {params:{type: 'live', user_id: userIds}, paramsSerializer: {indexes: null},...config});
     return response.data;
 }

@@ -46,7 +46,7 @@ export const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange 
     const onSelect: ComboboxProps["onOptionSelect"] = (event, data) => {
       setSelectedOptions(data.selectedOptions);
       const broadcasterType = data.selectedOptions.filter((o) => ["partner", "affiliate", "regular"].includes(o as string)) as string[];
-      const userType = data.selectedOptions.filter((o) => ["staff", "admin", "subscriber"].includes(o as string)) as string[];
+      const userType = data.selectedOptions.filter((o) => ["staff", "admin", "global_mod", "normal"].includes(o as string)) as string[];
       const isBroadcasterLive = data.selectedOptions.includes("live");
       onFilterChange({ broadcasterTypes: [...broadcasterType], userTypes: [...userType], isBroadcasterLive });
     };
@@ -114,11 +114,8 @@ export const UserByTypesSearch: React.FC<UserByTypesSearch> = ({ onFilterChange 
                     <OptionGroup label="Are they a(n):">
                         <Option key="staff" value="staff">Staff</Option>
                         <Option key="admin" value="admin">Admin</Option>
-                        <Option key="subscriber" value="subscriber">Subscriber</Option>
-                    </OptionGroup>
-                    <OptionGroup label="Are they live">
-                        <Option key="live" value="live">Live</Option>
-                        <Option key="offline" value="offline">Offline</Option>
+                        <Option key="globalModerator" value="global_mod">Global Moderator</Option>
+                        <Option key="normal" value="normal">Normal</Option>
                     </OptionGroup>
             </Combobox>
         </div>
