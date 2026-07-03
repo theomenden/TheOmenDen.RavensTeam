@@ -1,6 +1,5 @@
-import { Dropdown, Link, Option, Text, makeStyles, tokens } from '@fluentui/react-components';
-import type { OptionOnSelectData, SelectionEvents } from '@fluentui/react-components';
-import type { TeamHeader, TeamId } from '../twitch/types';
+import { Link, Select, Text, makeStyles, tokens } from '@fluentui/react-components';
+import { asTeamId, type TeamHeader, type TeamId } from '../twitch/types';
 
 const useStyles = makeStyles({
   // Full-bleed top header that floats above the roster. Never shrinks, so it stays put while the
@@ -49,11 +48,12 @@ const useStyles = makeStyles({
     borderRadius: tokens.borderRadiusMedium,
   },
   // Compact team picker, now inside the solid brand bar: the brand block's own padding insets it
-  // and it stretches to the bar's content width (flex-column default). minWidth:0 lets it shrink to
-  // the panel so the button truncates a long team name rather than forcing a panel-wide scrollbar.
-  // marginTop separates it from the title (the block's row gap is deliberately tight).
+  // and it stretches to the bar's content width (flex-column default). marginTop separates it from
+  // the title (the block's row gap is deliberately tight). A native <select> (Fluent Select) is used
+  // instead of Dropdown on purpose: Dropdown portals its listbox, and in the panel's overflow:hidden
+  // iframe that portal inherits the FluentProvider background and covers the whole panel grey. The
+  // native control's option list is drawn by the browser, so it can't be clipped by the iframe.
   teamSelect: {
-    minWidth: 0,
     marginTop: tokens.spacingVerticalS,
   },
 });
@@ -76,8 +76,8 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
   const styles = useStyles();
   const active = teams.find((team) => team.id === selected[0]);
 
-  const onOptionSelect = (_: SelectionEvents, data: OptionOnSelectData): void => {
-    if (data.optionValue) onSelect([data.optionValue as TeamId]);
+  const onTeamChange = (_: unknown, data: { value: string }): void => {
+    onSelect(data.value ? [asTeamId(data.value)] : []);
   };
 
   return (
@@ -110,22 +110,25 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
             Select a team
           </Text>
         )}
-        <Dropdown
+        <Select
           className={styles.teamSelect}
           aria-label="Select a team"
-          placeholder="Select a team"
-          value={active?.displayName ?? ''}
-          selectedOptions={[...selected]}
-          onOptionSelect={onOptionSelect}
+          value={active?.id ?? ''}
+          onChange={onTeamChange}
           disabled={teams.length === 0}
           size="small"
         >
+          {/* Placeholder only matters before a team is picked; once teams load the parent
+              auto-selects the first, so this is normally superseded. */}
+          <option value="" disabled>
+            Select a team
+          </option>
           {teams.map((team) => (
-            <Option key={team.id} value={team.id} text={team.displayName}>
+            <option key={team.id} value={team.id}>
               {team.displayName}
-            </Option>
+            </option>
           ))}
-        </Dropdown>
+        </Select>
       </div>
     </div>
   );
