@@ -48,6 +48,8 @@ const useStyles = makeStyles({
 export interface MemberListProps {
   readonly auth: TwitchAuth | null;
   readonly members: readonly TeamMember[];
+  /** Logins the viewer follows (via the panel this session) — flips those rows to "Following". */
+  readonly followed: ReadonlySet<string>;
 }
 
 /**
@@ -55,7 +57,7 @@ export interface MemberListProps {
  * live status are fetched only for that visible window (debounced so scrolling doesn't spam
  * Helix). A large roster therefore costs ~one small request per view instead of thousands up front.
  */
-export const MemberList = ({ auth, members }: MemberListProps) => {
+export const MemberList = ({ auth, members, followed }: MemberListProps) => {
   const styles = useStyles();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -109,6 +111,7 @@ export const MemberList = ({ auth, members }: MemberListProps) => {
                 member={member}
                 avatarUrl={avatars.get(member.userId) ?? member.avatarUrl}
                 isLive={liveIds.has(member.userId)}
+                isFollowing={followed.has(member.login)}
               />
             </div>
           );
