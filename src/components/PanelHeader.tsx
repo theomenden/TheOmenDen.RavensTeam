@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     rowGap: tokens.spacingVerticalXXS,
     backgroundColor: tokens.colorBrandBackground2,
     boxShadow: tokens.shadow8,
-    paddingBlock: tokens.spacingVerticalM,
+    paddingBlock: tokens.spacingVerticalS,
     paddingInline: tokens.spacingHorizontalM,
   },
   brandLabel: {
@@ -41,11 +41,14 @@ const useStyles = makeStyles({
     color: tokens.colorNeutralForeground3,
     overflowWrap: 'break-word',
   },
+  // Full-bleed: the banner spans the whole brand bar edge-to-edge. Negative inline margins + a
+  // matching width cancel brandBlock's horizontal padding so there are no side gutters, and the
+  // corners stay square to match the squared brand bar.
   banner: {
     display: 'block',
-    width: '100%',
+    width: `calc(100% + (2 * ${tokens.spacingHorizontalM}))`,
+    marginInline: `calc(-1 * ${tokens.spacingHorizontalM})`,
     height: 'auto',
-    borderRadius: tokens.borderRadiusMedium,
   },
   // Compact team picker, now inside the solid brand bar: the brand block's own padding insets it
   // and it stretches to the bar's content width (flex-column default). marginTop separates it from
@@ -100,13 +103,13 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
                 alt={`${active.displayName} team`}
               />
             ) : (
-              <Text className={styles.title} as="h2" weight="bold" size={600}>
+              <Text className={styles.title} as="h2" weight="bold" size={500}>
                 {active.displayName}
               </Text>
             )}
           </Link>
         ) : (
-          <Text className={styles.placeholder} as="h2" weight="bold" size={500}>
+          <Text className={styles.placeholder} as="h2" weight="bold" size={400}>
             Select a team
           </Text>
         )}
