@@ -22,6 +22,12 @@ const useStyles = makeStyles({
     // Mirror MemberRow: a name line that doesn't fill the whole row.
     width: '60%',
   },
+  follow: {
+    // Mirror MemberRow's trailing follow button, pinned to the right edge.
+    marginInlineStart: 'auto',
+    width: '64px',
+    flexShrink: 0,
+  },
 });
 
 /** Props for {@link RosterSkeleton}. */
@@ -45,6 +51,9 @@ export const RosterSkeleton = ({ rows = 6 }: RosterSkeletonProps) => {
             <SkeletonItem shape="circle" size={32} />
             <div className={styles.name}>
               <SkeletonItem />
+            </div>
+            <div className={styles.follow}>
+              <SkeletonItem shape="rectangle" size={24} />
             </div>
           </div>
         ))}

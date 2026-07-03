@@ -4,6 +4,7 @@ import { PanelHeader } from './PanelHeader';
 import { RosterSkeleton } from './RosterSkeleton';
 import { TeamSection } from './TeamSection';
 import { useTeams } from '../data/useTeams';
+import { useFollowedChannels } from '../data/useFollowedChannels';
 import type { TeamId, TwitchAuth } from '../twitch/types';
 
 const useStyles = makeStyles({
@@ -45,6 +46,9 @@ export interface TeamListProps {
 export const TeamList = ({ auth }: TeamListProps) => {
   const styles = useStyles();
   const teams = useTeams(auth);
+  // Registered once here (the single ancestor of every team) so the global onFollow callback isn't
+  // clobbered by the always-mounted per-team lists below.
+  const followed = useFollowedChannels();
   const [selected, setSelected] = useState<readonly TeamId[]>([]);
 
   const teamHeaders = teams.status === 'ready' ? teams.teams : [];
@@ -79,7 +83,7 @@ export const TeamList = ({ auth }: TeamListProps) => {
               mode={team.id === active.id ? 'visible' : 'hidden'}
               name={team.name}
             >
-              <TeamSection auth={auth} header={team} />
+              <TeamSection auth={auth} header={team} followed={followed} />
             </Activity>
           ))}
       </div>

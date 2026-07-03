@@ -25,6 +25,8 @@ const useStyles = makeStyles({
 export interface TeamSectionProps {
   readonly auth: TwitchAuth | null;
   readonly header: TeamHeader;
+  /** Logins the viewer follows (via the panel this session), threaded down to each member row. */
+  readonly followed: ReadonlySet<string>;
 }
 
 /**
@@ -32,7 +34,7 @@ export interface TeamSectionProps {
  * the active tab mounts a section. The team's branding is rendered by {@link TeamList} in the
  * sticky header, so this covers just the loading, error, and ready states of the roster itself.
  */
-export const TeamSection = ({ auth, header }: TeamSectionProps) => {
+export const TeamSection = ({ auth, header, followed }: TeamSectionProps) => {
   const styles = useStyles();
   const members = useTeamMembers(auth, header.id);
   return (
@@ -46,7 +48,7 @@ export const TeamSection = ({ auth, header }: TeamSectionProps) => {
           <Text className={styles.count} size={200} weight="semibold" role="status">
             {members.members.length} {members.members.length === 1 ? 'member' : 'members'}
           </Text>
-          <MemberList auth={auth} members={members.members} />
+          <MemberList auth={auth} members={members.members} followed={followed} />
         </>
       )}
     </section>

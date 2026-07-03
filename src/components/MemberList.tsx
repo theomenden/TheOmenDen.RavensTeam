@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { makeStyles, mergeClasses, motionTokens } from '@fluentui/react-components';
+import { makeStyles, mergeClasses, motionTokens, tokens } from '@fluentui/react-components';
 import { MemberRow } from './MemberRow';
 import { useAvatars } from '../data/useAvatars';
 import { useLiveStatus } from '../data/useLiveStatus';
@@ -14,11 +14,18 @@ const ROW_HEIGHT = 44;
 const SCROLL_SETTLE_MS = 150;
 
 const useStyles = makeStyles({
-  // The panel's single scroll region: fills the height its TeamSection hands down.
+  // The panel's single scroll region: fills the height its TeamSection hands down. overflowX is
+  // pinned hidden because a lone overflowY:auto computes X to auto too — and MemberRow's :hover
+  // scale(1.01) bleeds ~0.5% past the edge, which would otherwise flash a horizontal scrollbar.
+  // A thin, neutral, themed scrollbar (standard properties, honored by Chromium 121+ / the Twitch
+  // app and Firefox) keeps the roster looking Fluent instead of showing the chunky OS default.
   scroll: {
     flex: 1,
     minHeight: 0,
     overflowY: 'auto',
+    overflowX: 'hidden',
+    scrollbarWidth: 'thin',
+    scrollbarColor: `${tokens.colorNeutralForeground3} transparent`,
   },
   sizer: {
     position: 'relative',
@@ -48,6 +55,8 @@ const useStyles = makeStyles({
 export interface MemberListProps {
   readonly auth: TwitchAuth | null;
   readonly members: readonly TeamMember[];
+  /** Logins the viewer follows (via the panel this session) — flips those rows to "Following". */
+  readonly followed: ReadonlySet<string>;
 }
 
 /**
@@ -55,7 +64,7 @@ export interface MemberListProps {
  * live status are fetched only for that visible window (debounced so scrolling doesn't spam
  * Helix). A large roster therefore costs ~one small request per view instead of thousands up front.
  */
-export const MemberList = ({ auth, members }: MemberListProps) => {
+export const MemberList = ({ auth, members, followed }: MemberListProps) => {
   const styles = useStyles();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -109,6 +118,7 @@ export const MemberList = ({ auth, members }: MemberListProps) => {
                 member={member}
                 avatarUrl={avatars.get(member.userId) ?? member.avatarUrl}
                 isLive={liveIds.has(member.userId)}
+                isFollowing={followed.has(member.login)}
               />
             </div>
           );
