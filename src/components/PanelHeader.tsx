@@ -116,7 +116,7 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
           value={active?.id ?? ''}
           onChange={onTeamChange}
           disabled={teams.length === 0}
-          size="small"
+          appearance="underline"
         >
           {/* Placeholder only matters before a team is picked; once teams load the parent
               auto-selects the first, so this is normally superseded. */}
