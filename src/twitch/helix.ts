@@ -25,6 +25,70 @@ const authHeaders = (auth: TwitchAuth): HeadersInit => ({
   Authorization: `Extension ${auth.helixToken}`,
 });
 
+// --- Rate-limit guard --------------------------------------------------------
+// Helix shares one token bucket per extension client id. A large roster fans out into dozens
+// of users/streams batches; firing them all at once (Promise.all in the hooks) bursts past the
+// limit → 429. Cap concurrency and retry 429s here so every caller that routes through
+// helixGet stays polite without needing its own throttle.
+
+/** Max Helix requests in flight at once. */
+const MAX_CONCURRENT = 4;
+/** Retries after an initial 429 before surfacing the error. */
+const MAX_RETRIES = 4;
+
+let inFlight = 0;
+const waiters: Array<() => void> = [];
+
+const acquireSlot = (): Promise<void> =>
+  new Promise((resolve) => {
+    if (inFlight < MAX_CONCURRENT) {
+      inFlight += 1;
+      resolve();
+    } else {
+      waiters.push(resolve);
+    }
+  });
+
+const releaseSlot = (): void => {
+  const next = waiters.shift();
+  // Hand the freed slot straight to the next waiter; inFlight only drops when none are waiting.
+  if (next) next();
+  else inFlight -= 1;
+};
+
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Delay (ms) to wait after a 429, preferring Helix's `Ratelimit-Reset` (unix seconds) or
+ * `Retry-After` (seconds), else exponential backoff with jitter. Capped so a stuck header
+ * can't hang the panel.
+ */
+export const retryDelayMs = (res: Response, attempt: number): number => {
+  const reset = res.headers.get('ratelimit-reset');
+  if (reset) {
+    const untilMs = Number(reset) * 1000 - Date.now();
+    if (Number.isFinite(untilMs) && untilMs > 0) return Math.min(untilMs, 10_000);
+  }
+  const retryAfter = Number(res.headers.get('retry-after'));
+  if (Number.isFinite(retryAfter) && retryAfter > 0) return Math.min(retryAfter * 1000, 10_000);
+  return Math.min(500 * 2 ** attempt, 8_000) + Math.random() * 250;
+};
+
+/** `fetch` behind a concurrency cap + 429 retry. The backoff wait is held outside a slot. */
+const helixFetch = async (url: string, headers: HeadersInit): Promise<Response> => {
+  for (let attempt = 0; ; attempt += 1) {
+    await acquireSlot();
+    let res: Response;
+    try {
+      res = await fetch(url, { headers });
+    } finally {
+      releaseSlot();
+    }
+    if (res.status !== 429 || attempt >= MAX_RETRIES) return res;
+    await sleep(retryDelayMs(res, attempt));
+  }
+};
+
 /**
  * Performs a typed GET against Helix. Repeated params (e.g. many `user_id`s) are expressed
  * by passing multiple entries for the same key.
@@ -39,7 +103,7 @@ const helixGet = async <T>(
 ): Promise<HelixList<T>> => {
   const query = new URLSearchParams(params.map(([k, v]) => [k, v])).toString();
   const url = query ? `${HELIX_BASE}${path}?${query}` : `${HELIX_BASE}${path}`;
-  const res = await fetch(url, { headers: authHeaders(auth) });
+  const res = await helixFetch(url, authHeaders(auth));
   if (!res.ok) {
     throw new Error(`Helix ${path} failed: ${res.status} ${res.statusText}`);
   }

@@ -543,6 +543,13 @@ dist
 dist-ssr
 *.local
 
+# Local dev TLS certs (mkcert) — never commit
+certs/
+*.pem
+
+# Hosted Test upload bundle (build artifact)
+*.zip
+
 # Editor directories and files
 .vs/*
 .vscode/*

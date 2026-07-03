@@ -4,6 +4,12 @@
     "config:recommended",
     ":semanticCommits",
     ":pinAllExceptPeerDependencies",
-    ":maintainLockFilesWeekly"
-  ]
+    ":maintainLockFilesWeekly",
+    ":automergeMinor",
+    ":automergeDigest",
+    ":automergeRequireAllStatusChecks",
+    "mergeConfidence:all-badges"
+  ],
+  "postUpdateOptions": ["pnpmDedupe"],
+  "automergeStrategy": "squash"
 }

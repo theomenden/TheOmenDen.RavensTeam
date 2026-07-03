@@ -48,14 +48,26 @@ export interface Team {
   readonly members: readonly TeamMember[];
 }
 
-/** A member augmented with live status, produced by the merge step. */
-export type MemberView = TeamMember & { readonly isLive: boolean };
+/** A team's tab-level header — branding only, cheap to load for every team up front. */
+export interface TeamHeader {
+  readonly id: TeamId;
+  /** Slug used in `twitch.tv/team/<name>`. */
+  readonly name: string;
+  readonly displayName: string;
+  readonly bannerUrl: string | null;
+}
 
-/** Discriminated union describing the roster fetch lifecycle. */
-export type RosterState =
+/** Lifecycle of the team-headers fetch (drives the tabs). */
+export type TeamsState =
   | { readonly status: 'loading' }
   | { readonly status: 'error'; readonly error: Error }
-  | { readonly status: 'ready'; readonly teams: readonly Team[] };
+  | { readonly status: 'ready'; readonly teams: readonly TeamHeader[] };
+
+/** Lifecycle of a single team's member-list fetch (lazy, per active tab). */
+export type MembersState =
+  | { readonly status: 'loading' }
+  | { readonly status: 'error'; readonly error: Error }
+  | { readonly status: 'ready'; readonly members: readonly TeamMember[] };
 
 // --- Raw Helix response shapes (only the fields we read) ---
 
