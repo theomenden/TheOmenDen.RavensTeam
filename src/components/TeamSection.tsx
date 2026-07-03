@@ -1,29 +1,17 @@
-import { Link, Text, makeStyles, motionTokens, tokens } from '@fluentui/react-components';
+import { Text, makeStyles } from '@fluentui/react-components';
 import { MemberList } from './MemberList';
 import { RosterSkeleton } from './RosterSkeleton';
 import { useTeamMembers } from '../data/useTeamMembers';
 import type { TeamHeader, TwitchAuth } from '../twitch/types';
 
 const useStyles = makeStyles({
+  // Fills the scroll body (height:100%) so the member list flexes to the panel's bottom. The
+  // team's banner/title now lives in the sticky header (see TeamList), so this is members-only.
   section: {
     display: 'flex',
     flexDirection: 'column',
-    rowGap: tokens.spacingVerticalS,
-    marginBottom: tokens.spacingVerticalL,
-  },
-  banner: {
-    width: '100%',
-    height: 'auto',
-    borderRadius: tokens.borderRadiusMedium,
-    display: 'block',
-    transitionProperty: 'transform, box-shadow',
-    transitionDuration: `${motionTokens.durationFast}ms`,
-    transitionTimingFunction: motionTokens.curveEasyEase,
-    ':hover': { transform: 'scale(1.02)', boxShadow: tokens.shadow8 },
-    '@media (prefers-reduced-motion: reduce)': {
-      transitionDuration: '1ms',
-      ':hover': { transform: 'none' },
-    },
+    height: '100%',
+    minHeight: 0,
   },
 });
 
@@ -34,24 +22,15 @@ export interface TeamSectionProps {
 }
 
 /**
- * One team: a clickable banner/title linking to the team page, then its member list. Members are
- * loaded lazily here (via {@link useTeamMembers}) since only the active tab mounts a section.
+ * One team's member list. Members are loaded lazily here (via {@link useTeamMembers}) since only
+ * the active tab mounts a section. The team's branding is rendered by {@link TeamList} in the
+ * sticky header, so this covers just the loading, error, and ready states of the roster itself.
  */
 export const TeamSection = ({ auth, header }: TeamSectionProps) => {
   const styles = useStyles();
   const members = useTeamMembers(auth, header.id);
-  const teamUrl = `https://twitch.tv/team/${header.name}`;
   return (
     <section className={styles.section}>
-      <Link href={teamUrl} target="_blank" rel="noopener noreferrer" appearance="subtle">
-        {header.bannerUrl ? (
-          <img className={styles.banner} src={header.bannerUrl} alt={`${header.displayName} team`} />
-        ) : (
-          <Text as="h2" weight="semibold" size={400}>
-            {header.displayName}
-          </Text>
-        )}
-      </Link>
       {members.status === 'loading' && <RosterSkeleton />}
       {members.status === 'error' && (
         <Text role="alert">Couldn't load this team's members right now.</Text>

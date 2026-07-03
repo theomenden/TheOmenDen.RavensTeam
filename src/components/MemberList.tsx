@@ -14,9 +14,11 @@ const ROW_HEIGHT = 44;
 const SCROLL_SETTLE_MS = 150;
 
 const useStyles = makeStyles({
+  // The panel's single scroll region: fills the height its TeamSection hands down.
   scroll: {
+    flex: 1,
+    minHeight: 0,
     overflowY: 'auto',
-    maxHeight: '320px',
   },
   sizer: {
     position: 'relative',
