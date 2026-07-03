@@ -1,13 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { batch, mergeLiveStatus } from './merge';
-import { asUserId, type TeamMember, type UserId } from '../twitch/types';
-
-const member = (id: string, login: string): TeamMember => ({
-  userId: asUserId(id),
-  login,
-  displayName: login,
-  avatarUrl: null,
-});
+import { batch } from './merge';
 
 describe('batch', () => {
   it('splits into chunks no larger than the limit and covers every item', () => {
@@ -25,19 +17,5 @@ describe('batch', () => {
 
   it('rejects a non-positive size', () => {
     expect(() => batch([1, 2], 0)).toThrow();
-  });
-});
-
-describe('mergeLiveStatus', () => {
-  it('flags only members present in the live set', () => {
-    const members = [member('1', 'alice'), member('2', 'bob'), member('3', 'cara')];
-    const live = new Set<UserId>([asUserId('1'), asUserId('3')]);
-    expect(mergeLiveStatus(members, live).map((m) => m.isLive)).toEqual([true, false, true]);
-  });
-
-  it('does not mutate the input members', () => {
-    const members = [member('1', 'alice')];
-    mergeLiveStatus(members, new Set());
-    expect(members[0]).not.toHaveProperty('isLive');
   });
 });

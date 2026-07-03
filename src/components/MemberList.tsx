@@ -1,12 +1,17 @@
 import { useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { makeStyles } from '@fluentui/react-components';
-import { mergeLiveStatus } from '../data/merge';
+import { makeStyles, mergeClasses, motionTokens } from '@fluentui/react-components';
 import { MemberRow } from './MemberRow';
-import type { TeamMember, UserId } from '../twitch/types';
+import { useAvatars } from '../data/useAvatars';
+import { useLiveStatus } from '../data/useLiveStatus';
+import { useDebounced } from '../data/useDebounced';
+import { asUserId, type TeamMember, type TwitchAuth } from '../twitch/types';
 
 /** Estimated row height (px) fed to the virtualizer. */
 const ROW_HEIGHT = 44;
+
+/** Settle time before fetching data for a newly-scrolled-to window. */
+const SCROLL_SETTLE_MS = 150;
 
 const useStyles = makeStyles({
   scroll: {
@@ -23,31 +28,54 @@ const useStyles = makeStyles({
     left: '0',
     width: '100%',
   },
+  // Opacity-only so it composes with the virtualizer's inline translateY on the same element
+  // (animating transform here would clobber row positioning).
+  rowEnter: {
+    animationName: {
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+    },
+    animationDuration: `${motionTokens.durationNormal}ms`,
+    animationTimingFunction: motionTokens.curveEasyEase,
+    animationFillMode: 'both',
+    '@media (prefers-reduced-motion: reduce)': { animationName: 'none' },
+  },
 });
 
 /** Props for {@link MemberList}. */
 export interface MemberListProps {
+  readonly auth: TwitchAuth | null;
   readonly members: readonly TeamMember[];
-  readonly liveIds: ReadonlySet<UserId>;
 }
 
 /**
- * Virtualized, memoized list of a team's members: only rows in view are mounted, so a large
- * roster stays smooth in the narrow panel. The live join is a memoized {@link mergeLiveStatus}
- * so the list recomputes only when members or the live set change.
+ * Virtualized, memoized list of a team's members. Only rows in view are mounted, and avatars +
+ * live status are fetched only for that visible window (debounced so scrolling doesn't spam
+ * Helix). A large roster therefore costs ~one small request per view instead of thousands up front.
  */
-export const MemberList = ({ members, liveIds }: MemberListProps) => {
+export const MemberList = ({ auth, members }: MemberListProps) => {
   const styles = useStyles();
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const views = useMemo(() => mergeLiveStatus(members, liveIds), [members, liveIds]);
-
   const virtualizer = useVirtualizer({
-    count: views.length,
+    count: members.length,
     getScrollElement: () => scrollRef.current,
     estimateSize: () => ROW_HEIGHT,
     overscan: 6,
   });
+
+  const items = virtualizer.getVirtualItems();
+
+  // Ids for the rows currently in view (+ overscan). Debounced so we fetch once scrolling settles.
+  const visibleKey = items.map((item) => members[item.index]?.userId ?? '').join(',');
+  const settledKey = useDebounced(visibleKey, SCROLL_SETTLE_MS);
+  const visibleIds = useMemo(
+    () => (settledKey ? settledKey.split(',').filter(Boolean).map(asUserId) : []),
+    [settledKey],
+  );
+
+  const avatars = useAvatars(auth, visibleIds);
+  const liveIds = useLiveStatus(auth, visibleIds);
 
   return (
     <div ref={scrollRef} className={styles.scroll}>
@@ -56,21 +84,30 @@ export const MemberList = ({ members, liveIds }: MemberListProps) => {
         role="list"
         style={{ height: `${virtualizer.getTotalSize()}px` }}
       >
-        {virtualizer.getVirtualItems().map((item) => {
-          const member = views[item.index];
+        {items.map((item, i) => {
+          const member = members[item.index];
           if (!member) return null;
           return (
             <div
               key={member.userId}
-              className={styles.row}
+              className={mergeClasses(styles.row, styles.rowEnter)}
               role="listitem"
               // Virtualization mounts only visible rows; setsize/posinset let assistive tech
               // report the true total and each member's position anyway (WCAG 1.3.1).
-              aria-setsize={views.length}
+              aria-setsize={members.length}
               aria-posinset={item.index + 1}
-              style={{ height: `${item.size}px`, transform: `translateY(${item.start}px)` }}
+              // Stagger by position in the visible window so the delay stays bounded (~10 rows).
+              style={{
+                height: `${item.size}px`,
+                transform: `translateY(${item.start}px)`,
+                animationDelay: `${i * 30}ms`,
+              }}
             >
-              <MemberRow member={member} />
+              <MemberRow
+                member={member}
+                avatarUrl={avatars.get(member.userId) ?? member.avatarUrl}
+                isLive={liveIds.has(member.userId)}
+              />
             </div>
           );
         })}
