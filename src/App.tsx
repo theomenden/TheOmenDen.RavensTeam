@@ -4,15 +4,15 @@ import { fluentThemeFor } from './theme';
 import { TeamList } from './components/TeamList';
 
 const useStyles = makeStyles({
-  // Twitch panels are a fixed 318px wide, up to 496px tall. Fill the panel slot (100vh = the
-  // iframe viewport, capped at 496) as a flex column so the tab header can pin while the roster
-  // scrolls. overflowX:hidden keeps a long tab/name from ever showing a panel-wide scrollbar.
+  // Fill the iframe box exactly (html/body/#root are pinned to 100% in panel.html), as a flex
+  // column so the branded header pins while the roster scrolls. width/height:100% + overflow
+  // hidden means the panel never shows its own scrollbars — only MemberList scrolls.
   panel: {
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    width: '318px',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     maxHeight: '496px',
     overflow: 'hidden',
     paddingBlock: '8px',
