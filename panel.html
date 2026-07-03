@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Raven's Team</title>
+    <!-- Reset the UA 8px body margin and pin every wrapper to the iframe box so nothing
+         overflows the 318×496 panel — kills the panel's horizontal + vertical scrollbars.
+         The roster owns the only scroll (inside MemberList). -->
+    <style>
+      * { box-sizing: border-box; }
+      html, body, #root { height: 100%; margin: 0; overflow: hidden; }
+    </style>
     <!-- Twitch Extension Helper: required, must load from the Twitch CDN (allowed by CSP). -->
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
   </head>
