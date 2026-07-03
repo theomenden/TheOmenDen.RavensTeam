@@ -29,9 +29,6 @@ const useStyles = makeStyles({
     paddingBlock: tokens.spacingVerticalS,
     paddingInline: tokens.spacingHorizontalM,
   },
-  brandLabel: {
-    color: tokens.colorBrandForeground1,
-  },
   // Team title wraps to as many lines as it needs — no truncation.
   title: {
     overflowWrap: 'break-word',
@@ -86,9 +83,6 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
   return (
     <div className={styles.header}>
       <div className={styles.brandBlock}>
-        <Text className={styles.brandLabel} size={200} weight="semibold">
-          Raven's Team
-        </Text>
         {active ? (
           <Link
             href={`https://twitch.tv/team/${active.name}`}
