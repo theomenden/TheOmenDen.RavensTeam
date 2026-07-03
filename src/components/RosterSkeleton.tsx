@@ -31,15 +31,14 @@ export interface RosterSkeletonProps {
 }
 
 /**
- * Loading placeholder shaped like a {@link TeamSection}: a banner bar over a set of
- * member rows (avatar + name line). Uses Fluent's {@link Skeleton}, which handles the
- * shimmer animation, `prefers-reduced-motion`, and busy-state semantics for us.
+ * Loading placeholder for a roster: a set of member rows (avatar + name line). The team's
+ * banner/title renders separately in the sticky header, so this is rows-only. Uses Fluent's
+ * {@link Skeleton}, which handles the shimmer, `prefers-reduced-motion`, and busy-state for us.
  */
 export const RosterSkeleton = ({ rows = 6 }: RosterSkeletonProps) => {
   const styles = useStyles();
   return (
     <Skeleton className={styles.section} role="status" aria-label="Loading teams">
-      <SkeletonItem shape="rectangle" size={64} />
       <div className={styles.rows}>
         {Array.from({ length: rows }, (_, i) => (
           <div key={i} className={styles.row}>
