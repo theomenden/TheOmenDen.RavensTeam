@@ -1,4 +1,4 @@
-import { Text, makeStyles } from '@fluentui/react-components';
+import { Text, makeStyles, tokens } from '@fluentui/react-components';
 import { MemberList } from './MemberList';
 import { RosterSkeleton } from './RosterSkeleton';
 import { useTeamMembers } from '../data/useTeamMembers';
@@ -12,6 +12,12 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     height: '100%',
     minHeight: 0,
+  },
+  // Roster count, pinned above the scrolling list (like GitHub's "N repositories").
+  count: {
+    flexShrink: 0,
+    color: tokens.colorNeutralForeground3,
+    marginBottom: tokens.spacingVerticalXS,
   },
 });
 
@@ -35,7 +41,14 @@ export const TeamSection = ({ auth, header }: TeamSectionProps) => {
       {members.status === 'error' && (
         <Text role="alert">Couldn't load this team's members right now.</Text>
       )}
-      {members.status === 'ready' && <MemberList auth={auth} members={members.members} />}
+      {members.status === 'ready' && (
+        <>
+          <Text className={styles.count} size={200} weight="semibold" role="status">
+            {members.members.length} {members.members.length === 1 ? 'member' : 'members'}
+          </Text>
+          <MemberList auth={auth} members={members.members} />
+        </>
+      )}
     </section>
   );
 };
