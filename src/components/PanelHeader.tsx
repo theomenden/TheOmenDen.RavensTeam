@@ -48,16 +48,13 @@ const useStyles = makeStyles({
     height: 'auto',
     borderRadius: tokens.borderRadiusMedium,
   },
-  // Compact team picker. minWidth:0 lets it shrink to the panel; the button truncates a long team
-  // name rather than forcing a panel-wide scrollbar. alignSelf:stretch + marginInline fills the
-  // full-bleed header but insets the control to line up with the padded roster below. Its own
-  // stacking layer keeps the control (and its popover anchor) above the list.
+  // Compact team picker, now inside the solid brand bar: the brand block's own padding insets it
+  // and it stretches to the bar's content width (flex-column default). minWidth:0 lets it shrink to
+  // the panel so the button truncates a long team name rather than forcing a panel-wide scrollbar.
+  // marginTop separates it from the title (the block's row gap is deliberately tight).
   teamSelect: {
     minWidth: 0,
-    alignSelf: 'stretch',
-    marginInline: tokens.spacingHorizontalS,
-    position: 'relative',
-    zIndex: 3,
+    marginTop: tokens.spacingVerticalS,
   },
 });
 
@@ -113,23 +110,23 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
             Select a team
           </Text>
         )}
+        <Dropdown
+          className={styles.teamSelect}
+          aria-label="Select a team"
+          placeholder="Select a team"
+          value={active?.displayName ?? ''}
+          selectedOptions={[...selected]}
+          onOptionSelect={onOptionSelect}
+          disabled={teams.length === 0}
+          size="small"
+        >
+          {teams.map((team) => (
+            <Option key={team.id} value={team.id} text={team.displayName}>
+              {team.displayName}
+            </Option>
+          ))}
+        </Dropdown>
       </div>
-      <Dropdown
-        className={styles.teamSelect}
-        aria-label="Select a team"
-        placeholder="Select a team"
-        value={active?.displayName ?? ''}
-        selectedOptions={[...selected]}
-        onOptionSelect={onOptionSelect}
-        disabled={teams.length === 0}
-        size="small"
-      >
-        {teams.map((team) => (
-          <Option key={team.id} value={team.id} text={team.displayName}>
-            {team.displayName}
-          </Option>
-        ))}
-      </Dropdown>
     </div>
   );
 };
