@@ -1,4 +1,4 @@
-import { Link, Select, Text, makeStyles, tokens } from '@fluentui/react-components';
+import { Link, Select, Text, makeStyles, motionTokens, tokens } from '@fluentui/react-components';
 import { asTeamId, type TeamHeader, type TeamId } from '../twitch/types';
 
 const useStyles = makeStyles({
@@ -29,6 +29,17 @@ const useStyles = makeStyles({
     paddingBlock: tokens.spacingVerticalS,
     paddingInline: tokens.spacingHorizontalM,
   },
+  // Headline (banner or title) wrapper. Keyed by team in the JSX so it crossfades in on change.
+  hero: {
+    animationName: {
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+    },
+    animationDuration: `${motionTokens.durationNormal}ms`,
+    animationTimingFunction: motionTokens.curveEasyEase,
+    animationFillMode: 'both',
+    '@media (prefers-reduced-motion: reduce)': { animationName: 'none' },
+  },
   // Team title wraps to as many lines as it needs — no truncation.
   title: {
     overflowWrap: 'break-word',
@@ -40,12 +51,37 @@ const useStyles = makeStyles({
   },
   // Full-bleed: the banner spans the whole brand bar edge-to-edge. Negative inline margins + a
   // matching width cancel brandBlock's horizontal padding so there are no side gutters, and the
-  // corners stay square to match the squared brand bar.
+  // corners stay square to match the squared brand bar. Height is capped (object-fit crops to
+  // cover) so a wide team banner can't dominate the short ~496px panel.
   banner: {
     display: 'block',
     width: `calc(100% + (2 * ${tokens.spacingHorizontalM}))`,
     marginInline: `calc(-1 * ${tokens.spacingHorizontalM})`,
     height: 'auto',
+    maxHeight: '88px',
+    objectFit: 'cover',
+    objectPosition: 'center',
+  },
+  // Member-count chip, right-aligned just below the team dropdown. A subtle scrim pill reads as a
+  // distinct tag on the brand bar. Fades in when the count resolves.
+  count: {
+    alignSelf: 'flex-end',
+    marginTop: tokens.spacingVerticalXS,
+    paddingInline: tokens.spacingHorizontalXS,
+    paddingBlock: '1px',
+    borderRadius: tokens.borderRadiusMedium,
+    fontSize: tokens.fontSizeBase200,
+    lineHeight: tokens.lineHeightBase200,
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorNeutralForegroundOnBrand,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    animationName: {
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+    },
+    animationDuration: `${motionTokens.durationFast}ms`,
+    animationFillMode: 'both',
+    '@media (prefers-reduced-motion: reduce)': { animationName: 'none' },
   },
   // Compact team picker, now inside the solid brand bar: the brand block's own padding insets it
   // and it stretches to the bar's content width (flex-column default). marginTop separates it from
@@ -65,6 +101,8 @@ export interface PanelHeaderProps {
   /** Controlled dropdown selection; `[]` means no team is picked yet. */
   readonly selected: readonly TeamId[];
   readonly onSelect: (ids: readonly TeamId[]) => void;
+  /** Active team's member count, shown right-aligned below the dropdown; `null` while it loads. */
+  readonly memberCount?: number | null;
 }
 
 /**
@@ -72,9 +110,11 @@ export interface PanelHeaderProps {
  * Rendered in every state (loading, error, ready) so the panel always has a stable header; the
  * dropdown is disabled until teams load and starts with an empty selection (no team preselected).
  */
-export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => {
+export const PanelHeader = ({ teams, selected, onSelect, memberCount }: PanelHeaderProps) => {
   const styles = useStyles();
   const active = teams.find((team) => team.id === selected[0]);
+  const countLabel =
+    memberCount == null ? null : `${memberCount} ${memberCount === 1 ? 'member' : 'members'}`;
 
   const onTeamChange = (_: unknown, data: { value: string }): void => {
     onSelect(data.value ? [asTeamId(data.value)] : []);
@@ -83,30 +123,33 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
   return (
     <div className={styles.header}>
       <div className={styles.brandBlock}>
-        {active ? (
-          <Link
-            href={`https://twitch.tv/team/${active.name}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            appearance="subtle"
-          >
-            {active.bannerUrl ? (
-              <img
-                className={styles.banner}
-                src={active.bannerUrl}
-                alt={`${active.displayName} team`}
-              />
-            ) : (
-              <Text className={styles.title} as="h2" weight="bold" size={500}>
-                {active.displayName}
-              </Text>
-            )}
-          </Link>
-        ) : (
-          <Text className={styles.placeholder} as="h2" weight="bold" size={400}>
-            Select a team
-          </Text>
-        )}
+        {/* Keyed by team so the headline (banner or title) remounts and crossfades in on change. */}
+        <div className={styles.hero} key={active?.id ?? 'none'}>
+          {active ? (
+            <Link
+              href={`https://twitch.tv/team/${active.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              appearance="subtle"
+            >
+              {active.bannerUrl ? (
+                <img
+                  className={styles.banner}
+                  src={active.bannerUrl}
+                  alt={`${active.displayName} team`}
+                />
+              ) : (
+                <Text className={styles.title} as="h2" weight="bold" size={400}>
+                  {active.displayName}
+                </Text>
+              )}
+            </Link>
+          ) : (
+            <Text className={styles.placeholder} as="h2" weight="bold" size={400}>
+              Select a team
+            </Text>
+          )}
+        </div>
         <Select
           className={styles.teamSelect}
           aria-label="Select a team"
@@ -126,6 +169,11 @@ export const PanelHeader = ({ teams, selected, onSelect }: PanelHeaderProps) => 
             </option>
           ))}
         </Select>
+        {countLabel && (
+          <span className={styles.count} role="status" aria-label={countLabel}>
+            {countLabel}
+          </span>
+        )}
       </div>
     </div>
   );

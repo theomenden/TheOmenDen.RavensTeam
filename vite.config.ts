@@ -51,11 +51,12 @@ export default defineConfig({
   build: {
     target: 'es2022',
     modulePreload: { polyfill: false },
-    // Twitch loads panel.html and config.html by path, so emit both as entries.
+    // Twitch loads each view (panel, config, live-config) by path, so emit each as an entry.
     rollupOptions: {
       input: {
         panel: fileURLToPath(new URL('./panel.html', import.meta.url)),
         config: fileURLToPath(new URL('./config.html', import.meta.url)),
+        liveConfig: fileURLToPath(new URL('./live_config.html', import.meta.url)),
       },
     },
   },

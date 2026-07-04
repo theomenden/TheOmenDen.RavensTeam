@@ -50,6 +50,8 @@ export const TeamList = ({ auth }: TeamListProps) => {
   // clobbered by the always-mounted per-team lists below.
   const followed = useFollowedChannels();
   const [selected, setSelected] = useState<readonly TeamId[]>([]);
+  // Active team's member count, lifted from the visible TeamSection into the header.
+  const [memberCount, setMemberCount] = useState<number | null>(null);
 
   const teamHeaders = teams.status === 'ready' ? teams.teams : [];
   // Auto-open the first team until the viewer picks another; the header dropdown reflects whichever
@@ -59,7 +61,12 @@ export const TeamList = ({ auth }: TeamListProps) => {
 
   return (
     <div className={styles.root}>
-      <PanelHeader teams={teamHeaders} selected={activeSelection} onSelect={setSelected} />
+      <PanelHeader
+        teams={teamHeaders}
+        selected={activeSelection}
+        onSelect={setSelected}
+        memberCount={memberCount}
+      />
       <div className={styles.body}>
         {teams.status === 'loading' && <RosterSkeleton />}
         {/* role="alert" ⇒ announced assertively when it replaces the loading skeleton (WCAG 4.1.3). */}
@@ -83,7 +90,12 @@ export const TeamList = ({ auth }: TeamListProps) => {
               mode={team.id === active.id ? 'visible' : 'hidden'}
               name={team.name}
             >
-              <TeamSection auth={auth} header={team} followed={followed} />
+              <TeamSection
+                auth={auth}
+                header={team}
+                followed={followed}
+                onCountChange={setMemberCount}
+              />
             </Activity>
           ))}
       </div>

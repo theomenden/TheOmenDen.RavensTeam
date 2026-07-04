@@ -10,6 +10,17 @@
     <style>
       * { box-sizing: border-box; }
       html, body, #root { height: 100%; margin: 0; overflow: hidden; }
+      /* Reduced-motion "nuke", toggled by App via the html data-reduced-motion attribute.
+         Neutralizes every animation/transition when the viewer opts in — parallel to the OS
+         @media (prefers-reduced-motion) guards the components already ship. */
+      [data-reduced-motion="true"] *,
+      [data-reduced-motion="true"] *::before,
+      [data-reduced-motion="true"] *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     </style>
     <!-- Twitch Extension Helper: required, must load from the Twitch CDN (allowed by CSP). -->
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>

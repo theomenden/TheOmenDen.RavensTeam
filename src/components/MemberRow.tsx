@@ -1,5 +1,13 @@
 import { memo, useCallback } from 'react';
-import { Avatar, Button, Link, makeStyles, motionTokens, tokens } from '@fluentui/react-components';
+import {
+  Avatar,
+  Button,
+  Link,
+  makeStyles,
+  mergeClasses,
+  motionTokens,
+  tokens,
+} from '@fluentui/react-components';
 import { logger } from '../logger';
 import type { TeamMember } from '../twitch/types';
 
@@ -24,6 +32,11 @@ const useStyles = makeStyles({
       ':hover': { transform: 'none' },
     },
   },
+  // Zebra striping: every other channel gets a subtly raised surface so rows read as distinct
+  // from the get-go, before any hover. The :hover rule above still overrides on interaction.
+  rowAlt: {
+    backgroundColor: tokens.colorNeutralBackground2,
+  },
   name: {
     // Grow to fill the row so the follow button is pinned to the trailing edge; minWidth:0 lets
     // this flex item shrink below its content width so the ellipsis actually engages.
@@ -35,6 +48,25 @@ const useStyles = makeStyles({
   },
   follow: {
     flexShrink: 0,
+    // Drop shadow so the follow CTA pops off the row from the start; deepens + lifts on hover,
+    // then presses in on click for a tactile sense of feedback.
+    boxShadow: tokens.shadow4,
+    transitionProperty: 'box-shadow, transform',
+    transitionDuration: `${motionTokens.durationFast}ms`,
+    transitionTimingFunction: motionTokens.curveEasyEase,
+    ':hover': {
+      boxShadow: tokens.shadow8,
+      transform: 'translateY(-1px)',
+    },
+    ':active': {
+      boxShadow: tokens.shadow4,
+      transform: 'translateY(0) scale(0.96)',
+    },
+    '@media (prefers-reduced-motion: reduce)': {
+      transitionDuration: '1ms',
+      ':hover': { transform: 'none' },
+      ':active': { transform: 'none' },
+    },
   },
   srOnly: {
     position: 'absolute',
@@ -69,6 +101,8 @@ export interface MemberRowProps {
   /** Whether the viewer already follows this channel (as far as the panel can tell — see
    *  {@link useFollowedChannels}). Flips the button to a disabled "Following" state. */
   readonly isFollowing: boolean;
+  /** Alternating-row flag for zebra striping (true = raised surface). */
+  readonly zebra: boolean;
 }
 
 /**
@@ -83,6 +117,7 @@ export const MemberRow = memo(function MemberRow({
   avatarUrl,
   isLive,
   isFollowing,
+  zebra,
 }: MemberRowProps) {
   const styles = useStyles();
 
@@ -97,7 +132,7 @@ export const MemberRow = memo(function MemberRow({
   }, [member.login]);
 
   return (
-    <div className={styles.row}>
+    <div className={mergeClasses(styles.row, zebra && styles.rowAlt)}>
       <Avatar
         aria-hidden
         name={member.displayName}
@@ -123,6 +158,14 @@ export const MemberRow = memo(function MemberRow({
         disabled={isFollowing}
         // Distinct accessible name per row so the buttons aren't ambiguous to screen readers.
         aria-label={`${isFollowing ? 'Following' : 'Follow'} ${member.displayName}`}
+        // Native `title` tooltip: Fluent's Tooltip portals and would grey out the panel in the
+        // overflow:hidden iframe (same reason the team picker uses a native <select>). The browser
+        // draws this above everything, unclipped — a one-line explainer of what clicking does.
+        title={
+          isFollowing
+            ? `You follow ${member.displayName}.`
+            : `Follow ${member.displayName} on Twitch.`
+        }
       >
         {isFollowing ? 'Following' : 'Follow'}
       </Button>

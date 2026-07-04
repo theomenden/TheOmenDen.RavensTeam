@@ -119,6 +119,8 @@ export const MemberList = ({ auth, members, followed }: MemberListProps) => {
                 avatarUrl={avatars.get(member.userId) ?? member.avatarUrl}
                 isLive={liveIds.has(member.userId)}
                 isFollowing={followed.has(member.login)}
+                // Stripe by absolute position so the pattern is stable as the window scrolls.
+                zebra={item.index % 2 === 1}
               />
             </div>
           );

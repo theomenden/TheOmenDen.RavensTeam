@@ -14,7 +14,13 @@ const alice: TeamMember = {
 const renderRow = (isLive: boolean, isFollowing = false) =>
   render(
     <FluentProvider theme={webLightTheme}>
-      <MemberRow member={alice} avatarUrl={null} isLive={isLive} isFollowing={isFollowing} />
+      <MemberRow
+        member={alice}
+        avatarUrl={null}
+        isLive={isLive}
+        isFollowing={isFollowing}
+        zebra={false}
+      />
     </FluentProvider>,
   );
 
@@ -53,5 +59,13 @@ describe('MemberRow', () => {
     const button = screen.getByRole('button', { name: /following alice/i });
     expect(button).toHaveTextContent(/following/i);
     expect(button).toBeDisabled();
+  });
+
+  it('explains the follow action via a native title tooltip', () => {
+    renderRow(false);
+    expect(screen.getByRole('button', { name: /follow alice/i })).toHaveAttribute(
+      'title',
+      'Follow Alice on Twitch.',
+    );
   });
 });
