@@ -4,7 +4,7 @@
   "description": "Twitch panel extension showing a broadcaster's stream teams and which members are live.",
   "type": "module",
   "license": "ISC",
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.10.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
