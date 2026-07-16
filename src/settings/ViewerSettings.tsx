@@ -1,5 +1,13 @@
-import { useState } from 'react';
-import { Button, Text, makeStyles, tokens } from '@fluentui/react-components';
+import { useState, type KeyboardEvent } from 'react';
+import {
+  Button,
+  Text,
+  makeStyles,
+  tokens,
+  useModalAttributes,
+  useRestoreFocusSource,
+  useRestoreFocusTarget,
+} from '@fluentui/react-components';
 import { SettingsControls } from './SettingsControls';
 import type { PanelSettings } from './model';
 
@@ -81,39 +89,69 @@ export const ViewerSettings = ({ settings, setOverride, reset }: ViewerSettingsP
   const styles = useStyles();
   const [open, setOpen] = useState(false);
 
-  if (!open) {
-    return (
+  // Fluent's tabster primitives give the drawer the keyboard behaviour a dialog owes you — focus
+  // moves into it and is trapped while open, then returns to the gear on close. Fluent's Drawer
+  // itself is off the table here: OverlayDrawer is Dialog-based and portals (the grey-slab bug this
+  // panel keeps hitting in its overflow:hidden iframe), and InlineDrawer is built to sit in-flow and
+  // animate its own width, which fights both the absolute overlay and the fixed width below. These
+  // hooks are what Dialog uses internally, so the drawer gets the behaviour without the portal.
+  const { modalAttributes, triggerAttributes } = useModalAttributes({
+    trapFocus: true,
+    legacyTrapFocus: true,
+  });
+  const restoreFocusTarget = useRestoreFocusTarget();
+  const restoreFocusSource = useRestoreFocusSource();
+
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === 'Escape') setOpen(false);
+  };
+
+  return (
+    <>
+      {/* Stays mounted while the drawer is open (the drawer covers it) so focus has a live element
+          to return to on close — an unmounted trigger has nothing to restore to. */}
       <Button
         className={styles.gear}
         appearance="subtle"
         size="small"
         icon={<GearIcon />}
         aria-label="Panel settings"
+        aria-haspopup="dialog"
+        aria-expanded={open}
         onClick={() => setOpen(true)}
+        {...triggerAttributes}
+        {...restoreFocusTarget}
       />
-    );
-  }
-
-  return (
-    <div className={styles.drawer} role="dialog" aria-label="Panel settings">
-      <div className={styles.header}>
-        <Text weight="semibold" size={400}>
-          Settings
-        </Text>
-        <Button
-          className={styles.closeButton}
-          appearance="subtle"
-          size="small"
-          icon={<DismissIcon />}
-          aria-label="Close settings"
-          onClick={() => setOpen(false)}
-        />
-      </div>
-      <SettingsControls value={settings} onChange={setOverride} />
-      <Button appearance="secondary" size="small" onClick={reset}>
-        Reset to channel defaults
-      </Button>
-      {/* ponytail: density rides the global spacing-token scale; per-avatar sizing skipped until asked */}
-    </div>
+      {open && (
+        <div
+          className={styles.drawer}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Panel settings"
+          onKeyDown={onKeyDown}
+          {...modalAttributes}
+          {...restoreFocusSource}
+        >
+          <div className={styles.header}>
+            <Text weight="semibold" size={400}>
+              Settings
+            </Text>
+            <Button
+              className={styles.closeButton}
+              appearance="subtle"
+              size="small"
+              icon={<DismissIcon />}
+              aria-label="Close settings"
+              onClick={() => setOpen(false)}
+            />
+          </div>
+          <SettingsControls value={settings} onChange={setOverride} />
+          <Button appearance="secondary" size="small" onClick={reset}>
+            Reset to channel defaults
+          </Button>
+          {/* ponytail: density rides the global spacing-token scale; per-avatar sizing skipped until asked */}
+        </div>
+      )}
+    </>
   );
 };
