@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Button, FluentProvider, Text, makeStyles, tokens } from '@fluentui/react-components';
+import { CheckmarkCircleFilled, SaveRegular } from '@fluentui/react-icons';
 import { useTwitchAuth } from '../twitch/useTwitchAuth';
 import { buildTheme } from '../theme';
 import { useConfiguration } from '../settings/useConfiguration';
+import { PolicyLinks } from '../settings/PolicyLinks';
 import { SettingsControls } from '../settings/SettingsControls';
 import type { PanelSettings } from '../settings/model';
 
@@ -13,11 +15,15 @@ const useStyles = makeStyles({
     boxSizing: 'border-box',
     minHeight: '100vh',
     maxWidth: '440px',
+    padding: tokens.spacingHorizontalXXL,
+    backgroundColor: tokens.colorNeutralBackground1,
+  },
+  // The page's <main>. Holds the column layout so FluentProvider keeps owning only the themed
+  // surface and its padding — the visual result is unchanged.
+  content: {
     display: 'flex',
     flexDirection: 'column',
     rowGap: tokens.spacingVerticalL,
-    padding: tokens.spacingHorizontalXXL,
-    backgroundColor: tokens.colorNeutralBackground1,
   },
   intro: {
     color: tokens.colorNeutralForeground2,
@@ -27,25 +33,39 @@ const useStyles = makeStyles({
     alignItems: 'center',
     columnGap: tokens.spacingHorizontalM,
   },
+  // Always mounted, even with nothing to report: a live region inserted at the same moment as its
+  // text is not reliably announced — it has to already exist for the insertion to register as a
+  // change (WCAG 4.1.3). minHeight keeps the row from jumping when the confirmation appears.
+  status: {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: tokens.spacingHorizontalXS,
+    minHeight: tokens.lineHeightBase200,
+  },
 });
 
 /** Which broadcaster surface this is: one-time setup (`config`) vs the live dashboard module (`live`). */
 export type ConfigVariant = 'config' | 'live';
 
-/** Per-surface copy. Both write to the same broadcaster segment; only the framing differs. */
+/**
+ * Per-surface copy. Both write to the same broadcaster segment; only the framing differs.
+ *
+ * The confirmations carry no "✓" character: the tick is a decorative icon in the markup instead,
+ * so screen readers announce "Saved" rather than reading the glyph out as "check mark".
+ */
 const COPY = {
   config: {
     heading: "Raven's Team — Panel settings",
     intro:
       'These defaults apply to everyone who opens your panel. Viewers can override them for themselves.',
     save: 'Save',
-    saved: 'Saved ✓',
+    saved: 'Saved',
   },
   live: {
     heading: "Raven's Team — Live panel controls",
     intro: 'Adjust your panel’s look. Changes apply to your live viewers right away.',
     save: 'Apply',
-    saved: 'Applied ✓',
+    saved: 'Applied',
   },
 } as const satisfies Record<ConfigVariant, Record<'heading' | 'intro' | 'save' | 'saved', string>>;
 
@@ -86,21 +106,29 @@ export const ConfigApp = ({ variant = 'config' }: ConfigAppProps) => {
 
   return (
     <FluentProvider theme={buildTheme(draft, theme)} className={styles.page}>
-      <Text as="h1" size={600} weight="bold">
-        {copy.heading}
-      </Text>
-      <Text className={styles.intro}>{copy.intro}</Text>
-      <SettingsControls value={draft} onChange={onChange} />
-      <div className={styles.actions}>
-        <Button appearance="primary" onClick={onSave}>
-          {copy.save}
-        </Button>
-        {saved && (
-          <Text aria-live="polite" size={200}>
-            {copy.saved}
-          </Text>
-        )}
-      </div>
+      <main className={styles.content}>
+        <Text as="h1" size={600} weight="bold">
+          {copy.heading}
+        </Text>
+        <Text className={styles.intro}>{copy.intro}</Text>
+        <SettingsControls value={draft} onChange={onChange} />
+        <div className={styles.actions}>
+          <Button appearance="primary" icon={<SaveRegular />} onClick={onSave}>
+            {copy.save}
+          </Button>
+          <div className={styles.status} role="status">
+            {saved && (
+              <>
+                {/* Decorative — the "Saved" text beside it is what gets announced, so the
+                    confirmation never rests on the icon (or on colour) alone. */}
+                <CheckmarkCircleFilled />
+                <Text size={200}>{copy.saved}</Text>
+              </>
+            )}
+          </div>
+        </div>
+        <PolicyLinks />
+      </main>
     </FluentProvider>
   );
 };
