@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import {
   Button,
+  Link,
   Text,
   makeStyles,
   tokens,
@@ -47,6 +48,24 @@ const useStyles = makeStyles({
   closeButton: {
     minWidth: 'auto',
   },
+  // Legal links sit on the drawer's bottom edge. marginTop:auto absorbs the slack so they stay put
+  // however tall the controls above them get; the rule separates them from the settings proper.
+  legal: {
+    marginTop: 'auto',
+    paddingTop: tokens.spacingVerticalM,
+    display: 'flex',
+    columnGap: tokens.spacingHorizontalM,
+    alignItems: 'center',
+    borderTopWidth: tokens.strokeWidthThin,
+    borderTopStyle: 'solid',
+    borderTopColor: tokens.colorNeutralStroke2,
+  },
+  legalLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    columnGap: tokens.spacingHorizontalXXS,
+    fontSize: tokens.fontSizeBase200,
+  },
 });
 
 /** Gear cog glyph (inline SVG — the project has no icon dependency). */
@@ -68,6 +87,51 @@ const DismissIcon = () => (
     <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
   </svg>
 );
+
+/**
+ * Box-with-arrow glyph (inline SVG) — the conventional "this leaves the site" marker. Decorative:
+ * the adjacent link text and title carry the meaning, so it stays hidden from assistive tech.
+ */
+const ExternalLinkIcon = () => (
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+    // flex-shrink guards the glyph against being squashed when the label wraps.
+    style={{ flexShrink: 0 }}
+  >
+    <path
+      d="M14 4h6v6M19.5 4.5L11 13"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M18 14.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+/**
+ * Off-site policy links shown at the foot of the drawer.
+ *
+ * Twitch sandboxes the panel iframe and blocks top-level navigation, so these can only open in a
+ * new tab — hence target="_blank" (the same reason the roster's twitch.tv links use it). Both URLs
+ * must also be declared on the version submission, per extension guidelines 2.12 ("You must provide
+ * all URLs that are fetched by the Extension front end on each version submission").
+ */
+const POLICY_LINKS = [
+  { name: 'Privacy Policy', href: 'https://www.theomenden.com/policies/privacy-policy' },
+  { name: 'ToS', href: 'https://www.theomenden.com/policies/terms-of-service' },
+] as const satisfies readonly { name: string; href: string }[];
 
 /** Props for {@link ViewerSettings}. */
 export interface ViewerSettingsProps {
@@ -195,6 +259,24 @@ const SettingsDrawer = ({
         Reset to channel defaults
       </Button>
       {/* ponytail: density rides the global spacing-token scale; per-avatar sizing skipped until asked */}
+      <footer className={styles.legal}>
+        {POLICY_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            className={styles.legalLink}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            // Native title rather than Fluent's Tooltip: Tooltip portals, which greys out the whole
+            // panel in this iframe (same reason the team picker is a native select). Names the
+            // destination and the new tab up front, so following the link is never a surprise.
+            title={`${link.name} — opens theomenden.com in a new tab`}
+          >
+            {link.name}
+            <ExternalLinkIcon />
+          </Link>
+        ))}
+      </footer>
     </div>
   );
 };

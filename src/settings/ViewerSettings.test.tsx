@@ -74,4 +74,39 @@ describe('ViewerSettings', () => {
     expect(gear()).toBeInTheDocument();
     expect(gear()).toHaveAttribute('aria-expanded', 'true');
   });
+
+  describe('policy links', () => {
+    it.each([
+      ['Privacy Policy', 'https://www.theomenden.com/policies/privacy-policy'],
+      ['ToS', 'https://www.theomenden.com/policies/terms-of-service'],
+    ])('links to %s', (name, href) => {
+      renderSettings();
+      fireEvent.click(gear());
+
+      expect(screen.getByRole('link', { name })).toHaveAttribute('href', href);
+    });
+
+    // Not a preference: Twitch sandboxes the panel iframe and blocks top-level navigation, so a
+    // policy link without target="_blank" simply does nothing when clicked. noreferrer/noopener
+    // keeps the opened tab from reaching back into the panel via window.opener.
+    it('opens off-site links in a new tab, with the opener severed', () => {
+      renderSettings();
+      fireEvent.click(gear());
+
+      for (const link of screen.getAllByRole('link')) {
+        expect(link).toHaveAttribute('target', '_blank');
+        expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
+    it('says where each link goes before it is followed', () => {
+      renderSettings();
+      fireEvent.click(gear());
+
+      expect(screen.getByRole('link', { name: 'ToS' })).toHaveAttribute(
+        'title',
+        'ToS — opens theomenden.com in a new tab',
+      );
+    });
+  });
 });
