@@ -1,4 +1,12 @@
+import type { ReactNode } from 'react';
 import { Field, Select, Switch, makeStyles, tokens } from '@fluentui/react-components';
+import {
+  DarkThemeRegular,
+  SlideTransitionRegular,
+  TextDensityRegular,
+  TextFontRegular,
+  TextFontSizeRegular,
+} from '@fluentui/react-icons';
 import {
   DENSITY_OPTIONS,
   FONT_OPTIONS,
@@ -17,7 +25,29 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     rowGap: tokens.spacingVerticalM,
   },
+  // Icon + text label. inline-flex keeps the glyph on the text baseline row rather than letting it
+  // sit proud of it; the icon is 1em, so it scales with the viewer's text-size setting.
+  label: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    columnGap: tokens.spacingHorizontalXS,
+  },
 });
+
+/**
+ * A field label with a leading glyph. The icon is purely decorative — Fluent icons are
+ * `aria-hidden` unless given a title, so the text alone is the control's accessible name and
+ * nothing is announced twice (WCAG 1.1.1).
+ */
+const IconLabel = ({ icon, children }: { readonly icon: ReactNode; readonly children: string }) => {
+  const styles = useStyles();
+  return (
+    <span className={styles.label}>
+      {icon}
+      {children}
+    </span>
+  );
+};
 
 /** Props for {@link SettingsControls}. */
 export interface SettingsControlsProps {
@@ -37,7 +67,7 @@ export const SettingsControls = ({ value, onChange }: SettingsControlsProps) => 
   const styles = useStyles();
   return (
     <div className={styles.form}>
-      <Field label="Theme">
+      <Field label={{ children: <IconLabel icon={<DarkThemeRegular />}>Theme</IconLabel> }}>
         <Select
           value={value.theme}
           onChange={(_, data) => onChange('theme', data.value as ThemeChoice)}
@@ -50,7 +80,7 @@ export const SettingsControls = ({ value, onChange }: SettingsControlsProps) => 
         </Select>
       </Field>
 
-      <Field label="Font">
+      <Field label={{ children: <IconLabel icon={<TextFontRegular />}>Font</IconLabel> }}>
         <Select
           value={value.font}
           onChange={(_, data) => onChange('font', data.value as FontChoice)}
@@ -63,7 +93,7 @@ export const SettingsControls = ({ value, onChange }: SettingsControlsProps) => 
         </Select>
       </Field>
 
-      <Field label="Text size">
+      <Field label={{ children: <IconLabel icon={<TextFontSizeRegular />}>Text size</IconLabel> }}>
         <Select
           value={value.textSize}
           onChange={(_, data) => onChange('textSize', data.value as TextSize)}
@@ -76,7 +106,7 @@ export const SettingsControls = ({ value, onChange }: SettingsControlsProps) => 
         </Select>
       </Field>
 
-      <Field label="Density">
+      <Field label={{ children: <IconLabel icon={<TextDensityRegular />}>Density</IconLabel> }}>
         <Select
           value={value.density}
           onChange={(_, data) => onChange('density', data.value as Density)}
@@ -92,7 +122,9 @@ export const SettingsControls = ({ value, onChange }: SettingsControlsProps) => 
       <Switch
         checked={value.reducedMotion}
         onChange={(_, data) => onChange('reducedMotion', data.checked)}
-        label="Reduce motion"
+        label={{
+          children: <IconLabel icon={<SlideTransitionRegular />}>Reduce motion</IconLabel>,
+        }}
       />
     </div>
   );

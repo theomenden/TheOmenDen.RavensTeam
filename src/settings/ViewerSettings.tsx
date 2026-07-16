@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import {
   Button,
-  Link,
   Text,
   makeStyles,
   tokens,
   useFocusFinders,
   useModalAttributes,
 } from '@fluentui/react-components';
-import { DismissRegular, OpenRegular, SettingsRegular } from '@fluentui/react-icons';
+import { ArrowResetRegular, DismissRegular, SettingsRegular } from '@fluentui/react-icons';
+import { PolicyLinks } from './PolicyLinks';
 import { SettingsControls } from './SettingsControls';
 import type { PanelSettings } from './model';
 
@@ -54,43 +54,7 @@ const useStyles = makeStyles({
   closeButton: {
     minWidth: 'auto',
   },
-  // Legal links sit on the drawer's bottom edge. marginTop:auto absorbs the slack so they stay put
-  // however tall the controls above them get; the rule separates them from the settings proper.
-  legal: {
-    marginTop: 'auto',
-    paddingTop: tokens.spacingVerticalM,
-    display: 'flex',
-    columnGap: tokens.spacingHorizontalM,
-    alignItems: 'center',
-    borderTopWidth: tokens.strokeWidthThin,
-    borderTopStyle: 'solid',
-    borderTopColor: tokens.colorNeutralStroke2,
-  },
-  legalLink: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    columnGap: tokens.spacingHorizontalXXS,
-    fontSize: tokens.fontSizeBase200,
-  },
-  // Fluent's unsized icons are 1em, so this rides the link's font size (and the text-size setting)
-  // without a hardcoded px. flexShrink guards it against being squashed if the label wraps.
-  externalIcon: {
-    flexShrink: 0,
-  },
 });
-
-/**
- * Off-site policy links shown at the foot of the drawer.
- *
- * Twitch sandboxes the panel iframe and blocks top-level navigation, so these can only open in a
- * new tab — hence target="_blank" (the same reason the roster's twitch.tv links use it). Both URLs
- * must also be declared on the version submission, per extension guidelines 2.12 ("You must provide
- * all URLs that are fetched by the Extension front end on each version submission").
- */
-const POLICY_LINKS = [
-  { name: 'Privacy Policy', href: 'https://www.theomenden.com/policies/privacy-policy' },
-  { name: 'ToS', href: 'https://www.theomenden.com/policies/terms-of-service' },
-] as const satisfies readonly { name: string; href: string }[];
 
 /** Props for {@link ViewerSettings}. */
 export interface ViewerSettingsProps {
@@ -214,30 +178,11 @@ const SettingsDrawer = ({
         />
       </div>
       <SettingsControls value={settings} onChange={setOverride} />
-      <Button appearance="secondary" size="small" onClick={reset}>
+      <Button appearance="secondary" size="small" icon={<ArrowResetRegular />} onClick={reset}>
         Reset to channel defaults
       </Button>
       {/* ponytail: density rides the global spacing-token scale; per-avatar sizing skipped until asked */}
-      <footer className={styles.legal}>
-        {POLICY_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            className={styles.legalLink}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            // Native title rather than Fluent's Tooltip: Tooltip portals, which greys out the whole
-            // panel in this iframe (same reason the team picker is a native select). Names the
-            // destination and the new tab up front, so following the link is never a surprise.
-            title={`${link.name} — opens theomenden.com in a new tab`}
-          >
-            {link.name}
-            {/* Conventional "this leaves the site" marker. Decorative — the link text and title
-                carry the meaning, and Fluent's icons are aria-hidden by default. */}
-            <OpenRegular className={styles.externalIcon} />
-          </Link>
-        ))}
-      </footer>
+      <PolicyLinks />
     </div>
   );
 };
