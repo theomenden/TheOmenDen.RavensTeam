@@ -1,6 +1,6 @@
 # Raven's Team: Feature Walkthrough
 
-This guide explains what Raven's Team does and how to use every feature in version 1.0.0. It is written for two audiences: broadcasters who install and configure the extension, and viewers who interact with the panel on a channel.
+This guide explains what Raven's Team does and how to use every feature in version 1.1.0. It is written for two audiences: broadcasters who install and configure the extension, and viewers who interact with the panel on a channel.
 
 Raven's Team is a Twitch panel extension. It shows the stream teams a channel belongs to, lists each team's members, marks who is live right now, and lets viewers follow members and personalize how the panel looks.
 
@@ -48,7 +48,7 @@ Once you follow a channel during your visit, the button changes to a filled hear
 
 ### Personalizing the panel
 
-Open your personal settings with the gear button in the top right corner of the panel. A settings drawer slides in from the right with these controls:
+Open your personal settings with the gear button in the top right corner of the panel. A settings drawer slides in from the right. Each control carries an icon next to its name, so the list is quick to scan:
 
 1. Theme. Choose Match Twitch (follows your Twitch light or dark setting), Light, Dark, or High contrast.
 2. Font. Choose Default, Serif, Monospace, or Rounded. All choices use fonts already on your device, so nothing extra is downloaded.
@@ -59,6 +59,10 @@ Open your personal settings with the gear button in the top right corner of the 
 Your choices apply immediately as you make them. They are saved on your own device, so they persist the next time you open this panel. They are private to you and do not affect other viewers.
 
 The Reset to channel defaults button clears all of your personal choices and returns the panel to whatever the broadcaster set as the default.
+
+The drawer works from the keyboard. Opening it moves your cursor to the close button, and tabbing cycles through the drawer's own controls rather than wandering into the roster behind it. Escape closes the drawer, as does the close button in its top right, and either way you land back on the gear you started from.
+
+At the foot of the drawer are links to the Privacy Policy and the Terms of Service. Both open in a new tab, and each says where it goes before you click it.
 
 ## 2. For broadcasters: configuring the panel
 
@@ -88,6 +92,12 @@ Both broadcaster pages expose the same options that viewers can personalize:
 
 Saving on either page stores your choices in Twitch's Configuration Service under your channel. New panels pick up the saved defaults when they load, and open panels are updated as soon as you save. No separate server or account is required.
 
+A confirmation appears beside the button once the settings are stored, and clears again the moment you change anything else, so it always refers to the settings currently on screen.
+
+### Policy links
+
+Both broadcaster pages carry the same Privacy Policy and Terms of Service links that viewers see in their settings drawer, at the foot of the page. Both open in a new tab.
+
 ## 3. How broadcaster defaults and viewer choices work together
 
 The panel decides what to show for each setting using a simple order of priority:
@@ -103,10 +113,15 @@ This applies to each setting on its own. For example, a viewer can override only
 Raven's Team is built with accessibility in mind:
 
 1. High contrast theme. A dedicated high contrast option maximizes legibility for viewers who need it.
-2. Text size control. Viewers and broadcasters can scale text up for easier reading.
+2. Text size control. Viewers and broadcasters can scale text up for easier reading. The icons beside each setting scale with the text rather than staying fixed.
 3. Reduce motion. Both a viewer toggle and the operating system's reduced motion preference remove animations and transitions.
-4. Screen reader support. Live status is announced, each roster row reports its position and the total member count, follow buttons have descriptive labels, and status messages are announced when they appear.
+4. Screen reader support. Live status is announced, each roster row reports its position and the total member count, follow buttons have descriptive labels, and status messages are announced when they appear. The icons throughout are decorative and stay silent, so nothing is read out twice.
 5. Keyboard and browser native controls. The team picker, the setting menus, and the settings drawer use standard controls that work with assistive technology and do not obscure the panel.
+6. Keyboard handling in the settings drawer. Opening the drawer moves focus into it, tabbing stays inside it while it is open, Escape closes it, and focus returns to the gear afterwards.
+7. Structure. The roster is a real list, the team bar is a page header, and the roster and the broadcaster pages are marked as their page's main content, so screen reader users can jump straight to what they want.
+8. Target sizes. Every button, menu, and link on all three screens is at least 24 by 24 pixels, which matters most on touch.
+
+Version 1.1.0 fixed two problems in this area. The gear that opens the settings drawer was drawn in white on the light theme's pale header, which left it close to invisible. The member count and the save confirmation were also being announced in a way most screen readers would have missed.
 
 ## 5. Quick settings reference
 
