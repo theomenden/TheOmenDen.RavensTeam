@@ -60,6 +60,9 @@ export const TeamList = ({ auth }: TeamListProps) => {
   const activeSelection = active ? [active.id] : [];
 
   return (
+    // Layout-only wrapper, so it stays a div: it exists to stack the header and body, and keeping
+    // it neutral is what leaves PanelHeader's <header> a top-level banner landmark rather than a
+    // header nested inside <main> (which demotes it to a plain section header).
     <div className={styles.root}>
       <PanelHeader
         teams={teamHeaders}
@@ -67,7 +70,7 @@ export const TeamList = ({ auth }: TeamListProps) => {
         onSelect={setSelected}
         memberCount={memberCount}
       />
-      <div className={styles.body}>
+      <main className={styles.body}>
         {teams.status === 'loading' && <RosterSkeleton />}
         {/* role="alert" ⇒ announced assertively when it replaces the loading skeleton (WCAG 4.1.3). */}
         {teams.status === 'error' && (
@@ -98,7 +101,7 @@ export const TeamList = ({ auth }: TeamListProps) => {
               />
             </Activity>
           ))}
-      </div>
+      </main>
     </div>
   );
 };

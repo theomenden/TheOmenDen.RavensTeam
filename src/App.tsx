@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FluentProvider, makeStyles } from '@fluentui/react-components';
+import { FluentProvider, makeStyles, tokens } from '@fluentui/react-components';
 import { useTwitchAuth } from './twitch/useTwitchAuth';
 import { buildTheme } from './theme';
 import { useEffectiveSettings } from './settings/useEffectiveSettings';
@@ -20,8 +20,10 @@ const useStyles = makeStyles({
     height: '100%',
     maxHeight: '496px',
     overflow: 'hidden',
-    paddingBlock: '8px',
-    paddingInline: '8px',
+    // PanelHeader cancels these two tokens with matching negative margins to go full-bleed; keep
+    // them tokens on both sides so density scaling moves the padding and the bar together.
+    paddingBlock: tokens.spacingVerticalS,
+    paddingInline: tokens.spacingHorizontalS,
   },
 });
 

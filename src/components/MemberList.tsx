@@ -27,9 +27,16 @@ const useStyles = makeStyles({
     scrollbarWidth: 'thin',
     scrollbarColor: `${tokens.colorNeutralForeground3} transparent`,
   },
+  // The virtualizer's full-height spacer, and the roster's <ul>. Strips the native list chrome:
+  // rows are absolutely positioned, so bullets and default padding would only get in the way.
   sizer: {
     position: 'relative',
     width: '100%',
+    listStyleType: 'none',
+    marginBlock: 0,
+    marginInline: 0,
+    paddingBlock: 0,
+    paddingInline: 0,
   },
   row: {
     position: 'absolute',
@@ -90,7 +97,10 @@ export const MemberList = ({ auth, members, followed }: MemberListProps) => {
 
   return (
     <div ref={scrollRef} className={styles.scroll}>
-      <div
+      {/* Native <ul>/<li> carry the list semantics. role="list" is kept deliberately: Safari drops
+          list semantics from a list styled `list-style: none`, and re-declaring the role is the
+          standard way to hold onto them. */}
+      <ul
         className={styles.sizer}
         role="list"
         style={{ height: `${virtualizer.getTotalSize()}px` }}
@@ -99,10 +109,9 @@ export const MemberList = ({ auth, members, followed }: MemberListProps) => {
           const member = members[item.index];
           if (!member) return null;
           return (
-            <div
+            <li
               key={member.userId}
               className={mergeClasses(styles.row, styles.rowEnter)}
-              role="listitem"
               // Virtualization mounts only visible rows; setsize/posinset let assistive tech
               // report the true total and each member's position anyway (WCAG 1.3.1).
               aria-setsize={members.length}
@@ -122,10 +131,10 @@ export const MemberList = ({ auth, members, followed }: MemberListProps) => {
                 // Stripe by absolute position so the pattern is stable as the window scrolls.
                 zebra={item.index % 2 === 1}
               />
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
