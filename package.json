@@ -15,7 +15,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@fluentui/react-components": "9.74.3",
+    "@fluentui/react-components": "9.74.4",
     "@fluentui/react-icons": "2.0.333",
     "@tanstack/react-virtual": "3.14.6",
     "react": "19.2.7",
