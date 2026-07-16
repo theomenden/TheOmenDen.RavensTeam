@@ -42,16 +42,6 @@ describe('ViewerSettings', () => {
     expect(drawer()).toBeInTheDocument();
   });
 
-  // The gear is the element focus returns to when the drawer closes, so it has to survive the
-  // drawer being open — an unmounted trigger leaves focus stranded on <body>.
-  it('keeps the gear trigger mounted while the drawer is open', () => {
-    renderSettings();
-    fireEvent.click(gear());
-
-    expect(gear()).toBeInTheDocument();
-    expect(gear()).toHaveAttribute('aria-expanded', 'true');
-  });
-
   it('closes the drawer from its close button', () => {
     renderSettings();
     fireEvent.click(gear());
@@ -60,5 +50,28 @@ describe('ViewerSettings', () => {
 
     expect(drawer()).not.toBeInTheDocument();
     expect(gear()).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  // Focus behaviour itself is tabster's, and tabster does not run under happy-dom — the trap and
+  // the return-to-gear were verified in a browser instead. What is worth pinning here is the
+  // wiring, because the failure mode is silent: modalAttributes and the useRestoreFocus* hooks all
+  // write data-tabster, so spreading two of them onto one element drops the modalizer and the trap
+  // never installs, with nothing visibly broken until a keyboard user tabs out of the dialog.
+  it('installs the focus trap on the drawer', () => {
+    renderSettings();
+    fireEvent.click(gear());
+
+    const tabster = drawer()!.getAttribute('data-tabster');
+    expect(tabster).toContain('modalizer');
+    expect(JSON.parse(tabster!).modalizer.isTrapped).toBe(true);
+  });
+
+  it('marks the gear as the modal trigger, so focus can return to it', () => {
+    renderSettings();
+    fireEvent.click(gear());
+
+    expect(gear()).toHaveAttribute('data-tabster');
+    expect(gear()).toBeInTheDocument();
+    expect(gear()).toHaveAttribute('aria-expanded', 'true');
   });
 });
