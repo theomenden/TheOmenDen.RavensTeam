@@ -1,4 +1,4 @@
-# Raven's Team 1.0.1
+# Raven's Team 1.1.0
 
 ## What the extension does
 
@@ -133,7 +133,7 @@ analytics or telemetry of any kind.
 
 ## The zip
 
-`ravens-team-v1.0.1.zip`, built by `pnpm build` and zipped from the contents of `dist/` so the
+`ravens-team-v1.1.0.zip`, built by `pnpm build` and zipped from the contents of `dist/` so the
 HTML sits at the archive root, which is what the Asset Hosting paths expect.
 
 ```

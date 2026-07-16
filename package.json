@@ -1,6 +1,6 @@
 {
   "name": "ravens-team",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Twitch panel extension showing a broadcaster's stream teams and which members are live.",
   "type": "module",
   "license": "ISC",
