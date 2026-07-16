@@ -8,18 +8,24 @@ import {
   useFocusFinders,
   useModalAttributes,
 } from '@fluentui/react-components';
+import { DismissRegular, OpenRegular, SettingsRegular } from '@fluentui/react-icons';
 import { SettingsControls } from './SettingsControls';
 import type { PanelSettings } from './model';
 
 const useStyles = makeStyles({
   // Small icon-only trigger pinned to the panel's top-right corner, above the branded header.
+  // The gear sits on colorBrandBackground2, which is a *light* tint in the light theme — so the
+  // OnBrand (white) foreground this used to force scored 1.44:1 against it, well under WCAG AA's
+  // 3:1 for non-text, on the only control that opens settings. colorNeutralForeground1 is the
+  // foreground Fluent pairs with that surface, and is what the team title on the same bar already
+  // resolves to, so the gear now tracks the bar the way the rest of the header does.
   gear: {
     position: 'absolute',
     top: '2px',
     right: '2px',
     zIndex: 3,
     minWidth: 'auto',
-    color: tokens.colorNeutralForegroundOnBrand,
+    color: tokens.colorNeutralForeground1,
   },
   // Inline overlay (NOT a portal — portals grey out the overflow:hidden iframe). Slides over
   // the roster from the right; the panel root is position:relative so this anchors to it.
@@ -66,59 +72,12 @@ const useStyles = makeStyles({
     columnGap: tokens.spacingHorizontalXXS,
     fontSize: tokens.fontSizeBase200,
   },
+  // Fluent's unsized icons are 1em, so this rides the link's font size (and the text-size setting)
+  // without a hardcoded px. flexShrink guards it against being squashed if the label wraps.
+  externalIcon: {
+    flexShrink: 0,
+  },
 });
-
-/** Gear cog glyph (inline SVG — the project has no icon dependency). */
-const GearIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <circle cx="12" cy="12" r="3.25" stroke="currentColor" strokeWidth="1.5" />
-    <path
-      d="M19.4 13a7.5 7.5 0 0 0 0-2l1.7-1.3-1.5-2.6-2 .8a7.6 7.6 0 0 0-1.7-1L15.5 3h-3l-.4 2.9a7.6 7.6 0 0 0-1.7 1l-2-.8-1.5 2.6L4.6 11a7.5 7.5 0 0 0 0 2l-1.7 1.3 1.5 2.6 2-.8c.5.42 1.1.76 1.7 1l.4 2.9h3l.4-2.9c.6-.24 1.2-.58 1.7-1l2 .8 1.5-2.6L19.4 13Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-/** Dismiss "×" glyph (inline SVG). */
-const DismissIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-/**
- * Box-with-arrow glyph (inline SVG) — the conventional "this leaves the site" marker. Decorative:
- * the adjacent link text and title carry the meaning, so it stays hidden from assistive tech.
- */
-const ExternalLinkIcon = () => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 24 24"
-    fill="none"
-    aria-hidden="true"
-    focusable="false"
-    // flex-shrink guards the glyph against being squashed when the label wraps.
-    style={{ flexShrink: 0 }}
-  >
-    <path
-      d="M14 4h6v6M19.5 4.5L11 13"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M18 14.5V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.5"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 /**
  * Off-site policy links shown at the foot of the drawer.
@@ -173,7 +132,7 @@ export const ViewerSettings = ({ settings, setOverride, reset }: ViewerSettingsP
         className={styles.gear}
         appearance="subtle"
         size="small"
-        icon={<GearIcon />}
+        icon={<SettingsRegular />}
         aria-label="Panel settings"
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -249,7 +208,7 @@ const SettingsDrawer = ({
           className={styles.closeButton}
           appearance="subtle"
           size="small"
-          icon={<DismissIcon />}
+          icon={<DismissRegular />}
           aria-label="Close settings"
           onClick={onClose}
         />
@@ -273,7 +232,9 @@ const SettingsDrawer = ({
             title={`${link.name} — opens theomenden.com in a new tab`}
           >
             {link.name}
-            <ExternalLinkIcon />
+            {/* Conventional "this leaves the site" marker. Decorative — the link text and title
+                carry the meaning, and Fluent's icons are aria-hidden by default. */}
+            <OpenRegular className={styles.externalIcon} />
           </Link>
         ))}
       </footer>
