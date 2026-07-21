@@ -19,7 +19,7 @@
     "@fluentui/react-icons": "2.0.333",
     "@tanstack/react-virtual": "3.14.6",
     "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@testing-library/dom": "10.4.1",
