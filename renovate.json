@@ -7,7 +7,6 @@
     ":maintainLockFilesWeekly",
     ":automergeMinor",
     ":automergeDigest",
-    ":automergeRequireAllStatusChecks",
     "mergeConfidence:all-badges"
   ],
   "postUpdateOptions": ["pnpmDedupe"],
