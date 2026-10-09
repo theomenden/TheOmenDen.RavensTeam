@@ -170,8 +170,8 @@ importers:
         specifier: 9.74.9
         version: 9.74.9(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-icons':
-        specifier: 2.0.343
-        version: 2.0.343(react@19.3.0)
+        specifier: 2.0.344
+        version: 2.0.344(react@19.3.0)
       '@tanstack/react-virtual':
         specifier: 3.14.13
         version: 3.14.13(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -543,8 +543,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@fluentui/react-icons@2.0.343':
-    resolution: {integrity: sha512-CjwAZrog38QNPeIjBfMs0e7tPUW/Bxgge5qbhbfdhXJwXOSm5lDLCKkx4xyBSu1Mg/e/8wLocQvWcBZlS6/Axg==}
+  '@fluentui/react-icons@2.0.344':
+    resolution: {integrity: sha512-pvEVFOUrrtmIglqdfhDVX6XT80a5z9kX+Tso6NAzgmkko8nlURhOzNwvZZlsCK4yQseH/4NQdYoN8ijO7IHdNw==}
     peerDependencies:
       react: '>=16.8.0 <20.0.0'
 
@@ -2446,7 +2446,7 @@ snapshots:
     dependencies:
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
@@ -2466,7 +2466,7 @@ snapshots:
     dependencies:
       '@fluentui/react-avatar': 9.11.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-theme': 9.2.2
@@ -2496,7 +2496,7 @@ snapshots:
     dependencies:
       '@fluentui/react-badge': 9.5.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-popover': 9.14.9(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -2515,7 +2515,7 @@ snapshots:
 
   '@fluentui/react-badge@9.5.6(@types/react@19.3.0)(react@19.3.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-theme': 9.2.2
@@ -2530,7 +2530,7 @@ snapshots:
     dependencies:
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-link': 9.8.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -2547,7 +2547,7 @@ snapshots:
     dependencies:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -2579,7 +2579,7 @@ snapshots:
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -2601,7 +2601,7 @@ snapshots:
   '@fluentui/react-checkbox@9.6.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-label': 9.4.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -2638,7 +2638,7 @@ snapshots:
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-portal': 9.8.16(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@fluentui/react-positioning': 9.23.3(@types/react@19.3.0)(react@19.3.0)
@@ -2740,7 +2740,7 @@ snapshots:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
@@ -2793,7 +2793,7 @@ snapshots:
   '@fluentui/react-field@9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-label': 9.4.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -2807,7 +2807,7 @@ snapshots:
     transitivePeerDependencies:
       - scheduler
 
-  '@fluentui/react-icons@2.0.343(react@19.3.0)':
+  '@fluentui/react-icons@2.0.344(react@19.3.0)':
     dependencies:
       '@griffel/react': 1.7.8(react@19.3.0)
       react: 19.3.0
@@ -2827,7 +2827,7 @@ snapshots:
 
   '@fluentui/react-infobutton@9.0.1-beta.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-label': 9.4.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-popover': 9.14.9(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
@@ -2845,7 +2845,7 @@ snapshots:
 
   '@fluentui/react-infolabel@9.4.27(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-label': 9.4.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-popover': 9.14.9(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
@@ -2934,7 +2934,7 @@ snapshots:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
@@ -2956,7 +2956,7 @@ snapshots:
   '@fluentui/react-message-bar@9.7.7(@types/react@19.3.0)(react@19.3.0)':
     dependencies:
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-link': 9.8.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
@@ -2995,7 +2995,7 @@ snapshots:
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-divider': 9.7.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-drawer': 9.13.4(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
@@ -3109,7 +3109,7 @@ snapshots:
 
   '@fluentui/react-provider@9.22.21(@types/react@19.3.0)(react@19.3.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -3141,7 +3141,7 @@ snapshots:
 
   '@fluentui/react-rating@9.4.6(@types/react@19.3.0)(react@19.3.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -3155,7 +3155,7 @@ snapshots:
 
   '@fluentui/react-search@9.4.7(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-input': 9.8.7(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -3172,7 +3172,7 @@ snapshots:
   '@fluentui/react-select@9.5.6(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-theme': 9.2.2
@@ -3228,7 +3228,7 @@ snapshots:
     dependencies:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-theme': 9.2.2
@@ -3258,7 +3258,7 @@ snapshots:
     dependencies:
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -3275,7 +3275,7 @@ snapshots:
   '@fluentui/react-switch@9.7.6(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)':
     dependencies:
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-label': 9.4.5(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -3297,7 +3297,7 @@ snapshots:
       '@fluentui/react-avatar': 9.11.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-checkbox': 9.6.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-radio': 9.6.6(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -3349,7 +3349,7 @@ snapshots:
       '@fluentui/react-combobox': 9.17.7(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-field': 9.5.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-portal': 9.8.16(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@fluentui/react-positioning': 9.23.3(@types/react@19.3.0)(react@19.3.0)
@@ -3372,7 +3372,7 @@ snapshots:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-avatar': 9.11.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-tabster': 9.26.18(@types/react@19.3.0)(react@19.3.0)
@@ -3392,7 +3392,7 @@ snapshots:
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-popover': 9.14.9(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-shared-contexts': 9.26.4(@types/react@19.3.0)(react@19.3.0)
@@ -3445,7 +3445,7 @@ snapshots:
     dependencies:
       '@fluentui/keyboard-keys': 9.0.9
       '@fluentui/react-aria': 9.17.15(@types/react@19.3.0)(react@19.3.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
@@ -3507,7 +3507,7 @@ snapshots:
       '@fluentui/react-button': 9.11.1(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-checkbox': 9.6.5(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
       '@fluentui/react-context-selector': 9.2.20(@types/react@19.3.0)(react@19.3.0)(scheduler@0.28.0)
-      '@fluentui/react-icons': 2.0.343(react@19.3.0)
+      '@fluentui/react-icons': 2.0.344(react@19.3.0)
       '@fluentui/react-jsx-runtime': 9.4.6(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion': 9.16.4(@types/react@19.3.0)(react@19.3.0)
       '@fluentui/react-motion-components-preview': 0.15.9(@types/react@19.3.0)(react@19.3.0)
