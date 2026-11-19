@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@fluentui/react-components": "9.75.2",
-    "@fluentui/react-icons": "2.0.346",
+    "@fluentui/react-icons": "2.0.347",
     "@tanstack/react-virtual": "3.14.26",
     "react": "19.3.1",
     "react-dom": "19.3.1"
